@@ -1,0 +1,24 @@
+.table-tools {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-bottom: 1.5rem;
+	width: 100%;
+}
+
+.table-tools div {
+	flex-grow: 1;
+	width: calc(50% - 0.5rem);
+}
+
+.table-tools input,
+.table-tools input {
+	width: 100%;
+}
+
+@media only screen and (max-width: 576px) {
+	.table-tools div {
+		flex: 1 1 100% !important;
+	}
+}

@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 :root {
-	--primary: #e6b3ff;
-	--secondary: #e8ff99;
+	--primary: #dc2424;
+	--secondary: #4a569d;
 	--font-main: 'Kanit', sans-serif;
-	--dark: #0b0b0f;
-	--dark-alt: #303741;
-	--light: #f6f6f6;
-	--light-alt: #dedddd;
+	--dark: #16161d;
+	--dark-alt: #2b323b;
+	--light: #f5f5f5;
+	--light-alt: #b3b3b3;
 }
 
 * {
@@ -25,6 +25,7 @@
 	width: min(1200px, 95vw);
 	padding-top: 2rem;
 	padding-bottom: 8rem;
+	margin: 0 auto;
 }
 
 ::placeholder {
@@ -39,4 +40,105 @@ body {
 h1 {
 	font-size: 3rem;
 	margin-bottom: 2rem;
+}
+
+button {
+	padding: 0.5rem 1.75rem;
+	font-size: 1rem;
+	cursor: pointer;
+	border-radius: 6px;
+	color: var(--light);
+	border: none;
+	appearance: none;
+	height: 100%;
+	background-image: linear-gradient(
+		to right,
+		var(--primary) 0%,
+		var(--secondary) 51%,
+		var(--primary) 100%
+	);
+	background-size: 200% auto;
+	transition: 0.5s;
+}
+
+button:hover {
+	background-position: right;
+	color: #fff;
+	text-decoration: none;
+}
+
+input {
+	border: solid 2px var(--light-alt);
+	background-color: var(--dark-alt);
+	color: var(--light);
+	border-radius: 6px;
+	padding: 0.5rem 1rem;
+	font-size: 1rem;
+}
+
+input:focus {
+	border: solid 2px var(--light);
+	outline: none;
+}
+
+.table-container {
+	width: 100%;
+	overflow-x: auto;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+	border-radius: 6px;
+}
+
+table {
+	text-align: left;
+	border-collapse: collapse;
+}
+
+thead {
+	background-color: var(--secondary);
+}
+
+thead tr:hover {
+	pointer-events: none;
+}
+
+thead tr {
+	white-space: nowrap;
+	border-bottom: 6px solid var(--dark);
+}
+
+tbody tr:hover,
+tbody tr:hover td {
+	background-color: var(--dark) !important;
+	background-image: none;
+}
+
+tbody tr {
+	background-color: var(--dark-alt);
+}
+
+tbody tr.border-bottom {
+	border-bottom: 3px solid var(--dark);
+}
+
+tbody td.want-to-read {
+	background-color: var(--secondary);
+}
+
+tbody td.read {
+	background-color: #00663c;
+}
+
+tbody td.reading {
+	background-image: linear-gradient(to right, var(--primary) 0%, var(--secondary) 100%);
+}
+
+tbody td.readingMedium,
+tbody td.yearRead,
+tbody td.status {
+	text-align: center;
+}
+
+td,
+th {
+	padding: 0.5rem 1rem;
 }
