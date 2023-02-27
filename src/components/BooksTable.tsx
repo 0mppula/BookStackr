@@ -1,7 +1,7 @@
 import { FC, useMemo } from 'react';
+import { useSelector } from 'react-redux';
 import { Column, useTable } from 'react-table';
-
-import { books } from '../assets/data/books';
+import { RootState } from '../app/store';
 
 interface ColumnType {
 	index: string;
@@ -14,7 +14,9 @@ interface ColumnType {
 }
 
 const BooksTable: FC = () => {
-	const data: any = useMemo(() => books, []);
+	const { books } = useSelector((state: RootState) => state.books);
+
+	const data: any = useMemo(() => books, [books]);
 	const columns: Column<ColumnType>[] = useMemo(
 		() => [
 			{ Header: '#', accessor: 'index' },
@@ -50,7 +52,8 @@ const BooksTable: FC = () => {
 					{rows.map((row, i) => {
 						const nextRowYearRead = rows?.[i + 1]?.cells[5]?.value;
 						const currentRowYearRead = rows?.[i]?.cells[5]?.value;
-						const addBorderBottomToRow = nextRowYearRead && currentRowYearRead !== nextRowYearRead;
+						const addBorderBottomToRow =
+							nextRowYearRead && currentRowYearRead !== nextRowYearRead;
 						const currentRowReadStatus = rows?.[i]?.cells[6]?.value;
 
 						prepareRow(row);
