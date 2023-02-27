@@ -1,20 +1,14 @@
 import { FC } from 'react';
 
 import BooksTable from './BooksTable';
+import BooksTableTools from './BooksTableTools';
 
 import './styles.css';
 
 const Books: FC = () => {
 	return (
 		<>
-			<div className="table-tools">
-				<div>
-					<button>+ Add Book</button>
-				</div>
-				<div>
-					<input type="search" placeholder="Search by title or author..." name="" id="" />
-				</div>
-			</div>
+			<BooksTableTools />
 
 			<BooksTable />
 		</>

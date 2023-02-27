@@ -2,6 +2,7 @@ import { FC, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { Column, useTable } from 'react-table';
 import { RootState } from '../app/store';
+import { selectQueryFilteredBooks } from '../features/BooksSlice';
 
 interface ColumnType {
 	index: string;
@@ -14,7 +15,7 @@ interface ColumnType {
 }
 
 const BooksTable: FC = () => {
-	const { books } = useSelector((state: RootState) => state.books);
+	const books = useSelector((state: RootState) => selectQueryFilteredBooks(state));
 
 	const data: any = useMemo(() => books, [books]);
 	const columns: Column<ColumnType>[] = useMemo(

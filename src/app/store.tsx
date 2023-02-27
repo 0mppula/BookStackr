@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import bookReducer from '../features/BookSlice';
+import booksReducer from '../features/BooksSlice';
 
 export const store = configureStore({
-	reducer: { books: bookReducer },
+	reducer: { books: booksReducer },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
