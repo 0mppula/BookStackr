@@ -7,6 +7,10 @@
 	width: 100%;
 }
 
+.table-tools button {
+	height: 100%;
+}
+
 .table-tools div:nth-child(2) {
 	flex: 1 1 50%;
 	text-align: right;

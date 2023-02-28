@@ -1,9 +1,15 @@
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../app/store';
-import { setQuery } from '../features/BooksSlice';
 
-const BooksTableTools: FC = () => {
+import { RootState } from '../../app/store';
+import { setQuery } from '../../features/BooksSlice';
+import './styles.css';
+
+interface BooksTableToolsProps {
+	setAddModalOpen: Function;
+}
+
+const BooksTableTools: FC<BooksTableToolsProps> = ({ setAddModalOpen }) => {
 	const { query } = useSelector((state: RootState) => state.books);
 
 	const dispatch = useDispatch();
@@ -11,7 +17,7 @@ const BooksTableTools: FC = () => {
 	return (
 		<div className="table-tools">
 			<div>
-				<button>+ Add Book</button>
+				<button onClick={() => setAddModalOpen(true)}>+ Add Book</button>
 			</div>
 			<div>
 				<input

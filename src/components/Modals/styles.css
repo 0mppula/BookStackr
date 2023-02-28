@@ -1,0 +1,85 @@
+.modal-overlay {
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	transition: all 0.3s;
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	padding-top: 13vh;
+	align-items: flex-start;
+	z-index: -1;
+	background-color: rgba(0, 0, 0, 0.33);
+	opacity: 0;
+	transition: 0.3s;
+	pointer-events: none;
+}
+
+.modal-overlay.show {
+	opacity: 1;
+	pointer-events: all;
+	z-index: 10000;
+	padding-top: 15vh;
+}
+
+.modal {
+	padding: 1.5rem;
+	padding-top: 1rem;
+	border-radius: 4px;
+	border: solid 2px var(--light);
+	background-color: var(--dark-alt);
+	position: relative;
+	width: min(95%, 450px);
+	max-height: 70vh;
+}
+
+.close-container {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: var(--light);
+	transition: 0.3s;
+	padding: 0.125rem;
+	font-size: 1.5rem;
+}
+
+.modal-header {
+	margin-bottom: 1.5rem;
+	padding-bottom: 0.25rem;
+	border-bottom: solid 1px var(--clr-primary);
+	user-select: none;
+}
+
+.modal-body {
+	padding: 1rem 0;
+}
+
+.modal-footer {
+	margin-top: 1.5rem;
+	display: flex;
+	width: 100%;
+	justify-content: flex-end;
+}
+
+/* Modal form styles */
+.form-group {
+	margin-bottom: 10px;
+}
+
+.form-group input {
+	width: 100%;
+}
+
+.form-group label {
+	display: block;
+	margin-bottom: 0.25rem;
+}
+
+.form-group label span {
+	color: var(--secondary);
+}

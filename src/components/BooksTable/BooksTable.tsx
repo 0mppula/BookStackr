@@ -1,8 +1,8 @@
 import { FC, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { Column, useTable } from 'react-table';
-import { RootState } from '../app/store';
-import { selectQueryFilteredBooks } from '../features/BooksSlice';
+import { RootState } from '../../app/store';
+import { selectQueryFilteredBooks } from '../../features/BooksSlice';
 
 interface ColumnType {
 	index: string;
