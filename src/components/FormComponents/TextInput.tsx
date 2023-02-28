@@ -9,6 +9,7 @@ interface TextInputProps {
 	value: string;
 	handleChange: Function;
 	numberInput?: boolean;
+	tabIndex?: number;
 }
 
 const TextInput: FC<TextInputProps> = ({
@@ -20,6 +21,7 @@ const TextInput: FC<TextInputProps> = ({
 	value,
 	handleChange,
 	numberInput,
+	tabIndex,
 }) => {
 	const inputRef = useRef<HTMLInputElement>(null);
 
@@ -36,6 +38,7 @@ const TextInput: FC<TextInputProps> = ({
 				type={numberInput ? 'number' : 'text'}
 				name={name}
 				placeholder={placeholder}
+				tabIndex={tabIndex}
 			/>
 		</>
 	);

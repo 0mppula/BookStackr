@@ -51,7 +51,7 @@
 .modal-header {
 	margin-bottom: 1.5rem;
 	padding-bottom: 0.25rem;
-	border-bottom: solid 1px var(--clr-primary);
+	border-bottom: solid 1px var(--light);
 	user-select: none;
 }
 
@@ -77,9 +77,10 @@
 
 .form-group label {
 	display: block;
+	user-select: none;
 	margin-bottom: 0.25rem;
 }
 
 .form-group label span {
-	color: var(--secondary);
+	color: var(--primary);
 }

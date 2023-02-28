@@ -1,16 +1,15 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 
-import BooksTable from '../BooksTable/BooksTable';
-import BooksTableTools from '../BooksTableTools/BooksTableTools';
-import AddBookModal from '../Modals/AddBookModal';
+import BooksTable from './BooksTable';
+import BooksTableTools from './BooksTableTools';
+import { useTitle } from '../../hooks/useTitle';
 
 const Books: FC = () => {
-	const [addModalOpen, setAddModalOpen] = useState<boolean>(false);
+	useTitle('Books');
+
 	return (
 		<>
-			<AddBookModal modalOpen={addModalOpen} setModalOpen={setAddModalOpen} />
-
-			<BooksTableTools setAddModalOpen={setAddModalOpen} />
+			<BooksTableTools />
 
 			<BooksTable />
 		</>
