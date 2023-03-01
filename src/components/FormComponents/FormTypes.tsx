@@ -10,7 +10,7 @@ export interface InputFieldStringType {
 }
 
 export interface InputFieldSelectType {
-	value: selectItemType;
+	value: selectItemType[] | null;
 	error: string;
 	required: boolean;
 }

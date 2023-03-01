@@ -1,19 +1,19 @@
-export const formDataState = {
+export const AddBookFormDataState = {
 	author: { value: '', error: '', required: true },
 	title: { value: '', error: '', required: true },
 	category: {
-		value: { value: null, label: '-- Select an Option --' },
+		value: null,
 		error: '',
 		required: true,
 	},
 	readingMedium: {
-		value: { value: null, label: '-- Select an Option --' },
+		value: null,
 		error: '',
 		required: true,
 	},
 	yearRead: { value: '', error: '', required: true },
 	status: {
-		value: { value: null, label: '-- Select an Option --' },
+		value: null,
 		error: '',
 		required: true,
 	},

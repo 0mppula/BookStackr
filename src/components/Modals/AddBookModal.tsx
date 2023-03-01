@@ -1,11 +1,15 @@
 import { FC, useRef, useState } from 'react';
 import { RiCloseLine } from 'react-icons/ri';
+import ReactSelect from 'react-select';
+
+import { bookCategories } from '../../assets/data/bookSelectValues';
+import { customTheme, customStyles } from '../../helpers/reactSelectStyles';
 
 import useCloseOnOverlayClickOrEsc from '../../hooks/useCloseOnOverlayClickOrEsc';
 import useFocusTrap from '../../hooks/useFocusTrap';
-import { formDataState } from '../FormComponents/FormData';
+import { AddBookFormDataState } from '../FormComponents/FormData';
 import FormGroup from '../FormComponents/FormGroup';
-import { AddBookFormDataType } from '../FormComponents/FormTypes';
+import { AddBookFormDataType, selectItemType } from '../FormComponents/FormTypes';
 import TextInput from '../FormComponents/TextInput';
 
 import './styles.css';
@@ -16,7 +20,8 @@ interface AddBookModalProps {
 }
 
 const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
-	const [formData, setFormData] = useState<AddBookFormDataType>(formDataState);
+	const [formData, setFormData] = useState<AddBookFormDataType>(AddBookFormDataState);
+
 	const outerModalRef = useRef<HTMLDivElement>(null);
 	const innerModalRef = useRef<HTMLFormElement>(null);
 
@@ -34,6 +39,20 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 
 		setFormData((prevState) => ({ ...prevState, [field]: { ...fieldObj, value } }));
 	};
+
+	const handleSelectChange = (e: selectItemType[], field: string) => {
+		const fieldObj = formData[field as keyof AddBookFormDataType];
+
+		// Set the value of the selection to lowercase.
+		const lowerCasedValues = [...e].map((e) => ({ ...e, value: e.value?.toLowerCase() }));
+
+		setFormData((prevState) => ({
+			...prevState,
+			[field]: { ...fieldObj, value: lowerCasedValues },
+		}));
+	};
+
+	console.log(formData.category);
 
 	return (
 		<div
@@ -82,10 +101,20 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 						/>
 					</FormGroup>
 
-					{/* <div className="form-group">
-						<label htmlFor="">Category</label>
-						<select></select>
-					</div> */}
+					<FormGroup>
+						<ReactSelect
+							className="react-select-container"
+							classNamePrefix="react-select"
+							maxMenuHeight={231}
+							value={category?.value}
+							onChange={(e) => handleSelectChange(e as any, 'category')}
+							options={bookCategories}
+							theme={customTheme}
+							styles={customStyles}
+							placeholder="Select book category..."
+							isMulti
+						/>
+					</FormGroup>
 
 					{/* <div className="form-group">
 						<label htmlFor="">Reading Medium</label>

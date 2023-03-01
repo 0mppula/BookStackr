@@ -1,0 +1,100 @@
+/* React Select Styles */
+.react-select-container {
+	--select-height: 43.2px;
+}
+
+.react-select__value-container {
+	min-height: var(--select-height) !important;
+	padding: 0 !important;
+}
+
+.react-select__placeholder {
+	/* Placeholder styles */
+	margin: 0 !important;
+	/* Comment out margin-bottom if using multi choice */
+	/* margin-bottom: 9px !important; */
+	padding: 10px !important;
+	color: var(--light-alt) !important;
+}
+
+.react-select__value-container--has-value {
+	gap: 6px;
+	padding: 7px 10px !important;
+}
+
+.react-select__single-value {
+	color: var(--light) !important;
+	min-height: var(--select-height) !important;
+	padding: 10px !important;
+	margin: 0 !important;
+	margin-bottom: 9px !important;
+}
+
+.react-select__multi-value {
+	/* Styles of a single multi-value element. */
+	color: var(--light) !important;
+	background-image: linear-gradient(
+		to right,
+		var(--primary) 0%,
+		var(--secondary) 100%
+	) !important;
+	margin: 0 !important;
+	padding: 0px !important;
+}
+
+.react-select__multi-value__label {
+	font-size: 1rem !important;
+}
+
+.react-select__indicators {
+	min-height: var(--select-height) !important;
+}
+
+.react-select__control {
+	min-height: var(--select-height) !important;
+	font-size: 1rem !important;
+	background-color: var(--dark-alt) !important;
+	border: none !important;
+	outline: solid 2px var(--dark-light);
+}
+
+.react-select__control--is-focused {
+	/* Background color of input field when focused. */
+	background-color: var(--dark-alt) !important;
+	border: none !important;
+}
+
+.react-select__menu {
+	/* Background color of top and bottom margins of select list. */
+	background-color: var(--dark-alt) !important;
+}
+
+.react-select__option {
+	/* List item styles. */
+	font-size: 1rem !important;
+	color: var(--light) !important;
+}
+
+.react-select__option--is-focused:active {
+	/* List item when focused */
+	color: var(--light) !important;
+	background-color: var(--dark) !important;
+}
+
+.react-select__option--is-selected {
+	/* List item when selected */
+	background-color: var(--dark) !important;
+	color: var(--light) !important;
+}
+
+.react-select__indicator-separator {
+	display: none;
+}
+
+/* Search field input styles */
+.react-select__input-container {
+	margin: 0 !important;
+	/* Comment out margin-bottom if using multi choice */
+	/* margin-bottom: 9px !important; */
+	padding: 0 10px !important;
+}
