@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 
-export default (open: boolean, setOpen: Function) => {
-	// Hook for closing an element with the "escape" key or by clicking outside of the
-	// wrapper element.
+export default (open: boolean, setOpen: Function, overlayClass: string) => {
+	// Hook for closing an element by clicking its overlay wrapper element that is passed in as a
+	// parameter or by pressing the "escape" key.
 	useEffect(() => {
 		const handler = (e: any) => {
 			if (open) {
 				const clickedOutsideWrapper =
 					(e.type === 'click' || e.type === 'touchstart') &&
-					e.target.className.includes('modal-overlay');
+					e.target.className.includes(overlayClass);
 
 				if (clickedOutsideWrapper || e.key === 'Escape') {
 					setOpen(false);

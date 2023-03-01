@@ -1,6 +1,8 @@
 import { FC, useRef, useState } from 'react';
 import { RiCloseLine } from 'react-icons/ri';
-import useCloseOnClickOutsideOrEsc from '../../hooks/useCloseOnClickOutsideOrEsc';
+
+import useCloseOnOverlayClickOrEsc from '../../hooks/useCloseOnOverlayClickOrEsc';
+import useFocusTrap from '../../hooks/useFocusTrap';
 import { formDataState } from '../FormComponents/FormData';
 import FormGroup from '../FormComponents/FormGroup';
 import { AddBookFormDataType } from '../FormComponents/FormTypes';
@@ -18,7 +20,8 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 	const outerModalRef = useRef<HTMLDivElement>(null);
 	const innerModalRef = useRef<HTMLFormElement>(null);
 
-	useCloseOnClickOutsideOrEsc(modalOpen, setModalOpen);
+	useCloseOnOverlayClickOrEsc(modalOpen, setModalOpen, 'modal-overlay');
+	useFocusTrap(innerModalRef, modalOpen);
 
 	const { author, title, category, readingMedium, yearRead, status } = formData;
 
