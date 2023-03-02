@@ -63,13 +63,12 @@
 	min-height: var(--select-height) !important;
 	font-size: 1rem !important;
 	background-color: var(--dark-alt) !important;
-	outline: solid 2px var(--dark-light);
+	border: none !important;
 }
 
 .react-select__control--is-focused {
 	/* Background color of input field when focused. */
 	background-color: var(--dark-alt) !important;
-	outline: solid 2px var(--light) !important;
 }
 
 .react-select__menu {

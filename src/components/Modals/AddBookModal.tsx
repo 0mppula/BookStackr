@@ -143,7 +143,7 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 
 					<FormGroup>
 						<TextInput
-							label="Year Read"
+							label="Year Read / Reading"
 							name="yearRead"
 							placeholder="Enter year read..."
 							value={yearRead.value}
