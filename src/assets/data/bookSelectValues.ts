@@ -36,3 +36,15 @@ export const bookCategories: selectItemType[] = [
 	{ value: 'travel', label: 'Travel' },
 	{ value: 'adventure', label: 'Adventure' },
 ];
+
+export const bookMediums: selectItemType[] = [
+	{ value: 'audio', label: 'Audio' },
+	{ value: 'e-book', label: 'E-book' },
+	{ value: 'paper', label: 'Paper' },
+];
+
+export const bookStatuses: selectItemType[] = [
+	{ value: 'read', label: 'Read' },
+	{ value: 'reading', label: 'Reading' },
+	{ value: 'want to read', label: 'Want to read' },
+];

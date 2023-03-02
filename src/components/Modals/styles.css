@@ -30,7 +30,7 @@
 	border: solid 2px var(--light);
 	background-color: var(--dark-alt);
 	position: relative;
-	width: min(95%, 450px);
+	width: min(95%, 650px);
 	max-height: 70vh;
 }
 
@@ -68,10 +68,16 @@
 
 /* Modal form styles */
 .form-group {
+	display: flex;
+	gap: 1rem;
 	margin-bottom: 10px;
 }
 
 .form-group input {
+	width: 100%;
+}
+
+.form-group > div {
 	width: 100%;
 }
 

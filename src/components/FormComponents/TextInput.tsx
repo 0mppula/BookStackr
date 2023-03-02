@@ -26,7 +26,7 @@ const TextInput: FC<TextInputProps> = ({
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	return (
-		<>
+		<div>
 			<label onClick={() => inputRef?.current?.focus()}>
 				{label}
 				{required && <span>*</span>}
@@ -39,8 +39,9 @@ const TextInput: FC<TextInputProps> = ({
 				name={name}
 				placeholder={placeholder}
 				tabIndex={tabIndex}
+				autoComplete="false"
 			/>
-		</>
+		</div>
 	);
 };
 

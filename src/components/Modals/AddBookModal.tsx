@@ -1,15 +1,13 @@
 import { FC, useRef, useState } from 'react';
 import { RiCloseLine } from 'react-icons/ri';
-import ReactSelect from 'react-select';
-
-import { bookCategories } from '../../assets/data/bookSelectValues';
-import { customTheme, customStyles } from '../../helpers/reactSelectStyles';
+import { bookCategories, bookMediums, bookStatuses } from '../../assets/data/bookSelectValues';
 
 import useCloseOnOverlayClickOrEsc from '../../hooks/useCloseOnOverlayClickOrEsc';
 import useFocusTrap from '../../hooks/useFocusTrap';
 import { AddBookFormDataState } from '../FormComponents/FormData';
 import FormGroup from '../FormComponents/FormGroup';
 import { AddBookFormDataType, selectItemType } from '../FormComponents/FormTypes';
+import SelectInput from '../FormComponents/SelectInput';
 import TextInput from '../FormComponents/TextInput';
 
 import './styles.css';
@@ -40,7 +38,7 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 		setFormData((prevState) => ({ ...prevState, [field]: { ...fieldObj, value } }));
 	};
 
-	const handleSelectChange = (e: selectItemType[], field: string) => {
+	const handleSelectMultiChange = (e: selectItemType[], field: string) => {
 		const fieldObj = formData[field as keyof AddBookFormDataType];
 
 		// Set the value of the selection to lowercase.
@@ -52,7 +50,15 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 		}));
 	};
 
-	console.log(formData.category);
+	const handleSelectChange = (e: selectItemType, field: string) => {
+		const fieldObj = formData[field as keyof AddBookFormDataType];
+
+		// Set the value of the selection to lowercase.
+		setFormData((prevState) => ({
+			...prevState,
+			[field]: { ...fieldObj, value: { ...e, value: e.value?.toLowerCase() } },
+		}));
+	};
 
 	return (
 		<div
@@ -86,9 +92,7 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 							handleChange={handleChange}
 							tabIndex={modalOpen ? 0 : -1}
 						/>
-					</FormGroup>
 
-					<FormGroup>
 						<TextInput
 							label="Title"
 							name="title"
@@ -102,24 +106,40 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 					</FormGroup>
 
 					<FormGroup>
-						<ReactSelect
-							className="react-select-container"
-							classNamePrefix="react-select"
-							maxMenuHeight={231}
+						<SelectInput
+							label="Category"
 							value={category?.value}
-							onChange={(e) => handleSelectChange(e as any, 'category')}
+							name="category"
+							handleChange={handleSelectMultiChange}
 							options={bookCategories}
-							theme={customTheme}
-							styles={customStyles}
 							placeholder="Select book category..."
 							isMulti
+							isSearchable
+							required
 						/>
 					</FormGroup>
 
-					{/* <div className="form-group">
-						<label htmlFor="">Reading Medium</label>
-						<select></select>
-					</div> */}
+					<FormGroup>
+						<SelectInput
+							label="Reading Medium"
+							value={readingMedium?.value}
+							name="readingMedium"
+							handleChange={handleSelectChange}
+							options={bookMediums}
+							placeholder="Select reading medium..."
+							required
+						/>
+
+						<SelectInput
+							label="Status"
+							value={status?.value}
+							name="status"
+							handleChange={handleSelectChange}
+							options={bookStatuses}
+							placeholder="Select book status..."
+							required
+						/>
+					</FormGroup>
 
 					<FormGroup>
 						<TextInput
@@ -131,13 +151,9 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 							required
 							handleChange={handleChange}
 							tabIndex={modalOpen ? 0 : -1}
+							numberInput
 						/>
 					</FormGroup>
-
-					{/* <div className="form-group">
-						<label htmlFor="">Status</label>
-						<select></select>
-					</div> */}
 				</div>
 
 				<div className="modal-footer">
