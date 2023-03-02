@@ -1,8 +1,7 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
 import { RootState } from '../app/store';
 
-import { books } from '../assets/data/books';
-import { bookType } from '../assets/interfaces/interfaces';
+import { books, bookType } from '../assets/data/books';
 
 export interface booksStateType {
 	books: bookType[];
