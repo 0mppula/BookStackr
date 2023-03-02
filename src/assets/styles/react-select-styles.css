@@ -11,10 +11,7 @@
 .react-select__placeholder {
 	/* Placeholder styles */
 	margin: 0 !important;
-	/* Comment out margin-bottom if using multi choice */
-	/* margin-bottom: 9px !important; */
 	padding: 8px !important;
-	/* padding-left: 14px !important; */
 	color: var(--light-alt) !important;
 }
 
@@ -26,9 +23,7 @@
 .react-select__single-value {
 	color: var(--light) !important;
 	min-height: calc(var(--select-height)) !important;
-	/* padding: 10px !important; */
 	margin: 0 !important;
-	/* margin-bottom: 9px !important; */
 }
 
 .react-select__value-container--has-value .react-select__single-value {
@@ -101,7 +96,5 @@
 /* Search field input styles */
 .react-select__input-container {
 	margin: 0 !important;
-	/* Comment out margin-bottom if using multi choice */
-	/* margin-bottom: 9px !important; */
 	padding: 0 8px !important;
 }
