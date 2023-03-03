@@ -41,6 +41,8 @@ const TextInput: FC<TextInputProps> = ({
 				tabIndex={tabIndex}
 				autoComplete="false"
 			/>
+
+			<div className="error">{error}</div>
 		</div>
 	);
 };

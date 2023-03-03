@@ -26,9 +26,9 @@
 .modal {
 	padding: 1.5rem;
 	padding-top: 1rem;
-	border-radius: 4px;
+	border-radius: 6px;
 	border: solid 2px var(--light);
-	background-color: var(--dark-alt);
+	background-color: var(--dark);
 	position: relative;
 	width: min(95%, 650px);
 	max-height: 70vh;
@@ -37,7 +37,7 @@
 .close-container {
 	position: absolute;
 	top: 16px;
-    right: 24px;
+	right: 24px;
 	cursor: pointer;
 	display: flex;
 	justify-content: center;
@@ -71,6 +71,12 @@
 	display: flex;
 	gap: 1rem;
 	margin-bottom: 10px;
+}
+
+.error {
+	color: var(--primary);
+	margin-top: 0.25rem;
+	width: 100%;
 }
 
 .form-group input {

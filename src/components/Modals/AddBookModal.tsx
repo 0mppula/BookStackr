@@ -28,7 +28,38 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 
 	const { author, title, category, readingMedium, yearRead, status } = formData;
 
-	const handleSave = {};
+	const handleSubmit = () => {
+		let error = validateForm();
+
+		if (!error) {
+			setModalOpen(false);
+		}
+	};
+
+	const validateForm = (): boolean => {
+		let error: boolean = false;
+		const allFormFields = { ...formData };
+
+		// Loop over the form data fields.
+		Object.keys(formData).forEach((key) => {
+			const fieldObj = formData[key as keyof AddBookFormDataType];
+			if (fieldObj.required) {
+				// Check if required field is not empty.
+				if (
+					!fieldObj.value ||
+					(Array.isArray(fieldObj.value) && fieldObj.value.length === 0)
+				) {
+					allFormFields[key as keyof AddBookFormDataType].error =
+						'This field is required!';
+					error = true;
+				} else {
+					allFormFields[key as keyof AddBookFormDataType].error = '';
+				}
+			}
+		});
+		setFormData({ ...allFormFields });
+		return error;
+	};
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const field = e.target.name;
@@ -88,7 +119,7 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 							placeholder="Enter author name..."
 							value={author.value}
 							error={author.error}
-							required
+							required={author.required}
 							handleChange={handleChange}
 							tabIndex={modalOpen ? 0 : -1}
 						/>
@@ -99,7 +130,7 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 							placeholder="Enter books title name..."
 							value={title.value}
 							error={title.error}
-							required
+							required={title.required}
 							handleChange={handleChange}
 							tabIndex={modalOpen ? 0 : -1}
 						/>
@@ -115,7 +146,8 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 							placeholder="Select book category..."
 							isMulti
 							isSearchable
-							required
+							required={category.required}
+							error={category.error}
 						/>
 					</FormGroup>
 
@@ -127,7 +159,8 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 							handleChange={handleSelectChange}
 							options={bookMediums}
 							placeholder="Select reading medium..."
-							required
+							required={readingMedium.required}
+							error={readingMedium.error}
 						/>
 
 						<SelectInput
@@ -137,7 +170,8 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 							handleChange={handleSelectChange}
 							options={bookStatuses}
 							placeholder="Select book status..."
-							required
+							required={status.required}
+							error={status.error}
 						/>
 					</FormGroup>
 
@@ -148,7 +182,7 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 							placeholder="Enter year read..."
 							value={yearRead.value}
 							error={yearRead.error}
-							required
+							required={yearRead.required}
 							handleChange={handleChange}
 							tabIndex={modalOpen ? 0 : -1}
 							numberInput
@@ -160,7 +194,7 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 					<button
 						tabIndex={modalOpen ? 0 : -1}
 						className="btn btn-block"
-						onClick={() => handleSave}
+						onClick={handleSubmit}
 					>
 						Add
 					</button>

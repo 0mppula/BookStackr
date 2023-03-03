@@ -14,6 +14,7 @@ interface SelectInputProps {
 	placeholder: string;
 	required?: boolean;
 	isSearchable?: boolean;
+	error?: string;
 }
 
 const SelectInput: FC<SelectInputProps> = ({
@@ -26,6 +27,7 @@ const SelectInput: FC<SelectInputProps> = ({
 	placeholder,
 	required,
 	isSearchable = false,
+	error,
 }) => {
 	const inputRef = useRef<any>(null);
 	return (
@@ -48,6 +50,8 @@ const SelectInput: FC<SelectInputProps> = ({
 				isMulti={isMulti}
 				isSearchable={isSearchable}
 			/>
+
+			<div className="error">{error}</div>
 		</div>
 	);
 };
