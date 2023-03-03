@@ -30,6 +30,7 @@
 
 ::placeholder {
 	color: var(--light-alt);
+	user-select: none;
 }
 
 nav {
@@ -99,6 +100,7 @@ button {
 	);
 	background-size: 200% auto;
 	transition: 0.5s;
+	user-select: none;
 }
 
 button:hover,
@@ -124,10 +126,9 @@ input[type='number'] {
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+	-webkit-appearance: none;
+	margin: 0;
 }
-
 
 input {
 	border: solid 2px var(--light-alt);
@@ -194,10 +195,33 @@ tbody td.reading {
 	background-image: linear-gradient(to right, var(--primary) 0%, var(--secondary) 100%);
 }
 
-tbody td.readingMedium,
-tbody td.yearRead,
-tbody td.status {
+table .readingMedium,
+table .yearRead,
+table .status,
+table .index {
 	text-align: center;
+}
+
+table th.index {
+	width: 52px;
+}
+table th.author {
+	width: 185px;
+}
+table th.title {
+	width: 314px;
+}
+table th.category {
+	width: 340px;
+}
+table th.readingMedium {
+	width: 92px;
+}
+table th.yearRead {
+	width: 107px;
+}
+table th.status {
+	width: 109px;
 }
 
 td,

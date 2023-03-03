@@ -43,7 +43,9 @@ const BooksTable: FC = () => {
 					{headerGroups.map((headerGroup) => (
 						<tr {...headerGroup.getHeaderGroupProps()}>
 							{headerGroup.headers.map((column) => (
-								<th {...column.getHeaderProps()}>{column.render('Header')}</th>
+								<th className={column?.id} {...column.getHeaderProps()}>
+									{column.render('Header')}
+								</th>
 							))}
 						</tr>
 					))}
