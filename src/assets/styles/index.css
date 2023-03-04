@@ -216,12 +216,12 @@ table th.category {
 	width: 100% !important;
 }
 table th.readingMedium {
-	min-width: 92px !important;
-	width: 92px !important;
+	min-width: 117px !important;
+	width: 117px !important;
 }
 table th.yearRead {
-	min-width: 107px !important;
-	width: 107px !important;
+	min-width: 92px !important;
+	width: 92px !important;
 }
 table th.status {
 	min-width: 109px !important;

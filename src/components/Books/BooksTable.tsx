@@ -37,7 +37,7 @@ const BooksTable: FC = () => {
 				Cell: ({ cell: { value: values } }: { cell: any }) => <>{values.join(', ')}</>,
 			},
 			{ Header: 'Medium', accessor: 'readingMedium' },
-			{ Header: 'Year Read', accessor: 'yearRead' },
+			{ Header: 'Year', accessor: 'yearRead' },
 			{ Header: 'Status', accessor: 'status' },
 			{
 				Header: 'Edit',
