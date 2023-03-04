@@ -1,10 +1,14 @@
-import { FC, useMemo } from 'react';
+import { FC, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Column, useTable } from 'react-table';
+import { FaPen } from 'react-icons/fa';
+
 import { RootState } from '../../app/store';
 import { selectQueryFilteredBooks } from '../../features/BooksSlice';
+import EditBookModal from '../Modals/EditBookModal';
 
 interface ColumnType {
+	id: string;
 	index: string;
 	author: string;
 	title: string;
@@ -15,6 +19,8 @@ interface ColumnType {
 }
 
 const BooksTable: FC = () => {
+	const [editModalOpen, setEditModalOpen] = useState<boolean>(false);
+	const [editBookId, setEditBookId] = useState<null | string>(null);
 	const books = useSelector((state: RootState) => selectQueryFilteredBooks(state));
 
 	const data: any = useMemo(() => books, [books]);
@@ -23,13 +29,34 @@ const BooksTable: FC = () => {
 			{ Header: '#', accessor: 'index' },
 			{ Header: 'Author', accessor: 'author' },
 			{ Header: 'Title', accessor: 'title' },
-			{ Header: 'Category', accessor: 'category' },
+			{
+				Header: 'Category',
+				accessor: 'category',
+				Cell: ({ cell: { value: values } }: { cell: any }) => <>{values.join(', ')}</>,
+			},
 			{ Header: 'Medium', accessor: 'readingMedium' },
 			{ Header: 'Year Read', accessor: 'yearRead' },
 			{ Header: 'Status', accessor: 'status' },
+			{
+				Header: 'Edit',
+				accessor: 'id',
+				className: 'user',
+				Cell: ({ cell: { value } }) => (
+					<>
+												<button onClick={() => handleEdit(value)}>
+							<FaPen />
+						</button>
+					</>
+				),
+			},
 		],
-		[]
+		[books]
 	);
+
+	const handleEdit = (id: string) => {
+		setEditModalOpen(true);
+		setEditBookId(id);
+	};
 
 	const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
 		columns,
@@ -37,58 +64,64 @@ const BooksTable: FC = () => {
 	});
 
 	return (
-		<div className="table-container">
-			<table {...getTableProps()}>
-				<thead>
-					{headerGroups.map((headerGroup) => (
-						<tr {...headerGroup.getHeaderGroupProps()}>
-							{headerGroup.headers.map((column) => (
-								<th className={column?.id} {...column.getHeaderProps()}>
-									{column.render('Header')}
-								</th>
-							))}
-						</tr>
-					))}
-				</thead>
+		<>
+			<EditBookModal
+				modalOpen={editModalOpen}
+				setModalOpen={setEditModalOpen}
+				editBookId={editBookId}
+				setEditBookId={setEditBookId}
+			/>
 
-				<tbody {...getTableBodyProps()}>
-					{rows.map((row, i) => {
-						const nextRowYearRead = rows?.[i + 1]?.cells[5]?.value;
-						const currentRowYearRead = rows?.[i]?.cells[5]?.value;
-						const addBorderBottomToRow =
-							nextRowYearRead && currentRowYearRead !== nextRowYearRead;
-						const currentRowReadStatus = rows?.[i]?.cells[6]?.value;
-
-						prepareRow(row);
-						return (
-							<tr
-								className={addBorderBottomToRow ? 'border-bottom' : ''}
-								{...row.getRowProps()}
-							>
-								{row.cells.map((cell) => (
-									<td
-										key={cell?.column?.id}
-										className={
-											cell?.column?.id === 'status'
-												? `${currentRowReadStatus?.replaceAll(' ', '-')} ${
-														cell?.column?.id
-												  }`
-												: cell?.column?.id
-										}
-									>
-										{/* The category cell value is an array and needs to be printed as comma 
-                    seperated values in the table. */}
-										{Array.isArray(cell?.value)
-											? (cell.value = cell?.value?.join(', '))
-											: cell.render('Cell')}
-									</td>
+			<div className="table-container">
+				<table {...getTableProps()}>
+					<thead>
+						{headerGroups.map((headerGroup) => (
+							<tr {...headerGroup.getHeaderGroupProps()}>
+								{headerGroup.headers.map((column: any) => (
+									<th {...column.getHeaderProps([{ className: column.id }])}>
+										<>{column.render('Header')}</>
+									</th>
 								))}
 							</tr>
-						);
-					})}
-				</tbody>
-			</table>
-		</div>
+						))}
+					</thead>
+
+					<tbody {...getTableBodyProps()}>
+						{rows.map((row, i) => {
+							const nextRowYearRead = rows?.[i + 1]?.cells[5]?.value;
+							const currentRowYearRead = rows?.[i]?.cells[5]?.value;
+							const addBorderBottomToRow =
+								nextRowYearRead && currentRowYearRead !== nextRowYearRead;
+
+							prepareRow(row);
+							return (
+								<tr
+									{...row.getRowProps({
+										className: addBorderBottomToRow ? 'border-bottom' : '',
+									})}
+								>
+									{row.cells.map((cell: any) => (
+										<td
+											{...cell.getCellProps({
+												className:
+													cell?.column?.id === 'status'
+														? `${cell?.value?.replaceAll(' ', '-')} ${
+																cell?.column?.id
+														  }`
+														: cell?.column?.id,
+											})}
+											key={cell?.column?.id}
+										>
+											{cell.render('Cell')}
+										</td>
+									))}
+								</tr>
+							);
+						})}
+					</tbody>
+				</table>
+			</div>
+		</>
 	);
 };
 

@@ -37,5 +37,16 @@ export const selectQueryFilteredBooks = createSelector([booksSelector], (booksSt
 	return filteredBooks;
 });
 
+export const selectBookById = createSelector(
+	[booksSelector, (state, bookId: string | null) => bookId],
+	(bookState, bookId) => {
+
+			const book = books?.filter((book) => book.id === bookId)?.[0];
+		
+
+		return book;
+	}
+);
+
 export const { setQuery } = booksSlice.actions;
 export default booksSlice.reducer;

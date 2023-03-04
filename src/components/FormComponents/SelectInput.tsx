@@ -48,6 +48,12 @@ const SelectInput: FC<SelectInputProps> = ({
 				styles={customStyles}
 				placeholder={placeholder}
 				isMulti={isMulti}
+				isOptionSelected={(option, selectValue) => {
+					return (
+						option.label === option.value &&
+						selectValue.some((i) => i.label === option.label)
+					);
+				}}
 				isSearchable={isSearchable}
 			/>
 

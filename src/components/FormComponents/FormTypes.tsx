@@ -1,5 +1,5 @@
 export interface selectItemType {
-	value: string | null;
+	value: string | null | any;
 	label: string;
 }
 
@@ -21,7 +21,7 @@ export interface InputFieldDateType {
 	required: boolean;
 }
 
-export interface AddBookFormDataType {
+export interface bookFormDataType {
 	author: InputFieldStringType;
 	title: InputFieldStringType;
 	category: InputFieldSelectType;

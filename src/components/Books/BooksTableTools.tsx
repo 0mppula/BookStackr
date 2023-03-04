@@ -8,6 +8,7 @@ import './styles.css';
 
 const BooksTableTools: FC = () => {
 	const [addModalOpen, setAddModalOpen] = useState<boolean>(false);
+
 	const { query } = useSelector((state: RootState) => state.books);
 
 	const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const BooksTableTools: FC = () => {
 	return (
 		<>
 			<AddBookModal modalOpen={addModalOpen} setModalOpen={setAddModalOpen} />
+
 			<div className="table-tools">
 				<div>
 					<button onClick={() => setAddModalOpen(true)}>+ Add Book</button>

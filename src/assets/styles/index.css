@@ -198,30 +198,52 @@ tbody td.reading {
 table .readingMedium,
 table .yearRead,
 table .status,
-table .index {
+table .index,
+table .id {
 	text-align: center;
 }
 
 table th.index {
-	width: 52px;
+	min-width: 52px !important;
+	width: 52px !important;
 }
 table th.author {
-	width: 185px;
+	min-width: 185px !important;
+	width: 185px !important;
 }
 table th.title {
-	width: 314px;
+	min-width: 255px !important;
+	width: 100% !important;
 }
 table th.category {
-	width: 340px;
+	min-width: 278px !important;
+	width: 100% !important;
 }
 table th.readingMedium {
-	width: 92px;
+	min-width: 92px !important;
+	width: 92px !important;
 }
 table th.yearRead {
-	width: 107px;
+	min-width: 107px !important;
+	width: 107px !important;
 }
 table th.status {
-	width: 109px;
+	min-width: 109px !important;
+	width: 109px !important;
+}
+table th.id {
+	/* edit */
+	min-width: 80px !important;
+	width: 80px !important;
+}
+
+td button {
+	padding: 0.5rem 1rem;
+	height: 40px;
+}
+
+td button svg {
+	display: flex;
 }
 
 td,

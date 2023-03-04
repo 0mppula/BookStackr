@@ -1,7 +1,9 @@
-import { FC, useRef, useState } from 'react';
+import { FC, useRef, useState, useEffect } from 'react';
 import { RiCloseLine } from 'react-icons/ri';
-import { bookCategories, bookMediums, bookStatuses } from '../../assets/data/bookSelectValues';
+import { useSelector } from 'react-redux';
 
+import { bookCategories, bookMediums, bookStatuses } from '../../assets/data/bookSelectValues';
+import { selectBookById } from '../../features/BooksSlice';
 import useCloseOnOverlayClickOrEsc from '../../hooks/useCloseOnOverlayClickOrEsc';
 import useFocusTrap from '../../hooks/useFocusTrap';
 import { getInitialBookFormState } from '../FormComponents/FormData';
@@ -12,13 +14,65 @@ import TextInput from '../FormComponents/TextInput';
 
 import './styles.css';
 
-interface AddBookModalProps {
+interface EditBookModalProps {
 	modalOpen: boolean;
 	setModalOpen: Function;
+	editBookId: string | null;
+	setEditBookId: Function;
 }
 
-const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
+const EditBookModal: FC<EditBookModalProps> = ({
+	modalOpen,
+	setModalOpen,
+	editBookId,
+	setEditBookId,
+}) => {
 	const [formData, setFormData] = useState<bookFormDataType>(getInitialBookFormState);
+
+	const book: any = useSelector((state) => selectBookById(state, editBookId));
+
+	useEffect(() => {
+		let newFormState: bookFormDataType = getInitialBookFormState();
+
+		if (book) {
+			const selectValues = ['category', 'readingMedium', 'status'];
+
+			for (const [key, _] of Object.entries(newFormState)) {
+				if (selectValues.includes(key)) {
+					// Popolate multi select.
+					if (Array.isArray(book[key])) {
+						newFormState = {
+							...newFormState,
+							[key]: {
+								...newFormState[key as keyof bookFormDataType],
+								value: book[key].map((key: any) => ({ label: key, value: key })),
+							},
+						};
+						// Populate normal select.
+					} else {
+						newFormState = {
+							...newFormState,
+							[key]: {
+								...newFormState[key as keyof bookFormDataType],
+								value: { label: book[key], value: book[key] },
+							},
+						};
+					}
+				} else {
+					// Populate input field.
+					newFormState = {
+						...newFormState,
+						[key]: {
+							...newFormState[key as keyof bookFormDataType],
+							value: book[key],
+						},
+					};
+				}
+			}
+
+			setFormData({ ...newFormState });
+		}
+	}, [book]);
 
 	const outerModalRef = useRef<HTMLDivElement>(null);
 	const innerModalRef = useRef<HTMLFormElement>(null);
@@ -37,6 +91,7 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 	};
 
 	const handleClose = () => {
+		setEditBookId(null);
 		setModalOpen(false);
 	};
 
@@ -111,7 +166,7 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 				</button>
 
 				<div className="modal-header">
-					<h2>Add New Book</h2>
+					<h2>Edit Book</h2>
 				</div>
 
 				<div className="modal-mody">
@@ -207,4 +262,4 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 	);
 };
 
-export default AddBookModal;
+export default EditBookModal;

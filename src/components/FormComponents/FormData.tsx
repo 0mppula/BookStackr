@@ -1,4 +1,6 @@
-export const AddBookFormDataState = {
+import { bookFormDataType } from './FormTypes';
+
+export const getInitialBookFormState = (): bookFormDataType => ({
 	author: { value: '', error: '', required: true },
 	title: { value: '', error: '', required: true },
 	category: {
@@ -17,4 +19,6 @@ export const AddBookFormDataState = {
 		error: '',
 		required: true,
 	},
-};
+});
+
+export const getPopulatedBookFormState = (formData: bookFormDataType) => ({});
