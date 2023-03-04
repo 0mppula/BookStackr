@@ -39,14 +39,12 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 		let error = validateForm();
 
 		if (!error) {
-			setModalOpen(false);
-
 			const fake_id = String(
 				Math.random().toString(16).slice(2) + Math.random().toString(16).slice(2, 13)
 			);
 
-			let book: bookType = {
-				id: 'adssadad',
+			let bookData: bookType = {
+				id: fake_id,
 				index: booksCount + 1,
 				author: author.value,
 				title: title.value,
@@ -58,7 +56,8 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 				status: status?.value?.value,
 			};
 
-			dispatch(addBook(book));
+			dispatch(addBook(bookData));
+			setModalOpen(false);
 		}
 	};
 

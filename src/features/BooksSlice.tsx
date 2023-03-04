@@ -23,6 +23,11 @@ export const booksSlice = createSlice({
 		addBook: (state, action) => {
 			state.books = [...state.books, action.payload];
 		},
+		editBook: (state, action) => {
+			let updatedBooks = [...state.books].filter((book) => book.id !== action.payload.id);
+
+			state.books = [...updatedBooks, action.payload].sort((a, b) => a.index - b.index);
+		},
 	},
 });
 
@@ -54,5 +59,5 @@ export const selectBooksCount = createSelector([booksSelector], (books) => {
 	return books.reduce((a: number, b) => (a += 1), 0);
 });
 
-export const { setQuery, addBook } = booksSlice.actions;
+export const { setQuery, addBook, editBook } = booksSlice.actions;
 export default booksSlice.reducer;

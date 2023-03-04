@@ -1,9 +1,11 @@
 import React, { FC, useRef, useState, useEffect } from 'react';
 import { RiCloseLine } from 'react-icons/ri';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../app/store';
+import { bookType } from '../../assets/data/books';
 
 import { bookCategories, bookMediums, bookStatuses } from '../../assets/data/bookSelectValues';
-import { selectBookById } from '../../features/BooksSlice';
+import { editBook, selectBookById, selectBooksCount } from '../../features/BooksSlice';
 import useCloseOnOverlayClickOrEsc from '../../hooks/useCloseOnOverlayClickOrEsc';
 import useFocusTrap from '../../hooks/useFocusTrap';
 import { getInitialBookFormState } from '../FormComponents/FormData';
@@ -30,6 +32,9 @@ const EditBookModal: FC<EditBookModalProps> = ({
 	const [formData, setFormData] = useState<bookFormDataType>(getInitialBookFormState);
 
 	const book: any = useSelector((state) => selectBookById(state, editBookId));
+	const booksCount = useSelector((state: RootState) => selectBooksCount(state));
+
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		let newFormState: bookFormDataType = getInitialBookFormState();
@@ -86,6 +91,20 @@ const EditBookModal: FC<EditBookModalProps> = ({
 		let error = validateForm();
 
 		if (!error) {
+			let bookData: bookType = {
+				id: book.id,
+				index: book.index,
+				author: author.value,
+				title: title.value,
+				yearRead: +yearRead.value,
+				category: Array.isArray(category.value)
+					? [...category.value]?.map((val) => val.value)
+					: [],
+				readingMedium: readingMedium?.value?.value,
+				status: status?.value?.value,
+			};
+
+			dispatch(editBook(bookData));
 			setModalOpen(false);
 		}
 	};
