@@ -8,6 +8,7 @@ export default (open: boolean, setOpen: Function, overlayClass: string) => {
 			if (open) {
 				const clickedOutsideWrapper =
 					(e.type === 'click' || e.type === 'touchstart') &&
+					typeof e.target.className.includes === 'function' &&
 					e.target.className.includes(overlayClass);
 
 				if (clickedOutsideWrapper || e.key === 'Escape') {
