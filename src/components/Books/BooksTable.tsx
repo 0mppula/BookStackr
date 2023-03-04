@@ -1,10 +1,10 @@
 import { FC, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Column, useTable } from 'react-table';
+import { Column, useTable, useSortBy } from 'react-table';
 import { FaPen } from 'react-icons/fa';
 
 import { RootState } from '../../app/store';
-import { selectQueryFilteredBooks } from '../../features/BooksSlice';
+import { selectQueryFilteredBooks, booksSelector } from '../../features/BooksSlice';
 import EditBookModal from '../Modals/EditBookModal';
 
 interface ColumnType {
@@ -21,9 +21,11 @@ interface ColumnType {
 const BooksTable: FC = () => {
 	const [editModalOpen, setEditModalOpen] = useState<boolean>(false);
 	const [editBookId, setEditBookId] = useState<null | string>(null);
+
+	const unFilteredBooks = useSelector((state: RootState) => booksSelector(state));
 	const books = useSelector((state: RootState) => selectQueryFilteredBooks(state));
 
-	const data: any = useMemo(() => books, [books]);
+	const data: any = useMemo(() => books, [unFilteredBooks]);
 	const columns: Column<ColumnType>[] = useMemo(
 		() => [
 			{ Header: '#', accessor: 'index' },
@@ -43,14 +45,14 @@ const BooksTable: FC = () => {
 				className: 'user',
 				Cell: ({ cell: { value } }) => (
 					<>
-												<button onClick={() => handleEdit(value)}>
+						<button onClick={() => handleEdit(value)}>
 							<FaPen />
 						</button>
 					</>
 				),
 			},
 		],
-		[books]
+		[unFilteredBooks]
 	);
 
 	const handleEdit = (id: string) => {
@@ -58,10 +60,13 @@ const BooksTable: FC = () => {
 		setEditBookId(id);
 	};
 
-	const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({
-		columns,
-		data,
-	});
+	const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable(
+		{
+			columns,
+			data,
+		},
+		useSortBy
+	);
 
 	return (
 		<>
@@ -78,8 +83,21 @@ const BooksTable: FC = () => {
 						{headerGroups.map((headerGroup) => (
 							<tr {...headerGroup.getHeaderGroupProps()}>
 								{headerGroup.headers.map((column: any) => (
-									<th {...column.getHeaderProps([{ className: column.id }])}>
-										<>{column.render('Header')}</>
+									<th
+										{...column.getHeaderProps([
+											{ className: column.id },
+											column.getSortByToggleProps(),
+										])}
+									>
+										{column.render('Header')}
+
+										<span>
+											{column.isSorted
+												? column.isSortedDesc
+													? ' 🔽'
+													: ' 🔼'
+												: ''}
+										</span>
 									</th>
 								))}
 							</tr>

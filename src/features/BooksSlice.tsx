@@ -23,7 +23,7 @@ export const booksSlice = createSlice({
 	},
 });
 
-const booksSelector = (state: RootState) => state.books;
+export const booksSelector = (state: RootState) => state.books;
 
 export const selectQueryFilteredBooks = createSelector([booksSelector], (booksState) => {
 	const { books, query } = booksState;
@@ -40,9 +40,7 @@ export const selectQueryFilteredBooks = createSelector([booksSelector], (booksSt
 export const selectBookById = createSelector(
 	[booksSelector, (state, bookId: string | null) => bookId],
 	(bookState, bookId) => {
-
-			const book = books?.filter((book) => book.id === bookId)?.[0];
-		
+		const book = books?.filter((book) => book.id === bookId)?.[0];
 
 		return book;
 	}

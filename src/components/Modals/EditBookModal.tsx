@@ -1,4 +1,4 @@
-import { FC, useRef, useState, useEffect } from 'react';
+import React, { FC, useRef, useState, useEffect } from 'react';
 import { RiCloseLine } from 'react-icons/ri';
 import { useSelector } from 'react-redux';
 
@@ -262,4 +262,4 @@ const EditBookModal: FC<EditBookModalProps> = ({
 	);
 };
 
-export default EditBookModal;
+export default React.memo(EditBookModal);
