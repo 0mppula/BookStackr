@@ -22,10 +22,9 @@ const BooksTable: FC = () => {
 	const [editModalOpen, setEditModalOpen] = useState<boolean>(false);
 	const [editBookId, setEditBookId] = useState<null | string>(null);
 
-	const unFilteredBooks = useSelector((state: RootState) => booksSelector(state));
 	const books = useSelector((state: RootState) => selectQueryFilteredBooks(state));
 
-	const data: any = useMemo(() => books, [unFilteredBooks]);
+	const data: any = useMemo(() => books, [books]);
 	const columns: Column<ColumnType>[] = useMemo(
 		() => [
 			{ Header: '#', accessor: 'index' },
@@ -52,7 +51,7 @@ const BooksTable: FC = () => {
 				),
 			},
 		],
-		[unFilteredBooks]
+		[books]
 	);
 
 	const handleEdit = (id: string) => {
