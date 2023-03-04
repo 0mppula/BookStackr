@@ -6,7 +6,7 @@ import { selectItemType } from './FormTypes';
 
 interface SelectInputProps {
 	label: string;
-	value: selectItemType[] | null;
+	value: selectItemType[] | selectItemType | null;
 	name: string;
 	handleChange: Function;
 	options: selectItemType[];

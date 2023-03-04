@@ -15,6 +15,12 @@ export interface InputFieldSelectType {
 	required: boolean;
 }
 
+export interface InputFieldSingleSelectType {
+	value: selectItemType | null;
+	error: string;
+	required: boolean;
+}
+
 export interface InputFieldDateType {
 	value: Date;
 	error: string;
@@ -25,7 +31,7 @@ export interface bookFormDataType {
 	author: InputFieldStringType;
 	title: InputFieldStringType;
 	category: InputFieldSelectType;
-	readingMedium: InputFieldSelectType;
+	readingMedium: InputFieldSingleSelectType;
 	yearRead: InputFieldStringType;
-	status: InputFieldSelectType;
+	status: InputFieldSingleSelectType;
 }

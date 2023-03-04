@@ -20,12 +20,16 @@ export const booksSlice = createSlice({
 		setQuery: (state, action) => {
 			state.query = action.payload;
 		},
+		addBook: (state, action) => {
+			state.books = [...state.books, action.payload];
+		},
 	},
 });
 
-export const booksSelector = (state: RootState) => state.books;
+export const booksStateSelector = (state: RootState) => state.books;
+export const booksSelector = (state: RootState) => state.books.books;
 
-export const selectQueryFilteredBooks = createSelector([booksSelector], (booksState) => {
+export const selectQueryFilteredBooks = createSelector([booksStateSelector], (booksState) => {
 	const { books, query } = booksState;
 
 	const filteredBooks = books?.filter(
@@ -46,5 +50,9 @@ export const selectBookById = createSelector(
 	}
 );
 
-export const { setQuery } = booksSlice.actions;
+export const selectBooksCount = createSelector([booksSelector], (books) => {
+	return books.reduce((a: number, b) => (a += 1), 0);
+});
+
+export const { setQuery, addBook } = booksSlice.actions;
 export default booksSlice.reducer;

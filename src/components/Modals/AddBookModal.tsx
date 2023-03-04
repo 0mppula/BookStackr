@@ -1,7 +1,11 @@
 import { FC, useRef, useState } from 'react';
 import { RiCloseLine } from 'react-icons/ri';
-import { bookCategories, bookMediums, bookStatuses } from '../../assets/data/bookSelectValues';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../app/store';
 
+import { bookType } from '../../assets/data/books';
+import { bookCategories, bookMediums, bookStatuses } from '../../assets/data/bookSelectValues';
+import { addBook, selectBooksCount } from '../../features/BooksSlice';
 import useCloseOnOverlayClickOrEsc from '../../hooks/useCloseOnOverlayClickOrEsc';
 import useFocusTrap from '../../hooks/useFocusTrap';
 import { getInitialBookFormState } from '../FormComponents/FormData';
@@ -19,9 +23,12 @@ interface AddBookModalProps {
 
 const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 	const [formData, setFormData] = useState<bookFormDataType>(getInitialBookFormState);
+	const booksCount = useSelector((state: RootState) => selectBooksCount(state));
 
 	const outerModalRef = useRef<HTMLDivElement>(null);
 	const innerModalRef = useRef<HTMLFormElement>(null);
+
+	const dispatch = useDispatch();
 
 	useCloseOnOverlayClickOrEsc(modalOpen, setModalOpen, 'modal-overlay');
 	useFocusTrap(innerModalRef, modalOpen);
@@ -33,6 +40,25 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 
 		if (!error) {
 			setModalOpen(false);
+
+			const fake_id = String(
+				Math.random().toString(16).slice(2) + Math.random().toString(16).slice(2, 13)
+			);
+
+			let book: bookType = {
+				id: 'adssadad',
+				index: booksCount + 1,
+				author: author.value,
+				title: title.value,
+				yearRead: +yearRead.value,
+				category: Array.isArray(category.value)
+					? [...category.value]?.map((val) => val.value)
+					: [],
+				readingMedium: readingMedium?.value?.value,
+				status: status?.value?.value,
+			};
+
+			dispatch(addBook(book));
 		}
 	};
 
