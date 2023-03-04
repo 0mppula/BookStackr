@@ -1,17 +1,27 @@
-import { FC, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { FC, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { RootState } from '../../app/store';
 import { setQuery } from '../../features/BooksSlice';
 import AddBookModal from '../Modals/AddBookModal';
 import './styles.css';
 
 const BooksTableTools: FC = () => {
 	const [addModalOpen, setAddModalOpen] = useState<boolean>(false);
-
-	const { query } = useSelector((state: RootState) => state.books);
+	const [internalQuery, setInternalQuery] = useState('');
 
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		let bounce = setTimeout(() => {
+			dispatch(setQuery(internalQuery));
+		}, 250);
+
+		return () => clearTimeout(bounce);
+	}, [internalQuery]);
+
+	const handleDebounce = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setInternalQuery(e.target.value);
+	};
 
 	return (
 		<>
@@ -25,8 +35,8 @@ const BooksTableTools: FC = () => {
 					<input
 						type="search"
 						placeholder="Search by title or author..."
-						value={query}
-						onChange={(e) => dispatch(setQuery(e.target.value))}
+						value={internalQuery}
+						onChange={(e) => handleDebounce(e)}
 					/>
 				</div>
 			</div>
