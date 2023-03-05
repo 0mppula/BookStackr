@@ -8,15 +8,15 @@ export interface booksStateType {
 	query: string;
 }
 
-export interface tableDataType {
-	totalBooksReadByYear?: string[] | number[];
-	audioBooksReadByYear?: string[] | number[];
-	eBooksReadByYear?: string[] | number[];
-	paperBooksReadByYear?: string[] | number[];
-	eBooksPercentByYear?: string[] | number[];
-	audioPercentByYear?: string[] | number[];
-	paperPercentByYear?: string[] | number[];
-	booksPerWeekByYear?: string[] | number[];
+export interface tableRowDataType {
+	totalBooksReadByYear?: string | number;
+	audioBooksReadByYear?: string | number;
+	eBooksReadByYear?: string | number;
+	paperBooksReadByYear?: string | number;
+	eBooksPercentByYear?: string | number;
+	audioPercentByYear?: string | number;
+	paperPercentByYear?: string | number;
+	booksPerWeekByYear?: string | number;
 }
 
 const initialState: booksStateType = {
@@ -93,7 +93,7 @@ export const selectReadBooksCountByMedium = createSelector([booksSelector], (boo
 });
 
 export const selectBooksStatsTableData = createSelector([booksSelector], (books) => {
-	const tableData: tableDataType | null = {};
+	const tableData: tableRowDataType[] = [];
 
 	const totalBooksReadByYear: number[] = [];
 	const audioBooksReadByYear: number[] = [];
@@ -208,8 +208,12 @@ export const selectBooksStatsTableData = createSelector([booksSelector], (books)
 	];
 
 	// Map for each unique year a object with that years data.
-	dataFields.forEach((dataField, fieldIndex) => {
-		tableData[dataField as keyof tableDataType] = bookDataByYear[fieldIndex];
+	uniqueYears.forEach((uniqueYear, i) => {
+		tableData[i] = {};
+
+		dataFields.forEach((dataField, fieldIndex) => {
+			tableData[i][dataField as keyof tableRowDataType] = bookDataByYear[fieldIndex][i];
+		});
 	});
 
 	return tableData;
