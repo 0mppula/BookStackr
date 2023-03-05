@@ -56,7 +56,21 @@ export const selectBookById = createSelector(
 );
 
 export const selectBooksCount = createSelector([booksSelector], (books) => {
-	return books.reduce((a: number, b) => (a += 1), 0);
+	return books.reduce((a: number) => (a += 1), 0);
+});
+
+export const selectBooksCountByMedium = createSelector([booksSelector], (books) => {
+	const audioBookCount = books
+		.filter((book) => book.readingMedium === 'audio')
+		.reduce((a: number) => (a += 1), 0);
+	const eBookCount = books
+		.filter((book) => book.readingMedium === 'e-book')
+		.reduce((a: number) => (a += 1), 0);
+	const paperBookCount = books
+		.filter((book) => book.readingMedium === 'paper')
+		.reduce((a: number) => (a += 1), 0);
+
+	return { audioBookCount, eBookCount, paperBookCount };
 });
 
 export const { setQuery, addBook, editBook } = booksSlice.actions;
