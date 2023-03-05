@@ -20,7 +20,7 @@
 	opacity: 1;
 	pointer-events: all;
 	z-index: 10000;
-	padding-top: 15vh;
+	padding-top: 10vh;
 }
 
 .modal {
@@ -31,7 +31,8 @@
 	background-color: var(--dark);
 	position: relative;
 	width: min(95%, 650px);
-	max-height: 70vh;
+	max-height: 80vh;
+	overflow-y: auto;
 }
 
 .close-container {
@@ -83,8 +84,18 @@
 	width: 100%;
 }
 
-.form-group > div {
+.input-group-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
 	width: 100%;
+}
+
+.input-group {
+	flex-basis: calc(50% - 1rem);
+	flex-grow: 1;
+	flex-shrink: 1;
+	position: relative;
 }
 
 .form-group label {
@@ -95,4 +106,10 @@
 
 .form-group label span {
 	color: var(--primary);
+}
+
+@media only screen and (max-width: 576px) {
+	.input-group {
+		flex: 1 1 100% !important;
+	}
 }

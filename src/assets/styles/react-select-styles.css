@@ -1,6 +1,6 @@
 /* React Select Styles */
 .react-select-container {
-	--select-height: 41.6px;
+	--select-height: 40px;
 }
 
 .react-select__value-container {
@@ -48,6 +48,7 @@
 
 .react-select__multi-value__label {
 	font-size: 1rem !important;
+	padding: 1px 3px !important;
 }
 
 .react-select__indicators {

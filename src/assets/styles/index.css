@@ -132,7 +132,8 @@ input::-webkit-inner-spin-button {
 }
 
 input {
-	border: solid 2px var(--light-alt);
+	outline: solid 1px var(--light-alt);
+	border: none;
 	background-color: var(--dark-alt);
 	color: var(--light);
 	border-radius: 6px;
@@ -141,8 +142,8 @@ input {
 }
 
 input:focus {
-	border: solid 2px var(--light);
-	outline: none;
+	outline: solid 2px var(--light);
+	/* outline: none; */
 }
 
 .table-container {
@@ -200,6 +201,7 @@ table .id {
 	text-align: center;
 }
 
+/* Books page table styles */
 table th.index {
 	min-width: 60px !important;
 	width: 60px !important;
@@ -233,6 +235,44 @@ table th.id {
 	min-width: 80px !important;
 	width: 80px !important;
 	pointer-events: none;
+}
+
+/* Stats page table styles */
+table th.years {
+	width: calc(100% / 9);
+	min-width: calc(100% / 9);
+}
+table th.totalBooksReadByYear {
+	width: calc(100% / 9);
+	min-width: calc(100% / 9);
+}
+table th.audioBooksReadByYear {
+	width: calc(100% / 9);
+	min-width: calc(100% / 9);
+}
+table th.eBooksPercentByYear {
+	width: calc(100% / 9);
+	min-width: calc(100% / 9);
+}
+table th.paperBooksReadByYear {
+	width: calc(100% / 9);
+	min-width: calc(100% / 9);
+}
+table th.eBooksPercentByYear {
+	width: calc(100% / 9);
+	min-width: calc(100% / 9);
+}
+table th.audioPercentByYear {
+	width: calc(100% / 9);
+	min-width: calc(100% / 9);
+}
+table th.paperPercentByYear {
+	width: calc(100% / 9);
+	min-width: calc(100% / 9);
+}
+table th.booksPerWeekByYear {
+	width: calc(100% / 9);
+	min-width: calc(100% / 9);
 }
 
 td button {
