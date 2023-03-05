@@ -23,10 +23,17 @@
 
 .stats-header-container span {
 	color: var(--light);
-	font-size: 175%;
+	font-size: 150%;
 }
 
-@media only screen and (min-width: 720px) {
+.stats-header-container span:first-child {
+	color: var(--light);
+	font-size: 200%;
+	line-height: 65px;
+	/* letter-spacing: 1rem; */
+}
+
+@media only screen and (min-width: 752px) {
 	.stats-header-container h2 {
 		display: flex;
 		flex-direction: column;

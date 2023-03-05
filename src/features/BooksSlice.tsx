@@ -101,7 +101,7 @@ export const selectBooksStatsTableData = createSelector([booksSelector], (books)
 	const eBooksPercentByYear: string[] = [];
 	const audioPercentByYear: string[] = [];
 	const paperPercentByYear: string[] = [];
-	const booksPerWeekByYear: number[] = [];
+	const booksPerWeekByYear: string[] = [];
 
 	const uniqueYears = books
 		.filter((book, i) => books.findIndex((book2) => book2.yearRead === book.yearRead) === i)
@@ -154,7 +154,7 @@ export const selectBooksStatsTableData = createSelector([booksSelector], (books)
 	let currentYear = new Date().getFullYear();
 	let startOfYearTime = new Date(currentYear, 0, 1).getTime();
 	let weeksElapsedOnYear = 52;
-	let daysElapsed = Math.floor((todayTime - startOfYearTime) / (24 * 60 * 60 * 1000));
+	let daysElapsed = +Math.floor((todayTime - startOfYearTime) / (24 * 60 * 60 * 1000));
 
 	// Store total books read per week by year and the percent of each book medium read by year.
 	uniqueYears.forEach((uniqueYear, i) => {
@@ -162,7 +162,7 @@ export const selectBooksStatsTableData = createSelector([booksSelector], (books)
 			weeksElapsedOnYear = Math.ceil(daysElapsed / 7);
 		}
 
-		booksPerWeekByYear[i] = +(
+		booksPerWeekByYear[i] = (
 			(audioBooksReadByYear[i] + eBooksReadByYear[i] + paperBooksReadByYear[i]) /
 			weeksElapsedOnYear
 		).toFixed(2);
@@ -170,16 +170,16 @@ export const selectBooksStatsTableData = createSelector([booksSelector], (books)
 		audioPercentByYear[i] = `${(
 			(audioBooksReadByYear[i] / totalBooksReadByYear[i]) *
 			100
-		).toFixed(1)}%`;
+		).toFixed(2)}%`;
 
 		eBooksPercentByYear[i] = `${((eBooksReadByYear[i] / totalBooksReadByYear[i]) * 100).toFixed(
-			1
+			2
 		)}%`;
 
 		paperPercentByYear[i] = `${(
 			(paperBooksReadByYear[i] / totalBooksReadByYear[i]) *
 			100
-		).toFixed(1)}%`;
+		).toFixed(2)}%`;
 	});
 
 	const dataFields: string[] = [

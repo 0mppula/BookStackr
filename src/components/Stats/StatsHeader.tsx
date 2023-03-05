@@ -12,19 +12,22 @@ const StatsHeader: FC = () => {
 	return (
 		<div className="stats-header-container">
 			<h2>
-				Books Read<span>{booksReadCount}</span>
+				Books Read<span>{booksReadCount}</span> <span>100%</span>
 			</h2>
 
 			<h2>
-				Audio <span>{`${((audioBooksRead / booksReadCount) * 100).toFixed(2)}%`}</span>
+				Audio Books <span>{audioBooksRead}</span>
+				<span>{`${((audioBooksRead / booksReadCount) * 100).toFixed(2)}%`}</span>
 			</h2>
 
 			<h2>
-				E-Books <span>{`${((eBooksRead / booksReadCount) * 100).toFixed(2)}%`}</span>
+				E-Books <span>{eBooksRead}</span>
+				<span>{`${((eBooksRead / booksReadCount) * 100).toFixed(2)}%`}</span>
 			</h2>
 
 			<h2>
-				Paper <span>{`${((paperBooksRead / booksReadCount) * 100).toFixed(2)}%`}</span>
+				Paper Books <span>{paperBooksRead}</span>
+				<span>{`${((paperBooksRead / booksReadCount) * 100).toFixed(2)}%`}</span>
 			</h2>
 		</div>
 	);
