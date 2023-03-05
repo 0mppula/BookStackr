@@ -1,12 +1,12 @@
 import { FC, useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { Column } from 'react-table';
+import { Column, useSortBy, useTable } from 'react-table';
 import { RootState } from '../../app/store';
 import { selectBooksStatsTableData } from '../../features/BooksSlice';
 
 const StatsTable: FC = () => {
 	interface ColumnType {
-		uniqueYears: number;
+		years: number;
 		totalBooksReadByYear: number;
 		audioBooksReadByYear: number;
 		eBooksReadByYear: number;
@@ -20,9 +20,10 @@ const StatsTable: FC = () => {
 	const tableData = useSelector((state: RootState) => selectBooksStatsTableData(state));
 
 	const data: any = useMemo(() => tableData, [tableData]);
+
 	const columns: Column<ColumnType>[] = useMemo(
 		() => [
-			{ Header: 'Year', accessor: 'uniqueYears' },
+			{ Header: 'Year', accessor: 'years', className: 'center' },
 			{ Header: 'Books', accessor: 'totalBooksReadByYear' },
 			{ Header: 'Audio', accessor: 'audioBooksReadByYear' },
 			{ Header: 'E-books', accessor: 'eBooksReadByYear' },
@@ -35,7 +36,62 @@ const StatsTable: FC = () => {
 		[tableData]
 	);
 
-	return <div className="table-container">StatsTable</div>;
+	const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable(
+		{
+			columns,
+			data,
+		},
+		useSortBy
+	);
+
+	return (
+		<div className="table-container">
+			<table {...getTableProps()} className="books-stats-table">
+				<thead>
+					{headerGroups.map((headerGroup) => (
+						<tr {...headerGroup.getHeaderGroupProps()}>
+							{headerGroup.headers.map((column: any) => (
+								<th
+									{...column.getHeaderProps([
+										{ className: column.id },
+										column.getSortByToggleProps(),
+									])}
+								>
+									{column.render('Header')}
+
+									<span>
+										{column.isSorted
+											? column.isSortedDesc
+												? ' 🔽'
+												: ' 🔼'
+											: ''}
+									</span>
+								</th>
+							))}
+						</tr>
+					))}
+				</thead>
+
+				<tbody {...getTableBodyProps()}>
+					{rows.map((row, i) => {
+						prepareRow(row);
+						return (
+							<tr {...row.getRowProps()}>
+								{row.cells.map((cell: any) => (
+									<td
+										{...cell.getCellProps({ className: cell?.column?.id })}
+										key={cell?.column?.id}
+									>
+										{cell.render('Cell')}
+									</td>
+								))}
+							</tr>
+						);
+					})}
+				</tbody>
+			</table>
+		</div>
+	);
 };
 
 export default StatsTable;

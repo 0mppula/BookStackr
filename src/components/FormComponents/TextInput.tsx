@@ -26,7 +26,7 @@ const TextInput: FC<TextInputProps> = ({
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	return (
-		<div>
+		<div className='input-group'>
 			<label onClick={() => inputRef?.current?.focus()}>
 				{label}
 				{required && <span>*</span>}

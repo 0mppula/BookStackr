@@ -5,7 +5,11 @@ interface FormGroupProps {
 }
 
 const FormGroup: FC<FormGroupProps> = ({ children }) => {
-	return <div className="form-group">{children}</div>;
+	return (
+		<div className="form-group">
+			<div className="input-group-container">{children}</div>
+		</div>
+	);
 };
 
 export default FormGroup;

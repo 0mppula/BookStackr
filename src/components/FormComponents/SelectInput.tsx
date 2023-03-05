@@ -31,7 +31,7 @@ const SelectInput: FC<SelectInputProps> = ({
 }) => {
 	const inputRef = useRef<any>(null);
 	return (
-		<div>
+		<div className='input-group'>
 			<label onClick={() => inputRef?.current?.focus()}>
 				{label}
 				{required && <span>*</span>}

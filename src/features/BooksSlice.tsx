@@ -94,7 +94,6 @@ export const selectReadBooksCountByMedium = createSelector([booksSelector], (boo
 
 export const selectBooksStatsTableData = createSelector([booksSelector], (books) => {
 	const tableData: tableRowDataType[] = [];
-
 	const totalBooksReadByYear: number[] = [];
 	const audioBooksReadByYear: number[] = [];
 	const eBooksReadByYear: number[] = [];

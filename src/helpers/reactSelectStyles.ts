@@ -6,7 +6,7 @@ export const customStyles = {
 		// Outline of the select element when when focused and blurred
 		outline: state.isFocused
 			? `2px solid ${cssVar('--light')}`
-			: `2px solid ${cssVar('--light-alt')}`,
+			: `1px solid ${cssVar('--light-alt')}`,
 	}),
 };
 
