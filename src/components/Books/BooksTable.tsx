@@ -4,7 +4,7 @@ import { Column, useTable, useSortBy } from 'react-table';
 import { FaPen } from 'react-icons/fa';
 
 import { RootState } from '../../app/store';
-import { selectQueryFilteredBooks, booksSelector } from '../../features/BooksSlice';
+import { selectQueryFilteredBooks } from '../../features/BooksSlice';
 import EditBookModal from '../Modals/EditBookModal';
 
 interface ColumnType {

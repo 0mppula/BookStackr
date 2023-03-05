@@ -59,18 +59,149 @@ export const selectBooksCount = createSelector([booksSelector], (books) => {
 	return books.reduce((a: number) => (a += 1), 0);
 });
 
-export const selectBooksCountByMedium = createSelector([booksSelector], (books) => {
-	const audioBookCount = books
-		.filter((book) => book.readingMedium === 'audio')
-		.reduce((a: number) => (a += 1), 0);
-	const eBookCount = books
-		.filter((book) => book.readingMedium === 'e-book')
-		.reduce((a: number) => (a += 1), 0);
-	const paperBookCount = books
-		.filter((book) => book.readingMedium === 'paper')
+export const selectReadBooksCount = createSelector([booksSelector], (books) => {
+	const booksRead = books
+		.filter((book) => book.status === 'read')
 		.reduce((a: number) => (a += 1), 0);
 
-	return { audioBookCount, eBookCount, paperBookCount };
+	return booksRead;
+});
+
+export const selectReadBooksCountByMedium = createSelector([booksSelector], (books) => {
+	const audioBooksRead = books
+		.filter((book) => book.readingMedium === 'audio' && book.status === 'read')
+		.reduce((a: number) => (a += 1), 0);
+	const eBooksRead = books
+		.filter((book) => book.readingMedium === 'e-book' && book.status === 'read')
+		.reduce((a: number) => (a += 1), 0);
+	const paperBooksRead = books
+		.filter((book) => book.readingMedium === 'paper' && book.status === 'read')
+		.reduce((a: number) => (a += 1), 0);
+
+	return { audioBooksRead, eBooksRead, paperBooksRead };
+});
+
+export const selectBooksStatsTableData = createSelector([booksSelector], (books) => {
+	const tableData: any = {};
+
+	const totalBooksReadByYear: number[] = [];
+	const audioBooksReadByYear: number[] = [];
+	const eBooksReadByYear: number[] = [];
+	const paperBooksReadByYear: number[] = [];
+	const eBooksPercentByYear: string[] = [];
+	const audioPercentByYear: string[] = [];
+	const paperPercentByYear: string[] = [];
+	const booksPerWeekByYear: number[] = [];
+
+	const uniqueYears = books
+		.filter((book, i) => books.findIndex((book2) => book2.yearRead === book.yearRead) === i)
+		.map((book) => book.yearRead);
+
+	// Store total books read by year and by year and medium.
+	uniqueYears.forEach((uniqueYear, i) => {
+		let currYtotalBooksRead = 0;
+		let currYtotalAudioBooksRead = 0;
+		let currYtotalEBooksRead = 0;
+		let currYtotalPaperBooksRead = 0;
+
+		books.forEach((book) => {
+			if (book.yearRead === uniqueYear && book.status === 'read') {
+				currYtotalBooksRead++;
+			}
+
+			if (
+				book.readingMedium === 'audio' &&
+				book.yearRead === uniqueYear &&
+				book.status === 'read'
+			) {
+				currYtotalAudioBooksRead++;
+			}
+
+			if (
+				book.readingMedium === 'e-book' &&
+				book.yearRead === uniqueYear &&
+				book.status === 'read'
+			) {
+				currYtotalEBooksRead++;
+			}
+
+			if (
+				book.readingMedium === 'paper' &&
+				book.yearRead === uniqueYear &&
+				book.status === 'read'
+			) {
+				currYtotalPaperBooksRead++;
+			}
+		});
+
+		totalBooksReadByYear[i] = currYtotalBooksRead;
+		audioBooksReadByYear[i] = currYtotalAudioBooksRead;
+		eBooksReadByYear[i] = currYtotalEBooksRead;
+		paperBooksReadByYear[i] = currYtotalPaperBooksRead;
+	});
+
+	let todayTime = new Date().getTime();
+	let currentYear = new Date().getFullYear();
+	let startOfYearTime = new Date(currentYear, 0, 1).getTime();
+	let weeksElapsedOnYear = 52;
+	let daysElapsed = Math.floor((todayTime - startOfYearTime) / (24 * 60 * 60 * 1000));
+
+	// Store total books read per week by year and the percent of each book medium read by year.
+	uniqueYears.forEach((uniqueYear, i) => {
+		if (uniqueYear === currentYear) {
+			weeksElapsedOnYear = Math.ceil(daysElapsed / 7);
+		}
+
+		booksPerWeekByYear[i] = +(
+			(audioBooksReadByYear[i] + eBooksReadByYear[i] + paperBooksReadByYear[i]) /
+			weeksElapsedOnYear
+		).toFixed(2);
+
+		audioPercentByYear[i] = `${(
+			(audioBooksReadByYear[i] / totalBooksReadByYear[i]) *
+			100
+		).toFixed(1)}%`;
+
+		eBooksPercentByYear[i] = `${((eBooksReadByYear[i] / totalBooksReadByYear[i]) * 100).toFixed(
+			1
+		)}%`;
+
+		paperPercentByYear[i] = `${(
+			(paperBooksReadByYear[i] / totalBooksReadByYear[i]) *
+			100
+		).toFixed(1)}%`;
+	});
+
+	const dataFields: string[] = [
+		'years',
+		'totalBooksReadByYear',
+		'audioBooksReadByYear',
+		'eBooksReadByYear',
+		'paperBooksReadByYear',
+		'eBooksPercentByYear',
+		'audioPercentByYear',
+		'paperPercentByYear',
+		'booksPerWeekByYear',
+	];
+
+	const bookDataByYear: (number[] | string[])[] = [
+		uniqueYears,
+		totalBooksReadByYear,
+		audioBooksReadByYear,
+		eBooksReadByYear,
+		paperBooksReadByYear,
+		eBooksPercentByYear,
+		audioPercentByYear,
+		paperPercentByYear,
+		booksPerWeekByYear,
+	];
+
+	// Map for each unique year a object with that years data.
+	dataFields.forEach((dataField, fieldIndex) => {
+		tableData[dataField] = bookDataByYear[fieldIndex];
+	});
+
+	return tableData;
 });
 
 export const { setQuery, addBook, editBook } = booksSlice.actions;

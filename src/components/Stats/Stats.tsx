@@ -2,6 +2,7 @@ import { FC } from 'react';
 
 import { useTitle } from '../../hooks/useTitle';
 import StatsHeader from './StatsHeader';
+import StatsTable from './StatsTable';
 import './styles.css';
 
 const Stats: FC = () => {
@@ -9,6 +10,8 @@ const Stats: FC = () => {
 	return (
 		<>
 			<StatsHeader />
+
+			<StatsTable />
 		</>
 	);
 };

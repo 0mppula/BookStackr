@@ -908,7 +908,7 @@ export const books: bookType[] = [
 		category: ['Science', 'Technology', 'Artificial Intelligence'],
 		readingMedium: 'audio',
 		yearRead: 2023,
-		status: 'reading',
+		status: 'read',
 	},
 	{
 		id: '0tobdpptitqvtqwrycwbygt1',
@@ -918,7 +918,7 @@ export const books: bookType[] = [
 		category: ['Self Help', 'Biography'],
 		readingMedium: 'audio',
 		yearRead: 2023,
-		status: 'reading',
+		status: 'read',
 	},
 	{
 		id: '4a8rntwkytc5kk5styfu4jp1',
@@ -928,7 +928,7 @@ export const books: bookType[] = [
 		category: ['Self Help', 'Personal Development', 'Business'],
 		readingMedium: 'audio',
 		yearRead: 2023,
-		status: 'want to read',
+		status: 'read',
 	},
 	{
 		id: 'f4axwxjlqudds966oh1pn66k',
