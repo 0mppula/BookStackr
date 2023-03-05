@@ -12,25 +12,22 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	color: var(--light-alt);
+	color: var(--light);
 	flex: 1 1 calc(50% - (1rem));
 	user-select: none;
-	background-color: var(--dark-alt-opacity-35);
+	background-color: var(--dark-alt);
 	border-radius: 6px;
 	padding: 1rem 0;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .stats-header-container span {
-	color: var(--light);
 	font-size: 150%;
 }
 
 .stats-header-container span:first-child {
-	color: var(--light);
 	font-size: 200%;
 	line-height: 65px;
-	/* letter-spacing: 1rem; */
 }
 
 @media only screen and (min-width: 752px) {
@@ -38,7 +35,6 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		color: var(--light-alt);
 		flex: 1 1 calc(25% - (2rem));
 	}
 }
