@@ -8,6 +8,17 @@ export interface booksStateType {
 	query: string;
 }
 
+export interface tableDataType {
+	totalBooksReadByYear?: string[] | number[];
+	audioBooksReadByYear?: string[] | number[];
+	eBooksReadByYear?: string[] | number[];
+	paperBooksReadByYear?: string[] | number[];
+	eBooksPercentByYear?: string[] | number[];
+	audioPercentByYear?: string[] | number[];
+	paperPercentByYear?: string[] | number[];
+	booksPerWeekByYear?: string[] | number[];
+}
+
 const initialState: booksStateType = {
 	books,
 	query: '',
@@ -82,7 +93,7 @@ export const selectReadBooksCountByMedium = createSelector([booksSelector], (boo
 });
 
 export const selectBooksStatsTableData = createSelector([booksSelector], (books) => {
-	const tableData: any = {};
+	const tableData: tableDataType | null = {};
 
 	const totalBooksReadByYear: number[] = [];
 	const audioBooksReadByYear: number[] = [];
@@ -198,7 +209,7 @@ export const selectBooksStatsTableData = createSelector([booksSelector], (books)
 
 	// Map for each unique year a object with that years data.
 	dataFields.forEach((dataField, fieldIndex) => {
-		tableData[dataField] = bookDataByYear[fieldIndex];
+		tableData[dataField as keyof tableDataType] = bookDataByYear[fieldIndex];
 	});
 
 	return tableData;
