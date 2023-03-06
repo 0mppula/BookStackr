@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 
 import { setQuery } from '../../features/books/BooksSlice';
 import AddBookModal from '../Modals/AddBookModal';
-import './styles.css';
 
 const BooksTableTools: FC = () => {
 	const [addModalOpen, setAddModalOpen] = useState<boolean>(false);

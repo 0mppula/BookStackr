@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
-import Books from './components/Books/Books';
-import Stats from './components/Stats/Stats';
+import Books from './Pages/Books/Books';
+import Stats from './Pages/Stats/Stats';
 import Nav from './components/Nav/Nav';
 
 const App: FC = () => {

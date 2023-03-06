@@ -4,9 +4,9 @@ import { RootState } from '../../app/store';
 import { selectBooksStatsData } from '../../features/books/BooksSelectors';
 
 import { useTitle } from '../../hooks/useTitle';
-import StatsCharts from './StatsCharts';
-import StatsHeader from './StatsHeader';
-import StatsTable from './StatsTable';
+import StatsCharts from '../../components/Stats/StatsCharts';
+import StatsHeader from '../../components/Stats/StatsHeader';
+import StatsTable from '../../components/Stats/StatsTable';
 import './styles.css';
 
 const Stats: FC = () => {
