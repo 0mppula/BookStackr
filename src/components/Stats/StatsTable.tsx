@@ -2,7 +2,7 @@ import { FC, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { Column, useSortBy, useTable } from 'react-table';
 import { RootState } from '../../app/store';
-import { selectBooksStatsTableData } from '../../features/BooksSlice';
+import { selectBooksStatsTableData } from '../../features/books/BooksSelectors';
 
 const StatsTable: FC = () => {
 	interface ColumnType {

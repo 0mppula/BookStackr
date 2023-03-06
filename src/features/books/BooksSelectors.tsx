@@ -1,12 +1,7 @@
-import { createSlice, createSelector } from '@reduxjs/toolkit';
-import { RootState } from '../app/store';
+import { createSelector } from '@reduxjs/toolkit';
+import { RootState } from '../../app/store';
 
-import { books, bookType } from '../assets/data/books';
-
-export interface booksStateType {
-	books: bookType[];
-	query: string;
-}
+import { books } from '../../assets/data/books';
 
 export interface tableRowDataType {
 	totalBooksReadByYear?: string | number;
@@ -18,29 +13,6 @@ export interface tableRowDataType {
 	paperPercentByYear?: string | number;
 	booksPerWeekByYear?: string | number;
 }
-
-const initialState: booksStateType = {
-	books,
-	query: '',
-};
-
-export const booksSlice = createSlice({
-	name: 'books',
-	initialState,
-	reducers: {
-		setQuery: (state, action) => {
-			state.query = action.payload;
-		},
-		addBook: (state, action) => {
-			state.books = [...state.books, action.payload];
-		},
-		editBook: (state, action) => {
-			let updatedBooks = [...state.books].filter((book) => book.id !== action.payload.id);
-
-			state.books = [...updatedBooks, action.payload].sort((a, b) => a.index - b.index);
-		},
-	},
-});
 
 export const booksStateSelector = (state: RootState) => state.books;
 export const booksSelector = (state: RootState) => state.books.books;
@@ -207,7 +179,7 @@ export const selectBooksStatsTableData = createSelector([booksSelector], (books)
 	];
 
 	// Map for each unique year a object with that years data.
-	uniqueYears.forEach((uniqueYear, i) => {
+	uniqueYears.forEach((_, i) => {
 		tableData[i] = {};
 
 		dataFields.forEach((dataField, fieldIndex) => {
@@ -217,6 +189,3 @@ export const selectBooksStatsTableData = createSelector([booksSelector], (books)
 
 	return tableData;
 });
-
-export const { setQuery, addBook, editBook } = booksSlice.actions;
-export default booksSlice.reducer;
