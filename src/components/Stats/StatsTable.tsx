@@ -1,10 +1,13 @@
 import { FC, useMemo } from 'react';
-import { useSelector } from 'react-redux';
 import { Column, useSortBy, useTable } from 'react-table';
-import { RootState } from '../../app/store';
-import { selectBooksStatsTableData } from '../../features/books/BooksSelectors';
 
-const StatsTable: FC = () => {
+import { tableRowDataType } from '../../features/books/BooksSelectors';
+
+interface StatsTableType {
+	tableData: tableRowDataType[];
+}
+
+const StatsTable: FC<StatsTableType> = ({ tableData }) => {
 	interface ColumnType {
 		years: number;
 		totalBooksReadByYear: number;
@@ -16,8 +19,6 @@ const StatsTable: FC = () => {
 		paperPercentByYear: string;
 		booksPerWeekByYear: number;
 	}
-
-	const tableData = useSelector((state: RootState) => selectBooksStatsTableData(state));
 
 	const data: any = useMemo(() => tableData, [tableData]);
 

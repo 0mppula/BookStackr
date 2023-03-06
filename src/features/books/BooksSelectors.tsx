@@ -13,6 +13,16 @@ export interface tableRowDataType {
 	paperPercentByYear?: string | number;
 	booksPerWeekByYear?: string | number;
 }
+export interface chartDataType {
+	totalBooksReadByYear?: string[] | number[];
+	audioBooksReadByYear?: string[] | number[];
+	eBooksReadByYear?: string[] | number[];
+	paperBooksReadByYear?: string[] | number[];
+	eBooksPercentByYear?: string[] | number[];
+	audioPercentByYear?: string[] | number[];
+	paperPercentByYear?: string[] | number[];
+	booksPerWeekByYear?: string[] | number[];
+}
 
 export const booksStateSelector = (state: RootState) => state.books;
 export const booksSelector = (state: RootState) => state.books.books;
@@ -64,8 +74,10 @@ export const selectReadBooksCountByMedium = createSelector([booksSelector], (boo
 	return { audioBooksRead, eBooksRead, paperBooksRead };
 });
 
-export const selectBooksStatsTableData = createSelector([booksSelector], (books) => {
+export const selectBooksStatsData = createSelector([booksSelector], (books) => {
 	const tableData: tableRowDataType[] = [];
+	const chartData: chartDataType = {};
+
 	const totalBooksReadByYear: number[] = [];
 	const audioBooksReadByYear: number[] = [];
 	const eBooksReadByYear: number[] = [];
@@ -187,5 +199,10 @@ export const selectBooksStatsTableData = createSelector([booksSelector], (books)
 		});
 	});
 
-	return tableData;
+	// Add a key for each by year book data point to the chartData object.
+	dataFields.forEach((dataField, fieldIndex) => {
+		chartData[dataField as keyof chartDataType] = bookDataByYear[fieldIndex];
+	});
+
+	return { tableData, chartData };
 });
