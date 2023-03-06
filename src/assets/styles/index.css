@@ -22,7 +22,7 @@
 	flex-direction: column;
 	min-height: 100vh;
 	align-items: center;
-	width: min(1200px, 95vw);
+	width: min(1200px, 90vw);
 	padding-top: 2rem;
 	padding-bottom: 8rem;
 	margin: 0 auto;
@@ -295,5 +295,11 @@ th {
 
 	nav ul {
 		justify-content: center;
+	}
+}
+
+@media only screen and (min-width: 992px) {
+	.app-container {
+		width: min(1200px, 95vw);
 	}
 }
