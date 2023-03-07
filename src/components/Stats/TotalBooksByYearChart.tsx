@@ -9,11 +9,12 @@ import {
 	Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 import { chartDataType } from '../../features/books/BooksSelectors';
 import { cssVar } from '../../helpers/getCssVariable';
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ChartDataLabels);
 
 interface TotalBooksByYearChartType {
 	chartData: chartDataType;
@@ -37,8 +38,23 @@ const TotalBooksByYearChart: FC<TotalBooksByYearChartType> = ({ chartData }) => 
 		responsive: true,
 		maintainAspectRatio: false,
 		plugins: {
-			tooltip: {
-				enabled: false,
+			datalabels: {
+				backgroundColor: cssVar('--dark-alt'),
+				borderRadius: 3,
+				color: cssVar('--light'),
+				font: {
+					family: cssVar('--font-main'),
+					weight: 200,
+				},
+				padding: {
+					bottom: 2,
+				},
+				// Only show data label if value is above 0.
+				display: function (context: any) {
+					let index = context.dataIndex;
+					let value = context.dataset.data[index];
+					return value > 0;
+				},
 			},
 			title: {
 				display: true,

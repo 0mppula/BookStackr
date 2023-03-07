@@ -938,7 +938,7 @@ export const books: bookType[] = [
 		category: ['Science', 'Health', 'Psychology'],
 		readingMedium: 'audio',
 		yearRead: 2023,
-		status: 'want to read',
+		status: 'read',
 	},
 	{
 		id: 'f99ey5110rgnffb69mt7onzx',
