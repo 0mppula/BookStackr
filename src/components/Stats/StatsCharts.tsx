@@ -11,9 +11,9 @@ const StatsCharts: FC<StatsChartsType> = ({ chartData }) => {
 		<div className="stats-charts-container">
 			<TotalBooksByYearChart chartData={chartData} />
 
-			<div className="chart-container">Lorem ipsum dolor sit amet.</div>
+			<div className="chart-container">Chart 2</div>
 
-			<div className="chart-container">Lorem ipsum dolor sit amet.</div>
+			<div className="chart-container">Chart 3</div>
 		</div>
 	);
 };

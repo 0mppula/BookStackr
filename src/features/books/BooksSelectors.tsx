@@ -14,6 +14,7 @@ export interface tableRowDataType {
 	booksPerWeekByYear?: string | number;
 }
 export interface chartDataType {
+	years?: string[] | number[];
 	totalBooksReadByYear?: string[] | number[];
 	audioBooksReadByYear?: string[] | number[];
 	eBooksReadByYear?: string[] | number[];
