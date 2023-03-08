@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { chartDataType } from '../../features/books/BooksSelectors';
-import TotalBooksByYearChart from './TotalBooksByYearChart';
+import BooksReadByYearChart from './BooksReadByYearChart';
+import BooksReadByYearChart100 from './BooksReadByYearChart100';
 
 interface StatsChartsType {
 	chartData: chartDataType;
@@ -9,9 +10,9 @@ interface StatsChartsType {
 const StatsCharts: FC<StatsChartsType> = ({ chartData }) => {
 	return (
 		<div className="stats-charts-container">
-			<TotalBooksByYearChart chartData={chartData} />
+			<BooksReadByYearChart chartData={chartData} />
 
-			<div className="chart-container">Chart 2</div>
+			<BooksReadByYearChart100 chartData={chartData} />
 
 			<div className="chart-container">Chart 3</div>
 		</div>

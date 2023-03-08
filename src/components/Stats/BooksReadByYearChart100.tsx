@@ -10,17 +10,27 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import ChartjsPluginStacked100 from 'chartjs-plugin-stacked100';
 
 import { chartDataType } from '../../features/books/BooksSelectors';
 import { cssVar } from '../../helpers/getCssVariable';
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ChartDataLabels);
+ChartJS.register(
+	CategoryScale,
+	LinearScale,
+	BarElement,
+	Title,
+	Tooltip,
+	Legend,
+	ChartDataLabels,
+	ChartjsPluginStacked100
+);
 
-interface TotalBooksByYearChartType {
+interface BooksReadByYearChart100Type {
 	chartData: chartDataType;
 }
 
-const TotalBooksByYearChart: FC<TotalBooksByYearChartType> = ({ chartData }) => {
+const BooksReadByYearChart100: FC<BooksReadByYearChart100Type> = ({ chartData }) => {
 	const { years, audioBooksReadByYear, eBooksReadByYear, paperBooksReadByYear } = chartData;
 
 	const legendMargin = {
@@ -38,6 +48,19 @@ const TotalBooksByYearChart: FC<TotalBooksByYearChartType> = ({ chartData }) => 
 		responsive: true,
 		maintainAspectRatio: false,
 		plugins: {
+			tooltip: {
+				callbacks: {
+					label: function (context: any) {
+						let label = context.dataset.label || '';
+						let rawValue = context.raw;
+						let formattedValue = context.formattedValue;
+						let formattedLabel = `${label}: ${formattedValue}% (${rawValue})`;
+
+						return formattedLabel;
+					},
+				},
+			},
+			stacked100: { enable: true, replaceTooltipLabel: true, precision: 2 },
 			datalabels: {
 				backgroundColor: cssVar('--dark-alt'),
 				borderRadius: 3,
@@ -54,6 +77,11 @@ const TotalBooksByYearChart: FC<TotalBooksByYearChartType> = ({ chartData }) => 
 					let index = context.dataIndex;
 					let value = context.dataset.data[index];
 					return value > 0;
+				},
+				formatter: (_value: any, context: any) => {
+					const data = context.chart.data;
+					const { datasetIndex, dataIndex } = context;
+					return `${data.calculatedData[datasetIndex][dataIndex]}%`;
 				},
 			},
 			title: {
@@ -86,7 +114,7 @@ const TotalBooksByYearChart: FC<TotalBooksByYearChartType> = ({ chartData }) => 
 			},
 			y: {
 				stacked: true,
-				ticks: { color: cssVar('--light'), beginAtZero: true, stepSize: 5 },
+				ticks: { color: cssVar('--light'), beginAtZero: true, stepSize: 10 },
 				border: {
 					display: false,
 				},
@@ -131,4 +159,4 @@ const TotalBooksByYearChart: FC<TotalBooksByYearChartType> = ({ chartData }) => 
 	);
 };
 
-export default TotalBooksByYearChart;
+export default BooksReadByYearChart100;

@@ -13,6 +13,7 @@
     "@types/react-dom": "^18.0.11",
     "chart.js": "^4.2.1",
     "chartjs-plugin-datalabels": "^2.2.0",
+    "chartjs-plugin-stacked100": "^1.3.0",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
