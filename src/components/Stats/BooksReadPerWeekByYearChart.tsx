@@ -16,12 +16,12 @@ import { cssVar } from '../../helpers/getCssVariable';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ChartDataLabels);
 
-interface BooksReadByYearChartType {
+interface BooksReadPerWeekByYearChartType {
 	chartData: chartDataType;
 }
 
-const BooksReadByYearChart: FC<BooksReadByYearChartType> = ({ chartData }) => {
-	const { years, audioBooksReadByYear, eBooksReadByYear, paperBooksReadByYear } = chartData;
+const BooksReadPerWeekByYearChart: FC<BooksReadPerWeekByYearChartType> = ({ chartData }) => {
+	const { years, booksPerWeekByYear } = chartData;
 
 	const legendMargin = {
 		id: 'legendMargin',
@@ -58,7 +58,7 @@ const BooksReadByYearChart: FC<BooksReadByYearChartType> = ({ chartData }) => {
 			},
 			title: {
 				display: true,
-				text: 'Books Read by Year',
+				text: 'Books Read per Week by Year',
 				color: cssVar('--light'),
 				font: {
 					weight: '400',
@@ -86,7 +86,7 @@ const BooksReadByYearChart: FC<BooksReadByYearChartType> = ({ chartData }) => {
 			},
 			y: {
 				stacked: true,
-				ticks: { color: cssVar('--light'), beginAtZero: true,  count: 11 },
+				ticks: { color: cssVar('--light'), beginAtZero: true, count: 11 },
 				border: {
 					display: false,
 				},
@@ -106,18 +106,8 @@ const BooksReadByYearChart: FC<BooksReadByYearChartType> = ({ chartData }) => {
 		datasets: [
 			{
 				label: 'Audio',
-				data: audioBooksReadByYear?.map((count) => count),
+				data: booksPerWeekByYear?.map((count) => count),
 				backgroundColor: `${cssVar('--light')}`,
-			},
-			{
-				label: 'E-Book',
-				data: eBooksReadByYear?.map((count) => count),
-				backgroundColor: `${cssVar('--secondary')}`,
-			},
-			{
-				label: 'Paper',
-				data: paperBooksReadByYear?.map((count) => count),
-				backgroundColor: `${cssVar('--primary')}`,
 			},
 		],
 	};
@@ -131,4 +121,4 @@ const BooksReadByYearChart: FC<BooksReadByYearChartType> = ({ chartData }) => {
 	);
 };
 
-export default BooksReadByYearChart;
+export default BooksReadPerWeekByYearChart;
