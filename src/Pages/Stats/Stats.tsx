@@ -18,9 +18,9 @@ const Stats: FC = () => {
 		<>
 			<StatsHeader />
 
-			<StatsTable tableData={tableData} />
-
 			<StatsCharts chartData={chartData} />
+			
+			<StatsTable tableData={tableData} />
 		</>
 	);
 };
