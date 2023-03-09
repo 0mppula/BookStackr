@@ -17,7 +17,7 @@ import { cssVar } from '../../helpers/getCssVariable';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-const ReadBookCategoryCountChart: FC = () => {
+const ReadBookCategoriesChart: FC = () => {
 	const { allBookGroupedCategories, uniqueBookCategories } = useSelector((state: RootState) =>
 		selectBookCategoryStatsData(state)
 	);
@@ -43,7 +43,7 @@ const ReadBookCategoryCountChart: FC = () => {
 			},
 			title: {
 				display: true,
-				text: 'Read Book Category Count',
+				text: 'Read Book Categories',
 				color: cssVar('--light'),
 				font: {
 					weight: '400',
@@ -98,4 +98,4 @@ const ReadBookCategoryCountChart: FC = () => {
 	);
 };
 
-export default ReadBookCategoryCountChart;
+export default ReadBookCategoriesChart;
