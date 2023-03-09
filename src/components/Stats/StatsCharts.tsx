@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { chartDataType } from '../../features/books/BooksSelectors';
+import BooksReadByCategory from './BooksReadByCategory';
 import BooksReadByYearChart from './BooksReadByYearChart';
 import BooksReadByYearChart100 from './BooksReadByYearChart100';
 import BooksReadPerWeekByYearChart from './BooksReadPerWeekByYearChart';
@@ -16,6 +17,8 @@ const StatsCharts: FC<StatsChartsType> = ({ chartData }) => {
 			<BooksReadByYearChart100 chartData={chartData} />
 
 			<BooksReadPerWeekByYearChart chartData={chartData} />
+
+			<BooksReadByCategory />
 		</div>
 	);
 };

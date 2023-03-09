@@ -207,3 +207,55 @@ export const selectBooksStatsData = createSelector([booksSelector], (books) => {
 
 	return { tableData, chartData };
 });
+
+export const selectBookCategoryStatsData = createSelector([booksSelector], (books) => {
+	let uniqueBookCategories: string[] = [];
+	let allBookGroupedCategories: string[][] = [];
+
+	// Find all unique book categories and push them into "uniqueBookCategories".
+	books.forEach((book) => {
+		if (book.status !== 'read') return;
+
+		let currBookUniqueCategories: string[] = [];
+
+		// Only loop if every category from the current book is not already in "currBookUniqueCategories".
+		if (
+			!book.category.every((category) => uniqueBookCategories.some((ubc) => category === ubc))
+		) {
+			// Create an array of unique categories that are not yet in "currBookUniqueCategories".
+			currBookUniqueCategories = book.category.filter((category) => {
+				return !uniqueBookCategories.some((ubc) => category === ubc);
+			});
+		}
+
+		// Push the current book unique categories to "uniqueBookCategories".
+		currBookUniqueCategories?.forEach((book) => uniqueBookCategories.push(book));
+
+		// Push every category of every book into a array of nested arrays. In each nested array place
+		// only one category. Each nested array of categories should be indexed with the same index as
+		// the index of which the category is in "uniqueBookCategories".
+		book.category.forEach((category) => {
+			let indexOfCategory = uniqueBookCategories.findIndex((ubc) => ubc === category);
+
+			// If no array is present yet at index initialize an empty one.
+			if (!Array.isArray(allBookGroupedCategories[indexOfCategory])) {
+				allBookGroupedCategories[indexOfCategory] = [];
+			}
+
+			allBookGroupedCategories[indexOfCategory].push(category);
+		});
+	});
+
+	// Sort both arrays in an ascensing order (the most prevelant category first).
+	allBookGroupedCategories.sort((a, b) => {
+		return b.length - a.length;
+	});
+
+	uniqueBookCategories = allBookGroupedCategories.map((categories) => {
+		let category = categories[0];
+
+		return uniqueBookCategories.find((ubc) => ubc === category) || '';
+	});
+
+	return { allBookGroupedCategories, uniqueBookCategories };
+});
