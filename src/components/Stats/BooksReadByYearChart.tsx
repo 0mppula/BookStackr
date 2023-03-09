@@ -33,6 +33,8 @@ const BooksReadByYearChart: FC<BooksReadByYearChartType> = ({ chartData }) => {
 			};
 		},
 	};
+	
+	ChartJS.defaults.font.family = cssVar('--font-main');
 
 	const options = {
 		responsive: true,

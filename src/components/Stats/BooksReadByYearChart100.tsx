@@ -44,6 +44,8 @@ const BooksReadByYearChart100: FC<BooksReadByYearChart100Type> = ({ chartData })
 		},
 	};
 
+	ChartJS.defaults.font.family = cssVar('--font-main');
+
 	const options = {
 		responsive: true,
 		maintainAspectRatio: false,

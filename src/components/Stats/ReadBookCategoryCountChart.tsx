@@ -17,31 +17,33 @@ import { cssVar } from '../../helpers/getCssVariable';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-const BooksReadByCategory: FC = () => {
+const ReadBookCategoryCountChart: FC = () => {
 	const { allBookGroupedCategories, uniqueBookCategories } = useSelector((state: RootState) =>
 		selectBookCategoryStatsData(state)
 	);
 
-	console.log(allBookGroupedCategories)
-
-	const legendMargin = {
-		id: 'legendMargin',
-		beforeInit(chart: any) {
-			const fitValue = chart.legend.fit;
-			chart.legend.fit = function fit() {
-				fitValue.bind(chart.legend)();
-				return (this.height += 8);
-			};
-		},
-	};
+	ChartJS.defaults.font.family = cssVar('--font-main');
 
 	const options = {
 		responsive: true,
 		maintainAspectRatio: false,
+		indexAxis: 'y' as const,
 		plugins: {
+			tooltip: {
+				callbacks: {
+					label: function (context: any) {
+						let formattedValue = context.formattedValue;
+
+						return 'Count: ' + formattedValue;
+					},
+				},
+			},
+			datalabels: {
+				display: false,
+			},
 			title: {
 				display: true,
-				text: 'Books Read by Category by Year',
+				text: 'Read Book Category Count',
 				color: cssVar('--light'),
 				font: {
 					weight: '400',
@@ -50,13 +52,7 @@ const BooksReadByCategory: FC = () => {
 				},
 			},
 			legend: {
-				labels: {
-					color: cssVar('--light'),
-					font: {
-						weight: '200',
-						family: cssVar('--font-main'),
-					},
-				},
+				display: false,
 			},
 		},
 		scales: {
@@ -69,7 +65,7 @@ const BooksReadByCategory: FC = () => {
 			},
 			y: {
 				stacked: true,
-				ticks: { color: cssVar('--light'), beginAtZero: true, count: 11 },
+				ticks: { color: cssVar('--light'), beginAtZero: true },
 				border: {
 					display: false,
 				},
@@ -95,13 +91,11 @@ const BooksReadByCategory: FC = () => {
 		],
 	};
 
-	const plugins = [legendMargin];
-
 	return (
 		<div className="chart-container">
-			<Bar options={options} data={data as any} plugins={plugins} />
+			<Bar options={options} data={data as any} />
 		</div>
 	);
 };
 
-export default BooksReadByCategory;
+export default ReadBookCategoryCountChart;
