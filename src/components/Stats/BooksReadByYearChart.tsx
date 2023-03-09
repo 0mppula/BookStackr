@@ -33,13 +33,21 @@ const BooksReadByYearChart: FC<BooksReadByYearChartType> = ({ chartData }) => {
 			};
 		},
 	};
-	
+
 	ChartJS.defaults.font.family = cssVar('--font-main');
 
 	const options = {
 		responsive: true,
 		maintainAspectRatio: false,
 		plugins: {
+			tooltip: {
+				titleFont: {
+					weight: '400',
+				},
+				bodyFont: {
+					weight: '200',
+				},
+			},
 			datalabels: {
 				backgroundColor: cssVar('--dark-alt'),
 				borderRadius: 3,
@@ -88,7 +96,7 @@ const BooksReadByYearChart: FC<BooksReadByYearChartType> = ({ chartData }) => {
 			},
 			y: {
 				stacked: true,
-				ticks: { color: cssVar('--light'), beginAtZero: true,  count: 11 },
+				ticks: { color: cssVar('--light'), beginAtZero: true, count: 11 },
 				border: {
 					display: false,
 				},

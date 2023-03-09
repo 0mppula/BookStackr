@@ -40,6 +40,14 @@ const BooksReadPerWeekByYearChart: FC<BooksReadPerWeekByYearChartType> = ({ char
 		responsive: true,
 		maintainAspectRatio: false,
 		plugins: {
+			tooltip: {
+				titleFont: {
+					weight: '400',
+				},
+				bodyFont: {
+					weight: '200',
+				},
+			},
 			datalabels: {
 				backgroundColor: cssVar('--dark-alt'),
 				borderRadius: 3,

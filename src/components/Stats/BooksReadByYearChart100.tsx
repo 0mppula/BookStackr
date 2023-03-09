@@ -51,6 +51,12 @@ const BooksReadByYearChart100: FC<BooksReadByYearChart100Type> = ({ chartData })
 		maintainAspectRatio: false,
 		plugins: {
 			tooltip: {
+				titleFont: {
+					weight: '400',
+				},
+				bodyFont: {
+					weight: '200',
+				},
 				callbacks: {
 					label: function (context: any) {
 						let label = context.dataset.label || '';

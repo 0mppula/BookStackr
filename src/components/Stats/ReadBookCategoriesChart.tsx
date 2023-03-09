@@ -30,6 +30,12 @@ const ReadBookCategoriesChart: FC = () => {
 		indexAxis: 'y' as const,
 		plugins: {
 			tooltip: {
+				titleFont: {
+					weight: '400',
+				},
+				bodyFont: {
+					weight: '200',
+				},
 				callbacks: {
 					label: function (context: any) {
 						let formattedValue = context.formattedValue;
