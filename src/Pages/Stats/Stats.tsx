@@ -16,11 +16,11 @@ const Stats: FC = () => {
 
 	return (
 		<>
+			<StatsTable tableData={tableData} />
+			
 			<StatsHeader />
 
 			<StatsCharts chartData={chartData} />
-			
-			<StatsTable tableData={tableData} />
 		</>
 	);
 };

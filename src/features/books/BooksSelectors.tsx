@@ -4,25 +4,14 @@ import { RootState } from '../../app/store';
 import { books } from '../../assets/data/books';
 
 export interface tableRowDataType {
-	totalBooksReadByYear?: string | number;
-	audioBooksReadByYear?: string | number;
-	eBooksReadByYear?: string | number;
-	paperBooksReadByYear?: string | number;
-	eBooksPercentByYear?: string | number;
-	audioPercentByYear?: string | number;
-	paperPercentByYear?: string | number;
-	booksPerWeekByYear?: string | number;
+	[key: string]: string | number;
 }
 export interface chartDataType {
-	years?: string[] | number[];
-	totalBooksReadByYear?: string[] | number[];
-	audioBooksReadByYear?: string[] | number[];
-	eBooksReadByYear?: string[] | number[];
-	paperBooksReadByYear?: string[] | number[];
-	eBooksPercentByYear?: string[] | number[];
-	audioPercentByYear?: string[] | number[];
-	paperPercentByYear?: string[] | number[];
-	booksPerWeekByYear?: string[] | number[];
+	[key: string]: string[] | number[];
+}
+
+export interface categoryCountDataType {
+	[key: string]: number;
 }
 
 export const booksStateSelector = (state: RootState) => state.books;
@@ -208,54 +197,33 @@ export const selectBooksStatsData = createSelector([booksSelector], (books) => {
 	return { tableData, chartData };
 });
 
-export const selectBookCategoryStatsData = createSelector([booksSelector], (books) => {
-	let uniqueBookCategories: string[] = [];
-	let allBookGroupedCategories: string[][] = [];
+export const selectReadBooksCategoriesChartData = createSelector([booksSelector], (books) => {
+	const categoryCountData: categoryCountDataType = {};
+	let categories: string[] = [];
+	let categoryCounts: number[] = [];
 
-	// Find all unique book categories and push them into "uniqueBookCategories".
 	books.forEach((book) => {
+		// Only check read books.
 		if (book.status !== 'read') return;
 
-		let currBookUniqueCategories: string[] = [];
-
-		// Only loop if every category from the current book is not already in "currBookUniqueCategories".
-		if (
-			!book.category.every((category) => uniqueBookCategories.some((ubc) => category === ubc))
-		) {
-			// Create an array of unique categories that are not yet in "currBookUniqueCategories".
-			currBookUniqueCategories = book.category.filter((category) => {
-				return !uniqueBookCategories.some((ubc) => category === ubc);
-			});
-		}
-
-		// Push the current book unique categories to "uniqueBookCategories".
-		currBookUniqueCategories?.forEach((book) => uniqueBookCategories.push(book));
-
-		// Push every category of every book into a array of nested arrays. In each nested array place
-		// only one category. Each nested array of categories should be indexed with the same index as
-		// the index of which the category is in "uniqueBookCategories".
+		// Iterate over each books categories.
 		book.category.forEach((category) => {
-			let indexOfCategory = uniqueBookCategories.findIndex((ubc) => ubc === category);
-
-			// If no array is present yet at index initialize an empty one.
-			if (!Array.isArray(allBookGroupedCategories[indexOfCategory])) {
-				allBookGroupedCategories[indexOfCategory] = [];
+			if (category in categoryCountData) {
+				// Count each category and place it in the corresponding category key of "categoryCountData".
+				categoryCountData[category]++;
+			} else {
+				// Initialize a new category key with a value of 1.
+				categoryCountData[category] = 1;
 			}
-
-			allBookGroupedCategories[indexOfCategory].push(category);
 		});
 	});
 
-	// Sort both arrays in an ascensing order (the most prevelant category first).
-	allBookGroupedCategories.sort((a, b) => {
-		return b.length - a.length;
-	});
+	// Sort the categories and categoryCounts by descending prevelancy.
+	categories = Object.keys(categoryCountData).sort(
+		(a, b) => categoryCountData[b] - categoryCountData[a]
+	);
+	categoryCounts = categories.map((category) => categoryCountData[category]);
+	
 
-	uniqueBookCategories = allBookGroupedCategories.map((categories) => {
-		let category = categories[0];
-
-		return uniqueBookCategories.find((ubc) => ubc === category) || '';
-	});
-
-	return { allBookGroupedCategories, uniqueBookCategories };
+	return [categories, categoryCounts];
 });

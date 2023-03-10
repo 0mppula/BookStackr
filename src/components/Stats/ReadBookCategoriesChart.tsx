@@ -12,14 +12,14 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
-import { selectBookCategoryStatsData } from '../../features/books/BooksSelectors';
+import { selectReadBooksCategoriesChartData } from '../../features/books/BooksSelectors';
 import { cssVar } from '../../helpers/getCssVariable';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const ReadBookCategoriesChart: FC = () => {
-	const { allBookGroupedCategories, uniqueBookCategories } = useSelector((state: RootState) =>
-		selectBookCategoryStatsData(state)
+	const [categories, categoryCounts] = useSelector((state: RootState) =>
+		selectReadBooksCategoriesChartData(state)
 	);
 
 	ChartJS.defaults.font.family = cssVar('--font-main');
@@ -84,14 +84,14 @@ const ReadBookCategoriesChart: FC = () => {
 		},
 	};
 
-	const labels = uniqueBookCategories;
+	const labels = categories;
 
 	const data = {
 		labels,
 		datasets: [
 			{
 				label: 'Category',
-				data: allBookGroupedCategories.map((category) => category.length),
+				data: categoryCounts.map((count) => count),
 				backgroundColor: `${cssVar('--light')}`,
 			},
 		],
