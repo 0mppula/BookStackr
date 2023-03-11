@@ -98,7 +98,7 @@ const ReadBookCategoriesChart: FC = () => {
 	};
 
 	return (
-		<div className="chart-container">
+		<div className="chart-container categories">
 			<Bar options={options} data={data as any} />
 		</div>
 	);

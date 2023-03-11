@@ -16,9 +16,9 @@ const StatsCharts: FC<StatsChartsType> = ({ chartData }) => {
 
 			<BooksReadByYearChart100 chartData={chartData} />
 
-			<BooksReadPerWeekByYearChart chartData={chartData} />
-
 			<ReadBookCategoriesChart />
+
+			<BooksReadPerWeekByYearChart chartData={chartData} />
 		</div>
 	);
 };
