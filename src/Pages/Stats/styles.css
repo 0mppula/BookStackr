@@ -31,7 +31,7 @@
 
 .stats-charts-container {
 	width: 100%;
-	margin: 2rem;
+	margin-top: 2rem;
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: 2rem 1rem;

@@ -1,11 +1,10 @@
 import React, { FC, useRef, useState, useEffect } from 'react';
 import { RiCloseLine } from 'react-icons/ri';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../app/store';
 import { bookType } from '../../assets/data/books';
 
 import { bookCategories, bookMediums, bookStatuses } from '../../assets/data/bookSelectValues';
-import { selectBookById, selectBooksCount } from '../../features/books/BooksSelectors';
+import { selectBookById } from '../../features/books/BooksSelectors';
 import { editBook } from '../../features/books/BooksSlice';
 import useCloseOnOverlayClickOrEsc from '../../hooks/useCloseOnOverlayClickOrEsc';
 import useFocusTrap from '../../hooks/useFocusTrap';
@@ -14,8 +13,6 @@ import FormGroup from '../FormComponents/FormGroup';
 import { bookFormDataType, selectItemType } from '../FormComponents/FormTypes';
 import SelectInput from '../FormComponents/SelectInput';
 import TextInput from '../FormComponents/TextInput';
-
-import './styles.css';
 
 interface EditBookModalProps {
 	modalOpen: boolean;

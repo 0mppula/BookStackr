@@ -15,8 +15,6 @@ import { bookFormDataType, selectItemType } from '../FormComponents/FormTypes';
 import SelectInput from '../FormComponents/SelectInput';
 import TextInput from '../FormComponents/TextInput';
 
-import './styles.css';
-
 interface AddBookModalProps {
 	modalOpen: boolean;
 	setModalOpen: Function;
