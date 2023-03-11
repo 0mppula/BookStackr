@@ -50,7 +50,7 @@ nav {
 	background: hsl(240, 21%, 12%);
 	transition: 0.3s ease;
 	background-size: 100% auto;
-	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 16px 0px;
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 nav.scrolled {
@@ -333,6 +333,7 @@ footer {
 	background: hsl(240, 21%, 12%);
 	color: var(--light);
 	text-align: center;
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 footer a {
