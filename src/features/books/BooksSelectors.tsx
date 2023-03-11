@@ -125,11 +125,12 @@ export const selectBooksStatsData = createSelector([booksSelector], (books) => {
 	let todayTime = new Date().getTime();
 	let currentYear = new Date().getFullYear();
 	let startOfYearTime = new Date(currentYear, 0, 1).getTime();
-	let weeksElapsedOnYear = 52;
 	let daysElapsed = +Math.floor((todayTime - startOfYearTime) / (24 * 60 * 60 * 1000));
 
 	// Store total books read per week by year and the percent of each book medium read by year.
 	uniqueYears.forEach((uniqueYear, i) => {
+		let weeksElapsedOnYear = 52;
+
 		if (uniqueYear === currentYear) {
 			weeksElapsedOnYear = Math.ceil(daysElapsed / 7);
 		}
