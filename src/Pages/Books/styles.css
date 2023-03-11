@@ -11,6 +11,10 @@
 	height: 100%;
 }
 
+.table-tools div button:nth-child(2) {
+	display: none;
+}
+
 .table-tools div:nth-child(2) {
 	flex: 1 1 50%;
 	text-align: right;
@@ -26,12 +30,15 @@
 }
 
 @media only screen and (max-width: 480px) {
-	.table-tools div {
-		flex: 1 1 100%;
+	.table-tools button {
+		padding: 0.5rem 1rem;
 	}
 
-	.table-tools input {
-		width: 100%;
-		max-width: 100%;
+	.table-tools div button:nth-child(2) {
+		display: flex;
+	}
+
+	.table-tools div button:nth-child(1) {
+		display: none;
 	}
 }

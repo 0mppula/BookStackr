@@ -25,7 +25,7 @@
 	flex-direction: column;
 	min-height: 100vh;
 	align-items: center;
-	width: min(1200px, 90vw);
+	width: min(1260px, 90vw);
 	padding-top: 2rem;
 	padding-bottom: 8rem;
 	margin: 0 auto;
@@ -190,6 +190,7 @@ input:focus {
 }
 
 table {
+	width: 100%;
 	text-align: left;
 	border-collapse: collapse;
 }
@@ -340,6 +341,10 @@ footer a {
 }
 
 @media only screen and (max-width: 448px) {
+	:root {
+		--nav-height: 128px !important;
+	}
+	
 	nav {
 		padding: 1rem 1rem;
 	}
@@ -363,6 +368,10 @@ footer a {
 }
 
 @media only screen and (max-width: 768px) {
+	:root {
+		--nav-height: 160px;
+	}
+
 	nav {
 		flex-direction: column;
 		gap: 0.5rem;
@@ -379,6 +388,6 @@ footer a {
 
 @media only screen and (min-width: 992px) {
 	.app-container {
-		width: min(1200px, 95vw);
+		width: min(1260px, 95vw);
 	}
 }
