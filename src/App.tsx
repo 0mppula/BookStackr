@@ -6,12 +6,15 @@ import Stats from './Pages/Stats/Stats';
 import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
+import useScrollToTopOnNavigaton from './hooks/useScrollToTopOnNavigaton';
 
 const App: FC = () => {
+	useScrollToTopOnNavigaton();
+	
 	return (
 		<>
 			<Nav />
-			
+
 			<div className="app-container">
 				<Routes>
 					<Route path="/books" element={<Books />} />
