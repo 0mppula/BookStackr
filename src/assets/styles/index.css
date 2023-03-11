@@ -288,6 +288,20 @@ th {
 	padding: 0.5rem 1rem;
 }
 
+footer {
+	width: 100%;
+	padding-top: 5rem;
+	padding-bottom: 2rem;
+	background-color: var(--dark-alt);
+	color: var(--light);
+	text-align: center;
+}
+
+footer a {
+	margin-left: 0.25rem;
+	text-decoration: underline;
+}
+
 @media only screen and (max-width: 576px) {
 	nav {
 		flex-direction: column;
