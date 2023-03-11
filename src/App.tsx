@@ -10,9 +10,9 @@ import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 const App: FC = () => {
 	return (
 		<>
+			<Nav />
+			
 			<div className="app-container">
-				<Nav />
-
 				<Routes>
 					<Route path="/books" element={<Books />} />
 					<Route path="/stats" element={<Stats />} />

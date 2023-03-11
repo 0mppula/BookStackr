@@ -101,7 +101,7 @@ const BooksReadByYearChart: FC<BooksReadByYearChartType> = ({ chartData }) => {
 					display: false,
 				},
 				grid: {
-					color: cssVar('--dark-alt'),
+					color: cssVar('--light-alt-light'),
 					tickLength: 8,
 					tickColor: 'transparent',
 				},

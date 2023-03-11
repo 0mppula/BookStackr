@@ -43,6 +43,7 @@
 	max-height: 400px;
 	border-radius: 6px;
 	padding: 0.5rem;
+	background-color: var(--dark-alt);
 	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 

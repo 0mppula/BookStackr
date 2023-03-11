@@ -1,9 +1,27 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 
 const Nav: FC = () => {
+	const [scrolledPastLimit, setScrolledPastLimit] = useState(false);
+
+	useEffect(() => {
+		const handler = () => {
+			const limit = 92 - 48;
+
+			if (window.scrollY >= limit) {
+				setScrolledPastLimit(true);
+			} else {
+				setScrolledPastLimit(false);
+			}
+		};
+
+		document.addEventListener('scroll', handler);
+
+		return () => document.removeEventListener('scroll', handler);
+	}, []);
+
 	return (
-		<nav>
+		<nav className={`${scrolledPastLimit ? 'scrolled' : ''}`}>
 			<Link className="app-name" to="/">
 				<h1>BookStackr</h1>
 			</Link>
