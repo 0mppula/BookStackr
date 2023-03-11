@@ -76,7 +76,12 @@ export const selectBooksStatsData = createSelector([booksSelector], (books) => {
 	const booksPerWeekByYear: string[] = [];
 
 	const uniqueYears = books
-		.filter((book, i) => books.findIndex((book2) => book2.yearRead === book.yearRead) === i)
+		.filter(
+			(book, i) =>
+				books.findIndex(
+					(book2) => book2.yearRead === book.yearRead && book.status === 'read'
+				) === i
+		)
 		.map((book) => book.yearRead);
 
 	// Store total books read by year and by year and medium.
@@ -87,31 +92,22 @@ export const selectBooksStatsData = createSelector([booksSelector], (books) => {
 		let currYtotalPaperBooksRead = 0;
 
 		books.forEach((book) => {
-			if (book.yearRead === uniqueYear && book.status === 'read') {
+			// Only check read books.
+			if (book.status !== 'read') return;
+
+			if (book.yearRead === uniqueYear) {
 				currYtotalBooksRead++;
 			}
 
-			if (
-				book.readingMedium === 'audio' &&
-				book.yearRead === uniqueYear &&
-				book.status === 'read'
-			) {
+			if (book.readingMedium === 'audio' && book.yearRead === uniqueYear) {
 				currYtotalAudioBooksRead++;
 			}
 
-			if (
-				book.readingMedium === 'e-book' &&
-				book.yearRead === uniqueYear &&
-				book.status === 'read'
-			) {
+			if (book.readingMedium === 'e-book' && book.yearRead === uniqueYear) {
 				currYtotalEBooksRead++;
 			}
 
-			if (
-				book.readingMedium === 'paper' &&
-				book.yearRead === uniqueYear &&
-				book.status === 'read'
-			) {
+			if (book.readingMedium === 'paper' && book.yearRead === uniqueYear) {
 				currYtotalPaperBooksRead++;
 			}
 		});
