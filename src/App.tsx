@@ -10,7 +10,7 @@ import useScrollToTopOnNavigaton from './hooks/useScrollToTopOnNavigaton';
 
 const App: FC = () => {
 	useScrollToTopOnNavigaton();
-	
+
 	return (
 		<>
 			<Nav />

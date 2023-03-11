@@ -24,6 +24,11 @@
 }
 
 .modal {
+	display: none;
+}
+
+.modal-overlay.show .modal {
+	display: block;
 	padding: 1.5rem;
 	padding-top: 1rem;
 	border-radius: 6px;
