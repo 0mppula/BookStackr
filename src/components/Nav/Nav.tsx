@@ -6,7 +6,7 @@ const Nav: FC = () => {
 
 	useEffect(() => {
 		const handler = () => {
-			const limit = 92 - 48;
+			const limit = 52;
 
 			if (window.scrollY >= limit) {
 				setScrolledPastLimit(true);
