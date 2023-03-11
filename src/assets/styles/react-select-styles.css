@@ -81,12 +81,12 @@
 .react-select__option--is-focused:active {
 	/* List item when focused */
 	color: var(--light) !important;
-	background-color: var(--dark) !important;
+	background-color: var(--dark-alt-light) !important;
 }
 
 .react-select__option--is-selected {
 	/* List item when selected */
-	background-color: var(--dark) !important;
+	background-color: var(--dark-alt-light) !important;
 	color: var(--light) !important;
 }
 
