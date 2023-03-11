@@ -1,5 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import { FcGoogle } from 'react-icons/fc';
 
 const Nav: FC = () => {
 	const [scrolledPastLimit, setScrolledPastLimit] = useState(false);
@@ -26,18 +27,32 @@ const Nav: FC = () => {
 				<h1>BookStackr</h1>
 			</Link>
 
-			<ul>
-				<li>
-					<NavLink className={({ isActive }) => (isActive ? 'active' : '')} to="/books">
-						Books
-					</NavLink>
-				</li>
-				<li>
-					<NavLink className={({ isActive }) => (isActive ? 'active' : '')} to="/stats">
-						Stats
-					</NavLink>
-				</li>
-			</ul>
+			<div>
+				<ul>
+					<li>
+						<NavLink
+							className={({ isActive }) => (isActive ? 'active' : '')}
+							to="/books"
+						>
+							Books
+						</NavLink>
+					</li>
+					<li>
+						<NavLink
+							className={({ isActive }) => (isActive ? 'active' : '')}
+							to="/stats"
+						>
+							Stats
+						</NavLink>
+					</li>
+				</ul>
+				<button className="btn-icon">
+					Sign in
+					<div className="icon-circle">
+						<FcGoogle />
+					</div>
+				</button>
+			</div>
 		</nav>
 	);
 };
