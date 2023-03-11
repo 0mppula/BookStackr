@@ -31,7 +31,7 @@ const SelectInput: FC<SelectInputProps> = ({
 }) => {
 	const inputRef = useRef<any>(null);
 	return (
-		<div className='input-group'>
+		<div className="input-group">
 			<label onClick={() => inputRef?.current?.focus()}>
 				{label}
 				{required && <span>*</span>}
@@ -49,10 +49,11 @@ const SelectInput: FC<SelectInputProps> = ({
 				placeholder={placeholder}
 				isMulti={isMulti}
 				isOptionSelected={(option, selectValue) => {
-					return (
-						option.label === option.value &&
-						selectValue.some((i) => i.label === option.label)
-					);
+					if (!isMulti) {
+						return selectValue[0]?.value === option.value && selectValue?.length > 0;
+					}
+
+					return selectValue.some((sv) => sv.label === option.label);
 				}}
 				isSearchable={isSearchable}
 			/>
