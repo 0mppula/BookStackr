@@ -1,8 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 
-import { books } from '../../assets/data/books';
-
 export interface tableRowDataType {
 	[key: string]: string | number;
 }
@@ -32,7 +30,7 @@ export const selectQueryFilteredBooks = createSelector([booksStateSelector], (bo
 export const selectBookById = createSelector(
 	[booksSelector, (state, bookId: string | null) => bookId],
 	(bookState, bookId) => {
-		const book = books?.filter((book) => book.id === bookId)?.[0];
+		const book = bookState?.filter((book) => book.id === bookId)?.[0];
 
 		return book;
 	}
@@ -223,7 +221,6 @@ export const selectReadBooksCategoriesChartData = createSelector([booksSelector]
 		(a, b) => categoryCountData[b] - categoryCountData[a]
 	);
 	categoryCounts = categories.map((category) => categoryCountData[category]);
-	
 
 	return [categories, categoryCounts];
 });

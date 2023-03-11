@@ -33,7 +33,6 @@ const EditBookModal: FC<EditBookModalProps> = ({
 	const [formData, setFormData] = useState<bookFormDataType>(getInitialBookFormState);
 
 	const book: any = useSelector((state) => selectBookById(state, editBookId));
-	const booksCount = useSelector((state: RootState) => selectBooksCount(state));
 
 	const dispatch = useDispatch();
 
@@ -274,7 +273,7 @@ const EditBookModal: FC<EditBookModalProps> = ({
 						className="btn btn-block"
 						onClick={handleSubmit}
 					>
-						Add
+						Save
 					</button>
 				</div>
 			</form>
