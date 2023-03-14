@@ -218,6 +218,15 @@ export const selectReadBooksCategoriesChartData = createSelector([booksSelector]
 		(a, b) => categoryCountData[b] - categoryCountData[a]
 	);
 	categoryCounts = categories.map((category) => categoryCountData[category]);
+	// Capitalize the categories.
+	categories = categories.map((category) => {
+		let categoryWords = category.split(' ');
+		let capitalizedCategory = categoryWords
+			.map((cw) => cw[0].toUpperCase() + cw.substring(1))
+			.join(' ');
 
-	return [categories, categoryCounts];
+		return capitalizedCategory;
+	});
+
+	return { categories, categoryCounts };
 });

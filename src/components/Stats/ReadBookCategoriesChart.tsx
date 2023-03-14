@@ -12,13 +12,17 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
-import { selectReadBooksCategoriesChartData } from '../../features/books/BooksSelectors';
+import {
+	selectReadBooksCategoriesChartData,
+	selectReadBooksCount,
+} from '../../features/books/BooksSelectors';
 import { cssVar } from '../../helpers/getCssVariable';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const ReadBookCategoriesChart: FC = () => {
-	const [categories, categoryCounts] = useSelector((state: RootState) =>
+	const booksReadCount = useSelector((state: RootState) => selectReadBooksCount(state));
+	const { categories, categoryCounts } = useSelector((state: RootState) =>
 		selectReadBooksCategoriesChartData(state)
 	);
 
@@ -40,12 +44,25 @@ const ReadBookCategoriesChart: FC = () => {
 					label: function (context: any) {
 						let formattedValue = context.formattedValue;
 
-						return 'Count: ' + formattedValue;
+						let formattedLabel = `Count: ${formattedValue} (${(
+							(formattedValue / booksReadCount) *
+							100
+						).toFixed(2)}%)`;
+
+						return formattedLabel;
 					},
 				},
 			},
 			datalabels: {
-				display: false,
+				backgroundColor: cssVar('--dark-alt'),
+				borderRadius: 3,
+				color: cssVar('--light'),
+				font: {
+					weight: 200,
+				},
+				padding: {
+					bottom: 2,
+				},
 			},
 			title: {
 				display: true,
@@ -54,7 +71,6 @@ const ReadBookCategoriesChart: FC = () => {
 				font: {
 					weight: '400',
 					size: 18,
-					family: cssVar('--font-main'),
 				},
 			},
 			legend: {

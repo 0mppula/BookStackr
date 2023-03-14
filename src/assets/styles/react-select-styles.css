@@ -35,7 +35,7 @@
 }
 
 .react-select__multi-value {
-	/* Styles of a single multi-value element. */
+	/* Styles of a single selected multi-value element. */
 	color: var(--light) !important;
 	background-image: linear-gradient(
 		to right,
@@ -44,6 +44,7 @@
 	) !important;
 	margin: 0 !important;
 	padding: 0px !important;
+	text-transform: capitalize;
 }
 
 .react-select__multi-value__label {

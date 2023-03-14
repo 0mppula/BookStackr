@@ -238,6 +238,10 @@ table .id {
 	text-align: center;
 }
 
+table tbody .category {
+	text-transform: capitalize;
+}
+
 /* Books page table styles */
 table th.index {
 	min-width: 60px !important;
