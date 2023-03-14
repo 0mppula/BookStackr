@@ -117,4 +117,12 @@
 	.input-group {
 		flex: 1 1 100% !important;
 	}
+
+	.modal-overlay.show {
+		padding: 1rem 0;
+	}
+
+	.modal-overlay.show .modal {
+		max-height: 100%;
+	}
 }
