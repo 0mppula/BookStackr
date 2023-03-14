@@ -48,8 +48,10 @@
 }
 
 .chart-container.categories {
-	grid-row-start: 3 / 4;
+	grid-column: 1 / 2;
+	grid-row: 3 / 4;
 	max-height: 832px;
+	height: 832px;
 }
 
 .chart-container canvas {
