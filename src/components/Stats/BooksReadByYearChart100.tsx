@@ -74,7 +74,6 @@ const BooksReadByYearChart100: FC<BooksReadByYearChart100Type> = ({ chartData })
 				borderRadius: 3,
 				color: cssVar('--light'),
 				font: {
-					family: cssVar('--font-main'),
 					weight: 200,
 				},
 				padding: {
@@ -99,7 +98,6 @@ const BooksReadByYearChart100: FC<BooksReadByYearChart100Type> = ({ chartData })
 				font: {
 					weight: '400',
 					size: 18,
-					family: cssVar('--font-main'),
 				},
 			},
 			legend: {
@@ -107,7 +105,6 @@ const BooksReadByYearChart100: FC<BooksReadByYearChart100Type> = ({ chartData })
 					color: cssVar('--light'),
 					font: {
 						weight: '200',
-						family: cssVar('--font-main'),
 					},
 				},
 			},

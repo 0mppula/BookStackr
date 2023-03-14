@@ -53,7 +53,6 @@ const BooksReadPerWeekByYearChart: FC<BooksReadPerWeekByYearChartType> = ({ char
 				borderRadius: 3,
 				color: cssVar('--light'),
 				font: {
-					family: cssVar('--font-main'),
 					weight: 200,
 				},
 				padding: {
@@ -73,7 +72,6 @@ const BooksReadPerWeekByYearChart: FC<BooksReadPerWeekByYearChartType> = ({ char
 				font: {
 					weight: '400',
 					size: 18,
-					family: cssVar('--font-main'),
 				},
 			},
 			legend: {
@@ -81,7 +79,6 @@ const BooksReadPerWeekByYearChart: FC<BooksReadPerWeekByYearChartType> = ({ char
 					color: cssVar('--light'),
 					font: {
 						weight: '200',
-						family: cssVar('--font-main'),
 					},
 				},
 			},
