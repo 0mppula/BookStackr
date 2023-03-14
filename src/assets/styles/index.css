@@ -206,7 +206,7 @@ thead tr {
 
 tbody tr:hover,
 tbody tr:hover td {
-	background-color: var(--dark) !important;
+	background-color: var(--dark-alt-light) !important;
 	background-image: none;
 }
 
