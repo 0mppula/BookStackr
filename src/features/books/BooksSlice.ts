@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { books, bookType } from '../../assets/data/books';
 
-export interface booksStateType {
+interface booksStateType {
 	books: bookType[];
 	query: string;
 }

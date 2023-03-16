@@ -2,8 +2,14 @@ import { FC, useEffect, useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { signIn, signOut } from '../../features/auth/authSlice';
+import { RootState } from '../../app/store';
+
 const Nav: FC = () => {
 	const [scrolledPastLimit, setScrolledPastLimit] = useState(false);
+
+	const { user, loading, message } = useSelector((state: RootState) => state.auth);
 
 	useEffect(() => {
 		const handler = () => {
@@ -20,6 +26,16 @@ const Nav: FC = () => {
 
 		return () => document.removeEventListener('scroll', handler);
 	}, []);
+
+	const dispatch = useDispatch<any>();
+
+	const handleSignIn = async () => {
+		dispatch(signIn());
+	};
+
+	const handleSignOut = async () => {
+		dispatch(signOut());
+	};
 
 	return (
 		<nav className={`${scrolledPastLimit ? 'scrolled' : ''}`}>
@@ -46,12 +62,22 @@ const Nav: FC = () => {
 						</NavLink>
 					</li>
 				</ul>
-				<button className="btn-icon">
-					Sign in
-					<div className="icon-circle">
-						<FcGoogle />
-					</div>
-				</button>
+
+				{!user ? (
+					<button onClick={handleSignIn} className="btn-icon">
+						Sign in
+						<div className="icon-circle">
+							<FcGoogle />
+						</div>
+					</button>
+				) : (
+					<button onClick={handleSignOut} className="btn-icon">
+						Sign out
+						<div className="icon-circle">
+							<FcGoogle />
+						</div>
+					</button>
+				)}
 			</div>
 		</nav>
 	);
