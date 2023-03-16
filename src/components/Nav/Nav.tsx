@@ -1,15 +1,19 @@
 import { FC, useEffect, useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
-
+import { signInWithPopup, signOut } from 'firebase/auth';
 import { useDispatch, useSelector } from 'react-redux';
-import { signIn, signOut } from '../../features/auth/authSlice';
+
 import { RootState } from '../../app/store';
+import { googleProvider, auth } from '../../config/firebase';
+import { setLoading } from '../../features/auth/authSlice';
 
 const Nav: FC = () => {
 	const [scrolledPastLimit, setScrolledPastLimit] = useState(false);
 
-	const { user, loading, message } = useSelector((state: RootState) => state.auth);
+	const { user } = useSelector((state: RootState) => state.auth);
+
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		const handler = () => {
@@ -27,14 +31,24 @@ const Nav: FC = () => {
 		return () => document.removeEventListener('scroll', handler);
 	}, []);
 
-	const dispatch = useDispatch<any>();
-
 	const handleSignIn = async () => {
-		dispatch(signIn());
+		dispatch(setLoading(true));
+		try {
+			await signInWithPopup(auth, googleProvider);
+		} catch (error) {
+			console.log(error);
+		}
+		dispatch(setLoading(false));
 	};
 
 	const handleSignOut = async () => {
-		dispatch(signOut());
+		dispatch(setLoading(true));
+		try {
+			await signOut(auth);
+		} catch (error) {
+			console.log(error);
+		}
+		dispatch(setLoading(false));
 	};
 
 	return (
@@ -65,14 +79,14 @@ const Nav: FC = () => {
 
 				{!user ? (
 					<button onClick={handleSignIn} className="btn-icon">
-						Sign in
+						<span className="login-text">Sign in</span>
 						<div className="icon-circle">
 							<FcGoogle />
 						</div>
 					</button>
 				) : (
 					<button onClick={handleSignOut} className="btn-icon">
-						Sign out
+						<span className="login-text">Sign out</span>
 						<div className="icon-circle">
 							<FcGoogle />
 						</div>
