@@ -76,9 +76,9 @@ export const selectReadBooksDataByMedium = createSelector([booksSelector], (book
 		}
 	});
 
-	audioBooksPercent = totalBooks ? `${((audioBooks / totalBooks) * 100).toFixed(2)}%` : '0%';
-	eBooksPercent = totalBooks ? `${((eBooks / totalBooks) * 100).toFixed(2)}%` : '0%';
-	paperBooksPercent = totalBooks ? `${((paperBooks / totalBooks) * 100).toFixed(2)}%` : '0%';
+	audioBooksPercent = totalBooks ? `${((audioBooks / totalBooks) * 100).toFixed(2)}%` : '0.00%';
+	eBooksPercent = totalBooks ? `${((eBooks / totalBooks) * 100).toFixed(2)}%` : '0.00%';
+	paperBooksPercent = totalBooks ? `${((paperBooks / totalBooks) * 100).toFixed(2)}%` : '0.00%';
 
 	return {
 		totalBooks,
@@ -91,7 +91,7 @@ export const selectReadBooksDataByMedium = createSelector([booksSelector], (book
 	};
 });
 
-export const selectBooksStatsData = createSelector([booksSelector], (books) => {
+export const selectReadBooksChartTableData = createSelector([booksSelector], (books) => {
 	// Only check read books.
 	const readBooks = books.filter((book) => book.status === 'read');
 

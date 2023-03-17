@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
-import { selectBooksStatsData } from '../../features/books/selectors';
+import { selectReadBooksChartTableData } from '../../features/books/selectors';
 
 import { useTitle } from '../../hooks/useTitle';
 import StatsCharts from '../../components/Stats/StatsCharts';
@@ -12,12 +12,14 @@ import './styles.css';
 const Stats: FC = () => {
 	useTitle('Stats');
 
-	const { tableData, chartData } = useSelector((state: RootState) => selectBooksStatsData(state));
+	const { tableData, chartData } = useSelector((state: RootState) =>
+		selectReadBooksChartTableData(state)
+	);
 
 	return (
 		<>
 			<StatsTable tableData={tableData} />
-			
+
 			<StatsHeader />
 
 			<StatsCharts chartData={chartData} />
