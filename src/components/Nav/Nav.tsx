@@ -6,12 +6,13 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from '../../app/store';
 import { googleProvider, auth } from '../../config/firebase';
-import { setLoading } from '../../features/auth/authSlice';
+import { setLoading } from '../../features/auth/slice';
+import { selectAuthState } from '../../features/auth/selectors';
 
 const Nav: FC = () => {
 	const [scrolledPastLimit, setScrolledPastLimit] = useState(false);
 
-	const { user } = useSelector((state: RootState) => state.auth);
+	const { user } = useSelector((state: RootState) => selectAuthState(state));
 
 	const dispatch = useDispatch();
 

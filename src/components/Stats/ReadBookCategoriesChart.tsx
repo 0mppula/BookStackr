@@ -15,7 +15,7 @@ import { Bar } from 'react-chartjs-2';
 import {
 	selectReadBooksCategoriesChartData,
 	selectReadBooksCount,
-} from '../../features/books/BooksSelectors';
+} from '../../features/books/selectors';
 import { cssVar } from '../../helpers/getCssVariable';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);

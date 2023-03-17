@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
-import { selectBooksStatsData } from '../../features/books/BooksSelectors';
+import { selectBooksStatsData } from '../../features/books/selectors';
 
 import { useTitle } from '../../hooks/useTitle';
 import StatsCharts from '../../components/Stats/StatsCharts';

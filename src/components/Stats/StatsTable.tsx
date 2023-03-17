@@ -1,7 +1,7 @@
 import { FC, useMemo } from 'react';
 import { Column, useSortBy, useTable } from 'react-table';
 
-import { tableRowDataType } from '../../features/books/BooksSelectors';
+import { tableRowDataType } from '../../features/books/selectors';
 
 interface StatsTableType {
 	tableData: tableRowDataType[];

@@ -14,6 +14,11 @@ export interface categoryCountDataType {
 
 export const booksStateSelector = (state: RootState) => state.books;
 export const booksSelector = (state: RootState) => state.books.books;
+const booksLoadingSelector = (state: RootState) => state.books.loading;
+
+export const selectbooksLoadingState = createSelector([booksLoadingSelector], (loadingState) => {
+	return loadingState;
+});
 
 export const selectQueryFilteredBooks = createSelector([booksStateSelector], (booksState) => {
 	const { books, query } = booksState;

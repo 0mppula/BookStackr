@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { setQuery } from '../../features/books/BooksSlice';
+import { setQuery } from '../../features/books/slice';
 import AddBookModal from '../Modals/AddBookModal';
 import { FaPlus } from 'react-icons/fa';
 

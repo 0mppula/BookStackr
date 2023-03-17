@@ -5,8 +5,8 @@ import { RootState } from '../../app/store';
 
 import { bookType } from '../../assets/data/books';
 import { bookCategories, bookMediums, bookStatuses } from '../../assets/data/bookSelectValues';
-import { addBook } from '../../features/books/BooksSlice';
-import { selectBooksCount } from '../../features/books/BooksSelectors';
+import { addBook } from '../../features/books/slice';
+import { selectBooksCount } from '../../features/books/selectors';
 import useCloseOnOverlayClickOrEsc from '../../hooks/useCloseOnOverlayClickOrEsc';
 import useFocusTrap from '../../hooks/useTrapFocues';
 import { getInitialBookFormState } from '../FormComponents/FormData';

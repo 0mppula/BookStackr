@@ -12,7 +12,7 @@ import { Bar } from 'react-chartjs-2';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import ChartjsPluginStacked100 from 'chartjs-plugin-stacked100';
 
-import { chartDataType } from '../../features/books/BooksSelectors';
+import { chartDataType } from '../../features/books/selectors';
 import { cssVar } from '../../helpers/getCssVariable';
 
 ChartJS.register(

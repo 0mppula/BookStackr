@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { chartDataType } from '../../features/books/BooksSelectors';
+import { chartDataType } from '../../features/books/selectors';
 import ReadBookCategoriesChart from './ReadBookCategoriesChart';
 import BooksReadByYearChart from './BooksReadByYearChart';
 import BooksReadByYearChart100 from './BooksReadByYearChart100';

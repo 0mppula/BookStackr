@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 
-import { selectReadBooksCount, selectReadBooksCountByMedium } from '../../features/books/BooksSelectors';
+import { selectReadBooksCount, selectReadBooksCountByMedium } from '../../features/books/selectors';
 
 const StatsHeader: FC = () => {
 	const booksReadCount = useSelector((state: RootState) => selectReadBooksCount(state));

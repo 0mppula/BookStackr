@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -9,15 +9,21 @@ import Footer from './components/Footer/Footer';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import useScrollToTopOnNavigaton from './hooks/useScrollToTopOnNavigaton';
 import { auth } from './config/firebase';
-import { signIn, signOut } from './features/auth/authSlice';
+import { signIn, signOut } from './features/auth/slice';
 import { RootState } from './app/store';
 import Loader from './components/Loader/Loader';
+import { getBooks } from './features/books/slice';
+import { selectAuthState } from './features/auth/selectors';
+import { selectbooksLoadingState } from './features/books/selectors';
 
 const App: FC = () => {
 	useScrollToTopOnNavigaton();
-	const { loading } = useSelector((state: RootState) => state.auth);
+	const [userInitialized, setUserInitialized] = useState(false);
 
-	const dispatch = useDispatch();
+	const { user, loading } = useSelector((state: RootState) => selectAuthState(state));
+	const booksLoading = useSelector((state: RootState) => selectbooksLoadingState(state));
+
+	const dispatch = useDispatch<any>();
 
 	// Handle login persistency.
 	useEffect(() => {
@@ -29,14 +35,25 @@ const App: FC = () => {
 			} else {
 				dispatch(signOut());
 			}
+
+			if (!userInitialized) {
+				setUserInitialized(true);
+			}
 		});
 
 		return unsubscribe;
 	}, []);
 
+	useEffect(() => {
+		if (userInitialized) {
+			// Get books after firebase auth has been checked.
+			dispatch(getBooks());
+		}
+	}, [userInitialized, user]);
+
 	return (
 		<>
-			{loading && <Loader />}
+			{(loading || booksLoading) && <Loader />}
 
 			<Nav />
 

@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { bookType } from '../../assets/data/books';
 
 import { bookCategories, bookMediums, bookStatuses } from '../../assets/data/bookSelectValues';
-import { selectBookById } from '../../features/books/BooksSelectors';
-import { editBook } from '../../features/books/BooksSlice';
+import { selectBookById } from '../../features/books/selectors';
+import { editBook } from '../../features/books/slice';
 import useCloseOnOverlayClickOrEsc from '../../hooks/useCloseOnOverlayClickOrEsc';
 import useFocusTrap from '../../hooks/useTrapFocues';
 import { getInitialBookFormState } from '../FormComponents/FormData';
