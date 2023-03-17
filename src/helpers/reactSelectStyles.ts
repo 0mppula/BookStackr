@@ -15,7 +15,7 @@ export const customTheme = (theme: any) => ({
 	colors: {
 		...theme.colors,
 		// Hovering over select list item background color
-		primary25: cssVar('--dark-alt-light'),
+		primary25: cssVar('--light-alt-light'),
 		// Selected list items background color
 		primary: cssVar('--dark-alt'),
 		// Hover color of the drop down arrow toggler

@@ -105,18 +105,9 @@ const BooksTable: FC = () => {
 
 					<tbody {...getTableBodyProps()}>
 						{rows.map((row, i) => {
-							const nextRowYearRead = rows?.[i + 1]?.cells[5]?.value;
-							const currentRowYearRead = rows?.[i]?.cells[5]?.value;
-							const addBorderBottomToRow =
-								nextRowYearRead && currentRowYearRead !== nextRowYearRead;
-
 							prepareRow(row);
 							return (
-								<tr
-									{...row.getRowProps({
-										className: addBorderBottomToRow ? 'border-bottom' : '',
-									})}
-								>
+								<tr>
 									{row.cells.map((cell: any) => (
 										<td
 											{...cell.getCellProps({
