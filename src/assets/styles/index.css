@@ -205,7 +205,7 @@ thead {
 
 thead tr {
 	white-space: nowrap;
-	border-bottom: 6px solid var(--dark);
+	border-bottom: 4px solid var(--dark);
 }
 
 tbody tr:hover,
@@ -216,6 +216,11 @@ tbody tr:hover td {
 
 tbody tr {
 	background-color: var(--dark-alt);
+	border-bottom: solid 1px var(--dark);
+}
+
+tbody tr:last-of-type {
+	border: none !important;
 }
 
 tbody td.want-to-read {
