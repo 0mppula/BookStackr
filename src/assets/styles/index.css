@@ -218,10 +218,6 @@ tbody tr {
 	background-color: var(--dark-alt);
 }
 
-tbody tr.border-bottom {
-	border-bottom: 3px solid var(--dark);
-}
-
 tbody td.want-to-read {
 	background-color: var(--secondary);
 }
