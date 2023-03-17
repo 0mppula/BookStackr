@@ -53,21 +53,48 @@ export const selectReadBooksCount = createSelector([booksSelector], (books) => {
 	return booksRead;
 });
 
-export const selectReadBooksCountByMedium = createSelector([booksSelector], (books) => {
-	const audioBooksRead = books
-		.filter((book) => book.readingMedium === 'audio' && book.status === 'read')
-		.reduce((a: number) => (a += 1), 0);
-	const eBooksRead = books
-		.filter((book) => book.readingMedium === 'e-book' && book.status === 'read')
-		.reduce((a: number) => (a += 1), 0);
-	const paperBooksRead = books
-		.filter((book) => book.readingMedium === 'paper' && book.status === 'read')
-		.reduce((a: number) => (a += 1), 0);
+export const selectReadBooksDataByMedium = createSelector([booksSelector], (books) => {
+	const readBooks = books.filter((book) => book.status === 'read');
 
-	return { audioBooksRead, eBooksRead, paperBooksRead };
+	let totalBooks: number = readBooks?.length;
+	let audioBooks: number = 0;
+	let eBooks: number = 0;
+	let paperBooks: number = 0;
+	let audioBooksPercent: string = '';
+	let eBooksPercent: string = '';
+	let paperBooksPercent: string = '';
+
+	readBooks.forEach((book) => {
+		if (book.readingMedium === 'audio') {
+			audioBooks++;
+		}
+		if (book.readingMedium === 'e-book') {
+			eBooks++;
+		}
+		if (book.readingMedium === 'paper') {
+			paperBooks++;
+		}
+	});
+
+	audioBooksPercent = totalBooks ? `${((audioBooks / totalBooks) * 100).toFixed(2)}%` : '0%';
+	eBooksPercent = totalBooks ? `${((eBooks / totalBooks) * 100).toFixed(2)}%` : '0%';
+	paperBooksPercent = totalBooks ? `${((paperBooks / totalBooks) * 100).toFixed(2)}%` : '0%';
+
+	return {
+		totalBooks,
+		audioBooks,
+		eBooks,
+		paperBooks,
+		audioBooksPercent,
+		eBooksPercent,
+		paperBooksPercent,
+	};
 });
 
 export const selectBooksStatsData = createSelector([booksSelector], (books) => {
+	// Only check read books.
+	const readBooks = books.filter((book) => book.status === 'read');
+
 	const tableData: tableRowDataType[] = [];
 	const chartData: chartDataType = {};
 
@@ -80,13 +107,8 @@ export const selectBooksStatsData = createSelector([booksSelector], (books) => {
 	const paperPercentByYear: string[] = [];
 	const booksPerWeekByYear: string[] = [];
 
-	const uniqueYears = books
-		.filter(
-			(book, i) =>
-				books.findIndex(
-					(book2) => book2.yearRead === book.yearRead && book.status === 'read'
-				) === i
-		)
+	const uniqueYears = readBooks
+		.filter((book, i) => readBooks.findIndex((book2) => book2.yearRead === book.yearRead) === i)
 		.map((book) => book.yearRead);
 
 	// Store total books read by year and by year and medium.
@@ -96,10 +118,7 @@ export const selectBooksStatsData = createSelector([booksSelector], (books) => {
 		let currYtotalEBooksRead = 0;
 		let currYtotalPaperBooksRead = 0;
 
-		books.forEach((book) => {
-			// Only check read books.
-			if (book.status !== 'read') return;
-
+		readBooks.forEach((book) => {
 			if (book.yearRead === uniqueYear) {
 				currYtotalBooksRead++;
 			}
@@ -198,14 +217,12 @@ export const selectBooksStatsData = createSelector([booksSelector], (books) => {
 });
 
 export const selectReadBooksCategoriesChartData = createSelector([booksSelector], (books) => {
+	const readBooks = books.filter((book) => book.status === 'read');
 	const categoryCountData: categoryCountDataType = {};
 	let categories: string[] = [];
 	let categoryCounts: number[] = [];
 
-	books.forEach((book) => {
-		// Only check read books.
-		if (book.status !== 'read') return;
-
+	readBooks.forEach((book) => {
 		// Iterate over each books categories.
 		book.category.forEach((category) => {
 			if (category in categoryCountData) {
