@@ -24,15 +24,17 @@ export const getBooks = createAsyncThunk('books/getBooks', async (_: undefined, 
 		const user = thunkAPI.getState().auth.user;
 
 		if (user) {
-			// Get the user books from firestore.
+			// Get the user books from firestore and sort my ascending index order.
 			const q = query(collection(db, 'books'), where('userId', '==', user.uid));
 			const data = await getDocs(q);
-			const filteredBookData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+			const filteredBookData = data.docs
+				.map((doc) => ({ ...doc.data(), id: doc.id }))
+				.sort((a: any, b: any) => (a.index > b.index ? 1 : -1));
 
 			return filteredBookData;
 		} else {
-			// Get mock books.
-			return books;
+			// Get mock books and sort my ascending index order.
+			return books.sort((a, b) => (a.index > b.index ? 1 : -1));
 		}
 	} catch (error) {
 		return thunkAPI.rejectWithValue('Error fetching the books.');

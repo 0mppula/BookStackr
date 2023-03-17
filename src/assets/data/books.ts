@@ -12,6 +12,26 @@ export interface bookType {
 
 export const books: bookType[] = [
 	{
+		id: 'gi6qispntbhqpsdo65ase2rq',
+		index: 5,
+		author: 'Derek Sivers',
+		title: 'Anything You Want',
+		category: ['business', 'entrepreneurship', 'personal development'],
+		readingMedium: 'e-book',
+		yearRead: 2020,
+		status: 'read',
+	},
+	{
+		id: 'keebf0pg6qcj284yfh69sv8y',
+		index: 6,
+		author: 'Carl Sagan',
+		title: 'Cosmos',
+		category: ['science', 'astronomy', 'space', 'physics'],
+		readingMedium: 'e-book',
+		yearRead: 2021,
+		status: 'read',
+	},
+	{
 		id: 'jmrkcdimu5r7jszknx2dcvnl',
 		index: 1,
 		author: 'B Storm',
@@ -49,26 +69,6 @@ export const books: bookType[] = [
 		category: ['science', 'astronomy', 'space', 'physics'],
 		readingMedium: 'e-book',
 		yearRead: 2020,
-		status: 'read',
-	},
-	{
-		id: 'gi6qispntbhqpsdo65ase2rq',
-		index: 5,
-		author: 'Derek Sivers',
-		title: 'Anything You Want',
-		category: ['business', 'entrepreneurship', 'personal development'],
-		readingMedium: 'e-book',
-		yearRead: 2020,
-		status: 'read',
-	},
-	{
-		id: 'keebf0pg6qcj284yfh69sv8y',
-		index: 6,
-		author: 'Carl Sagan',
-		title: 'Cosmos',
-		category: ['science', 'astronomy', 'space', 'physics'],
-		readingMedium: 'e-book',
-		yearRead: 2021,
 		status: 'read',
 	},
 	{
