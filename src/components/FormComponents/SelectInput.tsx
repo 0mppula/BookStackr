@@ -39,11 +39,12 @@ const SelectInput: FC<SelectInputProps> = ({
 			<ReactSelect
 				className="react-select-container"
 				classNamePrefix="react-select"
-				maxMenuHeight={231}
+				maxMenuHeight={224}
+				minMenuHeight={150}
 				ref={inputRef}
 				value={value}
 				onChange={(e) => handleChange(e as any, name)}
-				options={options}
+				options={options.sort((a, b) => (a.label > b.label ? 1 : -1))}
 				theme={customTheme}
 				styles={customStyles}
 				placeholder={placeholder}
