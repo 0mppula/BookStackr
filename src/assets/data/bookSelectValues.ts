@@ -35,6 +35,8 @@ export const bookCategories: selectItemType[] = [
 	{ value: 'spirituality', label: 'Spirituality' },
 	{ value: 'travel', label: 'Travel' },
 	{ value: 'adventure', label: 'Adventure' },
+	{ value: 'fiction', label: 'Fiction' },
+	{ value: 'novel', label: 'Novel' },
 ];
 
 export const bookMediums: selectItemType[] = [

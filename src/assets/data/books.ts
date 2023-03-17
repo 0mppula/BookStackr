@@ -949,7 +949,7 @@ export const books: bookType[] = [
 		category: ['self help', 'personal development', 'productivity'],
 		readingMedium: 'audio',
 		yearRead: 2023,
-		status: 'want to read',
+		status: 'read',
 	},
 	{
 		id: 'bkawk37wiudwydyn8r5mwctz',
@@ -959,6 +959,6 @@ export const books: bookType[] = [
 		category: ['travel', 'philosophy', 'adventure'],
 		readingMedium: 'audio',
 		yearRead: 2023,
-		status: 'want to read',
+		status: 'read',
 	},
 ];
