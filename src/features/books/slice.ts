@@ -2,7 +2,16 @@ import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { db } from '../../config/firebase';
-import { getDocs, collection, query, where, addDoc, updateDoc, doc } from 'firebase/firestore';
+import {
+	getDocs,
+	collection,
+	query,
+	where,
+	addDoc,
+	updateDoc,
+	doc,
+	deleteDoc,
+} from 'firebase/firestore';
 import { books, bookType } from '../../assets/data/books';
 import { addBookReqBodyType, editBookReqBodyType } from '../../components/FormComponents/FormTypes';
 
@@ -83,12 +92,12 @@ export const editBook = createAsyncThunk(
 
 			if (user) {
 				// Edit a book in the users firestore book collection.
-				const booksCollectionRef = doc(db, 'books', formData.id);
+				const bookDoc = doc(db, 'books', formData.id);
 
 				// Add userId to the document.
 				let updatedBook: bookType = { ...formData, userId: user.uid };
 
-				await updateDoc(booksCollectionRef, { updatedBook });
+				await updateDoc(bookDoc, { updatedBook });
 
 				return updatedBook;
 			} else {
@@ -97,6 +106,29 @@ export const editBook = createAsyncThunk(
 			}
 		} catch (error) {
 			return thunkAPI.rejectWithValue('Error editing the book.');
+		}
+	}
+);
+
+export const deleteBook = createAsyncThunk(
+	'books/deleteBook',
+	async (bookId: string, thunkAPI: any) => {
+		try {
+			const user = thunkAPI.getState().auth.user;
+
+			if (user) {
+				// Delete a book from the users firestore book collection.
+				const bookDoc = doc(db, 'books', bookId);
+
+				await deleteDoc(bookDoc);
+
+				return bookId;
+			} else {
+				// Delete a book from the local state of the app.
+				return bookId;
+			}
+		} catch (error) {
+			return thunkAPI.rejectWithValue('Error deleting the book.');
 		}
 	}
 );
@@ -130,6 +162,7 @@ export const booksSlice = createSlice({
 			.addCase(addBook.fulfilled, (state, action) => {
 				state.loading = false;
 				state.books = [...state.books, action.payload];
+				state.message = 'Book added';
 			})
 			.addCase(addBook.rejected, (state, action) => {
 				state.loading = false;
@@ -144,8 +177,22 @@ export const booksSlice = createSlice({
 
 				state.loading = false;
 				state.books = [...updatedBooks, action.payload].sort((a, b) => a.index - b.index);
+				state.message = 'Book updated';
 			})
 			.addCase(editBook.rejected, (state, action) => {
+				state.loading = false;
+				state.message = action.payload as string;
+			})
+			.addCase(deleteBook.pending, (state) => {
+				state.message = '';
+				state.loading = true;
+			})
+			.addCase(deleteBook.fulfilled, (state, action) => {
+				state.loading = false;
+				state.books = [...state.books].filter((book) => book.id !== action.payload);
+				state.message = 'Book deleted';
+			})
+			.addCase(deleteBook.rejected, (state, action) => {
 				state.loading = false;
 				state.message = action.payload as string;
 			});

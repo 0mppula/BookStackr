@@ -1,11 +1,10 @@
 import React, { FC, useRef, useState, useEffect } from 'react';
 import { RiCloseLine } from 'react-icons/ri';
 import { useDispatch, useSelector } from 'react-redux';
-import { bookType } from '../../assets/data/books';
 
 import { bookCategories, bookMediums, bookStatuses } from '../../assets/data/bookSelectValues';
 import { selectBookById } from '../../features/books/selectors';
-import { editBook } from '../../features/books/slice';
+import { deleteBook, editBook } from '../../features/books/slice';
 import useCloseOnOverlayClickOrEsc from '../../hooks/useCloseOnOverlayClickOrEsc';
 import useFocusTrap from '../../hooks/useTrapFocues';
 import { getInitialBookFormState } from '../FormComponents/FormData';
@@ -102,7 +101,7 @@ const EditBookModal: FC<EditBookModalProps> = ({
 			};
 
 			dispatch(editBook(bookData));
-			setModalOpen(false);
+			handleClose();
 		}
 	};
 
@@ -163,6 +162,15 @@ const EditBookModal: FC<EditBookModalProps> = ({
 			...prevState,
 			[field]: { ...fieldObj, value: { ...e, value: e.value?.toLowerCase() } },
 		}));
+	};
+
+	const handleDelete = () => {
+		const confirmation = window.confirm('Are you sure you want to delete this book?');
+
+		if (confirmation == true) {
+			dispatch(deleteBook(book.id));
+			handleClose();
+		}
 	};
 
 	return (
@@ -265,6 +273,14 @@ const EditBookModal: FC<EditBookModalProps> = ({
 				</div>
 
 				<div className="modal-footer">
+					<button
+						tabIndex={modalOpen ? 0 : -1}
+						className="btn btn-block btn-danger"
+						onClick={handleDelete}
+					>
+						Delete
+					</button>
+
 					<button
 						tabIndex={modalOpen ? 0 : -1}
 						className="btn btn-block"

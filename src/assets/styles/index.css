@@ -138,6 +138,17 @@ button.btn-icon {
 	gap: 0.375rem;
 }
 
+.btn-danger {
+	background-image: none;
+	background-color: var(--light-alt-light);
+}
+
+.btn-danger:hover,
+.btn-danger:focus-visible {
+	background-image: none;
+	background-color: var(--primary)
+}
+
 .login-text {
 	min-width: 59px;
 }
