@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 
 import { bookCategories, bookMediums, bookStatuses } from '../../assets/data/bookSelectValues';
-import { addBook } from '../../features/books/slice';
+import { addBook, addMockBooks } from '../../features/books/slice';
 import { selectMaxBookIndex } from '../../features/books/selectors';
 import useCloseOnOverlayClickOrEsc from '../../hooks/useCloseOnOverlayClickOrEsc';
 import useFocusTrap from '../../hooks/useTrapFocues';
@@ -113,6 +113,10 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 		}));
 	};
 
+	const handleAddMockBooks = () => {
+		dispatch(addMockBooks());
+	};
+
 	return (
 		<div
 			className={`modal-overlay ${modalOpen ? 'show' : ''}`}
@@ -213,6 +217,14 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 				</div>
 
 				<div className="modal-footer">
+					<button
+						tabIndex={modalOpen ? 0 : -1}
+						className="btn btn-block"
+						onClick={handleAddMockBooks}
+					>
+						Add Mock Books
+					</button>
+
 					<button
 						tabIndex={modalOpen ? 0 : -1}
 						className="btn btn-block"

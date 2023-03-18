@@ -110,6 +110,51 @@ export const editBook = createAsyncThunk(
 	}
 );
 
+export const addMockBooks = createAsyncThunk(
+	'books/addMockBooks',
+	async (_: undefined, thunkAPI: any) => {
+		try {
+			const user = thunkAPI.getState().auth.user;
+			let addedBooks: bookType[] = [];
+
+			if (user) {
+				// Add all mock books to users firestore books collection.
+				books.forEach(async (book) => {
+					const ref = await getDocs(
+						query(
+							collection(db, 'books'),
+							where('title', '==', book.title),
+							where('author', '==', book.author)
+						)
+					);
+
+					if (ref.docs.length > 0) {
+						// Dont add book if it already exists in collection.
+						return;
+					} else {
+						const booksCollectionRef = collection(db, 'books');
+						const newBook = {
+							...book,
+							userId: user.uid,
+						};
+
+						await addDoc(booksCollectionRef, newBook);
+
+						addedBooks.push(newBook);
+					}
+				});
+
+				return addedBooks;
+			} else {
+				// User not logged in dont do anything.
+				throw new Error('User is not logged in.');
+			}
+		} catch (error) {
+			return thunkAPI.rejectWithValue('Error adding books.');
+		}
+	}
+);
+
 export const deleteBook = createAsyncThunk(
 	'books/deleteBook',
 	async (bookId: string, thunkAPI: any) => {
@@ -193,6 +238,19 @@ export const booksSlice = createSlice({
 				state.message = 'Book deleted';
 			})
 			.addCase(deleteBook.rejected, (state, action) => {
+				state.loading = false;
+				state.message = action.payload as string;
+			})
+			.addCase(addMockBooks.pending, (state) => {
+				state.message = '';
+				state.loading = true;
+			})
+			.addCase(addMockBooks.fulfilled, (state, action) => {
+				state.loading = false;
+				state.books = [...state.books, action.payload].sort((a, b) => a.index - b.index);
+				state.message = 'Books added';
+			})
+			.addCase(addMockBooks.rejected, (state, action) => {
 				state.loading = false;
 				state.message = action.payload as string;
 			});
