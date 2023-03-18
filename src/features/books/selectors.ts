@@ -41,8 +41,8 @@ export const selectBookById = createSelector(
 	}
 );
 
-export const selectBooksCount = createSelector([booksSelector], (books) => {
-	return books.reduce((a: number) => (a += 1), 0);
+export const selectMaxBookIndex = createSelector([booksSelector], (books) => {
+	return Math.max(...books.map((book) => book.index));
 });
 
 export const selectReadBooksCount = createSelector([booksSelector], (books) => {

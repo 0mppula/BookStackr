@@ -107,7 +107,7 @@ const BooksTable: FC = () => {
 						{rows.map((row, i) => {
 							prepareRow(row);
 							return (
-								<tr>
+								<tr {...row.getRowProps()}>
 									{row.cells.map((cell: any) => (
 										<td
 											{...cell.getCellProps({

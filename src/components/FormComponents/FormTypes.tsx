@@ -35,3 +35,15 @@ export interface bookFormDataType {
 	yearRead: InputFieldStringType;
 	status: InputFieldSingleSelectType;
 }
+
+export interface addBookReqBodyType {
+	id?: string;
+	userId?: string;
+	index: number;
+	author: string;
+	title: string;
+	category: Array<string>;
+	readingMedium: string;
+	yearRead: number;
+	status: string;
+}

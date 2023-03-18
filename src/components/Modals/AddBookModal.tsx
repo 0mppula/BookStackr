@@ -3,15 +3,14 @@ import { RiCloseLine } from 'react-icons/ri';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 
-import { bookType } from '../../assets/data/books';
 import { bookCategories, bookMediums, bookStatuses } from '../../assets/data/bookSelectValues';
 import { addBook } from '../../features/books/slice';
-import { selectBooksCount } from '../../features/books/selectors';
+import { selectMaxBookIndex } from '../../features/books/selectors';
 import useCloseOnOverlayClickOrEsc from '../../hooks/useCloseOnOverlayClickOrEsc';
 import useFocusTrap from '../../hooks/useTrapFocues';
 import { getInitialBookFormState } from '../FormComponents/FormData';
 import FormGroup from '../FormComponents/FormGroup';
-import { bookFormDataType, selectItemType } from '../FormComponents/FormTypes';
+import { addBookReqBodyType, bookFormDataType, selectItemType } from '../FormComponents/FormTypes';
 import SelectInput from '../FormComponents/SelectInput';
 import TextInput from '../FormComponents/TextInput';
 
@@ -22,12 +21,12 @@ interface AddBookModalProps {
 
 const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 	const [formData, setFormData] = useState<bookFormDataType>(getInitialBookFormState);
-	const booksCount = useSelector((state: RootState) => selectBooksCount(state));
+	const maxBookIndex = useSelector((state: RootState) => selectMaxBookIndex(state));
 
 	const outerModalRef = useRef<HTMLDivElement>(null);
 	const innerModalRef = useRef<HTMLFormElement>(null);
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<any>();
 
 	useCloseOnOverlayClickOrEsc(modalOpen, setModalOpen, 'modal-overlay');
 	useFocusTrap(innerModalRef, modalOpen);
@@ -38,13 +37,8 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 		let error = validateForm();
 
 		if (!error) {
-			const fake_id = String(
-				Math.random().toString(16).slice(2) + Math.random().toString(16).slice(2, 13)
-			);
-
-			let bookData: bookType = {
-				id: fake_id,
-				index: booksCount + 1,
+			let bookData: addBookReqBodyType = {
+				index: maxBookIndex + 1,
 				author: author.value,
 				title: title.value,
 				yearRead: +yearRead.value,
@@ -57,6 +51,7 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 
 			dispatch(addBook(bookData));
 			setModalOpen(false);
+			setFormData(getInitialBookFormState());
 		}
 	};
 
