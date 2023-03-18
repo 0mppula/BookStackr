@@ -7,7 +7,7 @@ export default (open: boolean, setOpen: Function, overlayClass: string) => {
 		const handler = (e: any) => {
 			if (open) {
 				const clickedOutsideWrapper =
-					(e.type === 'click' || e.type === 'touchstart') &&
+					(e.type === 'mousedown' || e.type === 'touchstart') &&
 					typeof e.target.className.includes === 'function' &&
 					e.target.className.includes(overlayClass);
 
@@ -17,13 +17,13 @@ export default (open: boolean, setOpen: Function, overlayClass: string) => {
 			}
 		};
 
-		['click', 'touchstart', 'keydown'].forEach((event) => {
+		['mousedown', 'touchstart', 'keydown'].forEach((event) => {
 			document.addEventListener(event, handler);
 		});
 
 		// Clean up.
 		return () => {
-			['click', 'touchstart', 'keydown'].forEach((event) => {
+			['mousedown', 'touchstart', 'keydown'].forEach((event) => {
 				document.removeEventListener(event, handler);
 			});
 		};
