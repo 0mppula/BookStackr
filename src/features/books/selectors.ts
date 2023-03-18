@@ -109,7 +109,8 @@ export const selectReadBooksChartTableData = createSelector([booksSelector], (bo
 
 	const uniqueYears = readBooks
 		.filter((book, i) => readBooks.findIndex((book2) => book2.yearRead === book.yearRead) === i)
-		.map((book) => book.yearRead);
+		.map((book) => book.yearRead)
+		.sort((a, b) => (a > b ? 1 : -1));
 
 	// Store total books read by year and by year and medium.
 	uniqueYears.forEach((uniqueYear, i) => {
