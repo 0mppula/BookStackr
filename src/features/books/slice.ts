@@ -2,9 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { db } from '../../config/firebase';
-import { getDocs, collection, query, where, addDoc } from 'firebase/firestore';
+import { getDocs, collection, query, where, addDoc, updateDoc, doc } from 'firebase/firestore';
 import { books, bookType } from '../../assets/data/books';
-import { addBookReqBodyType } from '../../components/FormComponents/FormTypes';
+import { addBookReqBodyType, editBookReqBodyType } from '../../components/FormComponents/FormTypes';
 
 interface booksStateType {
 	books: bookType[];
@@ -51,6 +51,8 @@ export const addBook = createAsyncThunk(
 			if (user) {
 				// Add a new book to the users firestore book collection.
 				const booksCollectionRef = collection(db, 'books');
+
+				// Add userId to the document.
 				let reqData: addBookReqBodyType = { ...formData, userId: user.uid };
 				const docRef = await addDoc(booksCollectionRef, reqData);
 
@@ -73,17 +75,38 @@ export const addBook = createAsyncThunk(
 	}
 );
 
+export const editBook = createAsyncThunk(
+	'books/editBook',
+	async (formData: editBookReqBodyType, thunkAPI: any) => {
+		try {
+			const user = thunkAPI.getState().auth.user;
+
+			if (user) {
+				// Edit a book in the users firestore book collection.
+				const booksCollectionRef = doc(db, 'books', formData.id);
+
+				// Add userId to the document.
+				let updatedBook: bookType = { ...formData, userId: user.uid };
+
+				await updateDoc(booksCollectionRef, { updatedBook });
+
+				return updatedBook;
+			} else {
+				// Edit a book in the local state of the app.
+				return formData;
+			}
+		} catch (error) {
+			return thunkAPI.rejectWithValue('Error editing the book.');
+		}
+	}
+);
+
 export const booksSlice = createSlice({
 	name: 'books',
 	initialState,
 	reducers: {
 		setQuery: (state, action) => {
 			state.query = action.payload;
-		},
-		editBook: (state, action) => {
-			let updatedBooks = [...state.books].filter((book) => book.id !== action.payload.id);
-
-			state.books = [...updatedBooks, action.payload].sort((a, b) => a.index - b.index);
 		},
 	},
 	extraReducers: (builder) => {
@@ -111,9 +134,23 @@ export const booksSlice = createSlice({
 			.addCase(addBook.rejected, (state, action) => {
 				state.loading = false;
 				state.message = action.payload as string;
+			})
+			.addCase(editBook.pending, (state) => {
+				state.message = '';
+				state.loading = true;
+			})
+			.addCase(editBook.fulfilled, (state, action) => {
+				let updatedBooks = [...state.books].filter((book) => book.id !== action.payload.id);
+
+				state.loading = false;
+				state.books = [...updatedBooks, action.payload].sort((a, b) => a.index - b.index);
+			})
+			.addCase(editBook.rejected, (state, action) => {
+				state.loading = false;
+				state.message = action.payload as string;
 			});
 	},
 });
 
-export const { setQuery, editBook } = booksSlice.actions;
+export const { setQuery } = booksSlice.actions;
 export default booksSlice.reducer;

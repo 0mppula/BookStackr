@@ -37,7 +37,18 @@ export interface bookFormDataType {
 }
 
 export interface addBookReqBodyType {
-	id?: string;
+	userId?: string;
+	index: number;
+	author: string;
+	title: string;
+	category: Array<string>;
+	readingMedium: string;
+	yearRead: number;
+	status: string;
+}
+
+export interface editBookReqBodyType {
+	id: string;
 	userId?: string;
 	index: number;
 	author: string;

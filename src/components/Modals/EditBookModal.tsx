@@ -10,7 +10,7 @@ import useCloseOnOverlayClickOrEsc from '../../hooks/useCloseOnOverlayClickOrEsc
 import useFocusTrap from '../../hooks/useTrapFocues';
 import { getInitialBookFormState } from '../FormComponents/FormData';
 import FormGroup from '../FormComponents/FormGroup';
-import { bookFormDataType, selectItemType } from '../FormComponents/FormTypes';
+import { bookFormDataType, editBookReqBodyType, selectItemType } from '../FormComponents/FormTypes';
 import SelectInput from '../FormComponents/SelectInput';
 import TextInput from '../FormComponents/TextInput';
 
@@ -31,7 +31,7 @@ const EditBookModal: FC<EditBookModalProps> = ({
 
 	const book: any = useSelector((state) => selectBookById(state, editBookId));
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<any>();
 
 	useEffect(() => {
 		let newFormState: bookFormDataType = getInitialBookFormState();
@@ -88,7 +88,7 @@ const EditBookModal: FC<EditBookModalProps> = ({
 		let error = validateForm();
 
 		if (!error) {
-			let bookData: bookType = {
+			let bookData: editBookReqBodyType = {
 				id: book.id,
 				index: book.index,
 				author: author.value,
