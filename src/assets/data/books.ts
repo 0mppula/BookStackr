@@ -12,7 +12,7 @@ export interface bookType {
 
 export const books: bookType[] = [
 	{
-		id: 'gi6qispntbhqpsdo65ase2rq',
+		id: 'gi6qispntbhqpsdo65as',
 		index: 5,
 		author: 'Derek Sivers',
 		title: 'Anything You Want',
@@ -22,7 +22,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'keebf0pg6qcj284yfh69sv8y',
+		id: 'keebf0pg6qcj284yfh69',
 		index: 6,
 		author: 'Carl Sagan',
 		title: 'Cosmos',
@@ -32,7 +32,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'jmrkcdimu5r7jszknx2dcvnl',
+		id: 'jmrkcdimu5r7jszknx2d',
 		index: 1,
 		author: 'B Storm',
 		title: 'Elon Musk’s biography',
@@ -42,7 +42,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'fabzarhp1uguccf8hshc8xeh',
+		id: 'fabzarhp1uguccf8hshc',
 		index: 2,
 		author: 'Ashlee Vance',
 		title: 'Elon Musk’s biography',
@@ -52,7 +52,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'dkmy5uvp6xnet8g0hwgkecyy',
+		id: 'dkmy5uvp6xnet8g0hwgk',
 		index: 3,
 		author: 'Corey Wayne',
 		title: 'How to Be a 3% Man',
@@ -62,7 +62,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 's6o4v2cnp2xflqip124nit6c',
+		id: 's6o4v2cnp2xflqip124n',
 		index: 4,
 		author: 'Carl Sagan',
 		title: 'Pale Blue Dot',
@@ -72,7 +72,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'qzx9i4h5pta7pg1nsupub8or',
+		id: 'qzx9i4h5pta7pg1nsupu',
 		index: 7,
 		author: 'Tony Robbins',
 		title: 'Personal Power 1',
@@ -82,7 +82,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'a5sjqkntod0kft06nrq0zviq',
+		id: 'a5sjqkntod0kft06nrq0',
 		index: 8,
 		author: 'Tony Robbins',
 		title: 'Personal Power 2',
@@ -92,7 +92,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'mve4sth1ae91ecnay91c5jt3',
+		id: 'mve4sth1ae91ecnay91c',
 		index: 9,
 		author: 'Eric Matthes',
 		title: 'Python Crash Course',
@@ -102,7 +102,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'g5dl1zz3h06wv2765ka057ym',
+		id: 'g5dl1zz3h06wv2765ka0',
 		index: 10,
 		author: 'Robert C. Martin',
 		title: 'The Robert C. Martin Clean Code Collection',
@@ -112,7 +112,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'r9844uiak7u30hdzys42z7vx',
+		id: 'r9844uiak7u30hdzys42',
 		index: 11,
 		author: 'Benjamin Graham',
 		title: 'The Intelligent Investor',
@@ -122,7 +122,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'qvtkb4p11vx90lqaifu4yv68',
+		id: 'qvtkb4p11vx90lqaifu4',
 		index: 12,
 		author: 'Marijn Harverbeke',
 		title: 'Eloquent JavaScript 3',
@@ -132,7 +132,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '2s9ouha68lauh3aaas4x313q',
+		id: '2s9ouha68lauh3aaas4x',
 		index: 13,
 		author: 'Eric Berger',
 		title: 'Liftoff',
@@ -142,7 +142,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '5umu7nlpoxwowuzhb3euqmn4',
+		id: '5umu7nlpoxwowuzhb3eu',
 		index: 14,
 		author: 'Nicholas C. Zakas',
 		title: 'The Principles of Object-Oriented JavaScript',
@@ -152,7 +152,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '7qgfqwgwrpxknpyxfhdpa3df',
+		id: '7qgfqwgwrpxknpyxfhdp',
 		index: 15,
 		author: 'Robert T. Kiyosaki',
 		title: 'Rich Dad, Poor Dad',
@@ -162,7 +162,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'h9ymnspkimzagkpoi1ytoumy',
+		id: 'h9ymnspkimzagkpoi1yt',
 		index: 16,
 		author: 'Kyle Simpson',
 		title: "You Don't Know JS: Up & Going (#1)",
@@ -172,7 +172,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'cgdkeruvh5qb7hl4q2ns80pa',
+		id: 'cgdkeruvh5qb7hl4q2ns',
 		index: 17,
 		author: 'Kyle Simpson',
 		title: "You Don't Know JS: Scope and Closures (#2)",
@@ -182,7 +182,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'zj7h0qbjatbuw9nyiwvo5lpq',
+		id: 'zj7h0qbjatbuw9nyiwvo',
 		index: 18,
 		author: 'Simon Sinek',
 		title: 'The Infinite Game',
@@ -192,7 +192,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'vl7vp8471b5t4ntlykmp6ip6',
+		id: 'vl7vp8471b5t4ntlykmp',
 		index: 19,
 		author: 'Kyle Simpson',
 		title: "You Don't Know JS: this & Object Prototypes (#3)",
@@ -202,7 +202,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'pccctum7vepfgvym0zy9wdre',
+		id: 'pccctum7vepfgvym0zy9',
 		index: 20,
 		author: 'Kyle Simpson',
 		title: "You Don't Know JS: Types & Grammar (#4)",
@@ -212,7 +212,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'r6c8s87xa2mb2jp7kmin1rre',
+		id: 'r6c8s87xa2mb2jp7kmin',
 		index: 21,
 		author: 'Kyle Simpson',
 		title: "You Don't Know JS: Async & Performance (#5)",
@@ -222,7 +222,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '9gr8i2upuicnas42tuhdrjms',
+		id: '9gr8i2upuicnas42tuhd',
 		index: 22,
 		author: 'Phillip A. Fisher',
 		title: 'Common Stocks and Uncommon Profits',
@@ -232,7 +232,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'w7xryhpuv1xmh2mgyxzsy871',
+		id: 'w7xryhpuv1xmh2mgyxzs',
 		index: 23,
 		author: 'Kyle Simpson',
 		title: "You Don't Know JS: ES6 & Beyond (#6)",
@@ -242,7 +242,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'xtk6zi8ijykmp790zu3xgek9',
+		id: 'xtk6zi8ijykmp790zu3x',
 		index: 24,
 		author: 'Al Sweigart',
 		title: 'Beyond the Basic Stuff with Python',
@@ -252,7 +252,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '9k5wi8op4er6cwp3ecqa2ag5',
+		id: '9k5wi8op4er6cwp3ecqa',
 		index: 25,
 		author: 'Cade Metz',
 		title: 'Genius Makers',
@@ -262,7 +262,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'wzvm4na3y54ewoatbwrefdiz',
+		id: 'wzvm4na3y54ewoatbwre',
 		index: 26,
 		author: 'James Clear',
 		title: 'Atomic Habits',
@@ -272,7 +272,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '7nsf86hnl2l3v85e04o1ntyx',
+		id: '7nsf86hnl2l3v85e04o1',
 		index: 27,
 		author: 'Cal Newport',
 		title: 'Deep Work',
@@ -282,7 +282,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '37iyxbnnahyd143hy6h5lxe0',
+		id: '37iyxbnnahyd143hy6h5',
 		index: 28,
 		author: 'Richard P. Feynman',
 		title: "Surely You're Joking, Mr. Feynman!",
@@ -292,7 +292,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'vhktjceu0f5szho2t6rwsmu6',
+		id: 'vhktjceu0f5szho2t6rw',
 		index: 29,
 		author: 'David Goggins',
 		title: "Can't Hurt Me",
@@ -302,7 +302,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'mvck5hxh5zheb7brdssiubau',
+		id: 'mvck5hxh5zheb7brdssi',
 		index: 30,
 		author: 'Thomas J. Stanley',
 		title: 'The Millionaire Next Door',
@@ -312,7 +312,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'ti5gviuqcq1nkbpz0ojepnau',
+		id: 'ti5gviuqcq1nkbpz0oje',
 		index: 31,
 		author: 'Tony Robbins',
 		title: 'Life Force',
@@ -322,7 +322,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '6kpyragssilqyclu4mirl47l',
+		id: '6kpyragssilqyclu4mir',
 		index: 32,
 		author: 'George S. Clason',
 		title: 'The Richest Man in Babylon',
@@ -332,7 +332,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 's9kg82krhup7fqz7cpai8ost',
+		id: 's9kg82krhup7fqz7cpai',
 		index: 33,
 		author: 'Felix Dennis',
 		title: 'How to Get Rich',
@@ -342,7 +342,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'q2en9i9ahag47m2d09pi4k7b',
+		id: 'q2en9i9ahag47m2d09pi',
 		index: 34,
 		author: 'Napoleon Hill',
 		title: 'Think and Grow Rich',
@@ -352,7 +352,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '4gi0ructntj1k65onwbybx2s',
+		id: '4gi0ructntj1k65onwby',
 		index: 35,
 		author: 'Peter H. Diamandis',
 		title: 'Abundance',
@@ -362,7 +362,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'apwgncfec61af5peyw4o4jvs',
+		id: 'apwgncfec61af5peyw4o',
 		index: 36,
 		author: 'Dale Carnegie',
 		title: 'How to Win Friends & Influence People',
@@ -372,7 +372,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'ruqivumpm3okoqhncqucafzo',
+		id: 'ruqivumpm3okoqhncquc',
 		index: 37,
 		author: 'Władysław Szpilman',
 		title: 'The Pianist',
@@ -382,7 +382,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '2xc8ojy8e83hknh3qxgpvuht',
+		id: '2xc8ojy8e83hknh3qxgp',
 		index: 38,
 		author: 'Jon Kabat-Zinn',
 		title: 'Wherever You Go, There You Are',
@@ -392,7 +392,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'q57n3ownvlm3belm8vj1dyv7',
+		id: 'q57n3ownvlm3belm8vj1',
 		index: 39,
 		author: 'Florence Littauer',
 		title: 'Personality Plus',
@@ -402,7 +402,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '4msc2cw8uos0wh0vm21hivmz',
+		id: '4msc2cw8uos0wh0vm21h',
 		index: 40,
 		author: 'J.L. Collins',
 		title: 'The Simple Path to Wealth',
@@ -412,7 +412,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'a98200esjmo5d2iczxdjric2',
+		id: 'a98200esjmo5d2iczxdj',
 		index: 41,
 		author: 'Josh Kaufman',
 		title: 'The Personal MBA',
@@ -422,7 +422,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'v30pqi7qvotokcmsez8esm6k',
+		id: 'v30pqi7qvotokcmsez8e',
 		index: 42,
 		author: 'Stephen R. Covey',
 		title: 'The 7 Habits of Highly Effective People',
@@ -432,7 +432,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'yk5u2ld3bcgnf5evnebuo7z4',
+		id: 'yk5u2ld3bcgnf5evnebu',
 		index: 43,
 		author: 'Dan Harris',
 		title: '10% Happier',
@@ -442,7 +442,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'l5wdseatpsswu20v0h56qlhz',
+		id: 'l5wdseatpsswu20v0h56',
 		index: 44,
 		author: 'Sun Tzu',
 		title: 'The Art of War',
@@ -452,7 +452,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'v4iyl7p35ponniwjltt7q49f',
+		id: 'v4iyl7p35ponniwjltt7',
 		index: 45,
 		author: 'Gary Vaynerchuk',
 		title: 'Crush It!',
@@ -462,7 +462,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'qd3a4b018noccsvp156kr97f',
+		id: 'qd3a4b018noccsvp156k',
 		index: 46,
 		author: '50 Cent',
 		title: 'The 50th Law',
@@ -472,7 +472,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'xpatl13xb1wm0yic5hwuxqe1',
+		id: 'xpatl13xb1wm0yic5hwu',
 		index: 47,
 		author: 'Brian Tracy',
 		title: 'Goals!',
@@ -482,7 +482,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'so623nozgh5cox2a9fffn6ds',
+		id: 'so623nozgh5cox2a9fff',
 		index: 48,
 		author: '50 Cent',
 		title: 'Hustle Harder, Hustle Smarter',
@@ -492,7 +492,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '1qqf3epbc12evpq92nbb65rv',
+		id: '1qqf3epbc12evpq92nbb',
 		index: 49,
 		author: 'Peter Thiel',
 		title: 'Zero to One',
@@ -502,7 +502,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'qf7sr9hjgdcamwouqwgrgbbl',
+		id: 'qf7sr9hjgdcamwouqwgr',
 		index: 50,
 		author: 'James C. Collins',
 		title: 'Good to Great',
@@ -512,7 +512,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 't275mys0oporuojsnrl1extq',
+		id: 't275mys0oporuojsnrl1',
 		index: 51,
 		author: 'J.D. Roth',
 		title: 'How to Achieve Financial Independence and Retire Early',
@@ -522,7 +522,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '8ubx6tg4nb6mlgtszx1th5ro',
+		id: '8ubx6tg4nb6mlgtszx1t',
 		index: 52,
 		author: 'Darren Hardy',
 		title: 'The Compound Effect',
@@ -532,7 +532,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'f0ogfzf4fid4fkel1684duxw',
+		id: 'f0ogfzf4fid4fkel1684',
 		index: 53,
 		author: 'Brian Tracy',
 		title: 'The 21 Success Secrets of Self-Made Millionaires',
@@ -542,7 +542,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '8acioh86y19e26mssraudpme',
+		id: '8acioh86y19e26mssrau',
 		index: 54,
 		author: 'Kyle Simpson',
 		title: "You Don't Know JS Yet Get Started",
@@ -552,7 +552,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 's1t5f9pkyzfxwrk03ke280pp',
+		id: 's1t5f9pkyzfxwrk03ke2',
 		index: 55,
 		author: 'Tom Hopkins',
 		title: 'The Official Guide To Success',
@@ -562,7 +562,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'qonb81oy3mx4vqp2ho57ca7j',
+		id: 'qonb81oy3mx4vqp2ho57',
 		index: 56,
 		author: 'Morgan Housel',
 		title: 'The Psychology of Money',
@@ -572,7 +572,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '6apu5jj9pefwei732rawdo81',
+		id: '6apu5jj9pefwei732raw',
 		index: 57,
 		author: 'Peter Lynch',
 		title: 'One Up On Wall Street',
@@ -582,7 +582,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '109t29gr8m39kb8c1tplhkhs',
+		id: '109t29gr8m39kb8c1tpl',
 		index: 58,
 		author: 'Kyle Simpson',
 		title: "You Don't Know JS Yet Scope & Closures",
@@ -592,7 +592,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'o0hfu20lx1o31fd4n8lppr0q',
+		id: 'o0hfu20lx1o31fd4n8lp',
 		index: 59,
 		author: 'Daniel Pecaut',
 		title: 'University of Berkshire Hathaway',
@@ -602,7 +602,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '6okp2oepxq92wqm0q3kwx58v',
+		id: '6okp2oepxq92wqm0q3kw',
 		index: 60,
 		author: 'Richard P. Feynman',
 		title: 'What Do You Care What Other People Think?',
@@ -612,7 +612,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'c9y6088adfy0wwex42nzrt6q',
+		id: 'c9y6088adfy0wwex42nz',
 		index: 61,
 		author: 'Richard P. Feynman',
 		title: 'The Meaning of It All',
@@ -622,7 +622,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'kkwl7jph1pw8ney7pdxu262m',
+		id: 'kkwl7jph1pw8ney7pdxu',
 		index: 62,
 		author: 'David Allen',
 		title: 'Getting Things Done',
@@ -632,7 +632,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'vhwp5uiewsfmwym39s9us9ak',
+		id: 'vhwp5uiewsfmwym39s9u',
 		index: 63,
 		author: 'Al Sweigart',
 		title: 'The Big Book of Small Python Projects',
@@ -642,7 +642,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '1uw6uhm89qoyo88h2gslc5gx',
+		id: '1uw6uhm89qoyo88h2gsl',
 		index: 64,
 		author: 'Richard P. Feynman',
 		title: 'The Character of Physical Law',
@@ -652,7 +652,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '1jmckyri7fw3othgty5hf00s',
+		id: '1jmckyri7fw3othgty5h',
 		index: 65,
 		author: 'Joel Greenblatt',
 		title: 'The Little Book That Beats the Market',
@@ -662,7 +662,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 's7ov0usn0xma5llj77bk7r1i',
+		id: 's7ov0usn0xma5llj77bk',
 		index: 66,
 		author: 'Ben Horowitz',
 		title: 'The Hard Thing About Hard Things',
@@ -672,7 +672,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'fp6qsxe3ivada383wllwl2s2',
+		id: 'fp6qsxe3ivada383wllw',
 		index: 67,
 		author: 'Laura Hillenbrand',
 		title: 'Unbroken',
@@ -682,7 +682,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'jk3q3urm650l0sz6ufu976s9',
+		id: 'jk3q3urm650l0sz6ufu9',
 		index: 68,
 		author: 'Iris Chang',
 		title: 'The Rape of Nanking',
@@ -692,7 +692,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '8eelx7md8mvijn8o15t083so',
+		id: '8eelx7md8mvijn8o15t0',
 		index: 69,
 		author: 'Malcolm Gladwell',
 		title: 'Outliers',
@@ -702,7 +702,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'rd3d0wpjv0mbl1a3bmb3lzhh',
+		id: 'rd3d0wpjv0mbl1a3bmb3',
 		index: 70,
 		author: 'Brian Tracy',
 		title: 'The Luck Factor',
@@ -712,7 +712,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '6l1evbqbzb2b5wcj44kjicqk',
+		id: '6l1evbqbzb2b5wcj44kj',
 		index: 71,
 		author: 'Larry Smith',
 		title: 'No Fears, No Excuses',
@@ -722,7 +722,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '4yas10fbuvs30uc7che8b25a',
+		id: '4yas10fbuvs30uc7che8',
 		index: 72,
 		author: 'Brian Tracy',
 		title: '21 Great Ways to Get the Job You Really Want',
@@ -732,7 +732,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '6czsr6plb9c8fj9fs97w3mpl',
+		id: '6czsr6plb9c8fj9fs97w',
 		index: 73,
 		author: 'Sharon L. Lechter',
 		title: 'Success and Something Greater',
@@ -742,7 +742,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '1jq6ltat6cwd1rzmzc2zjqx7',
+		id: '1jq6ltat6cwd1rzmzc2z',
 		index: 74,
 		author: 'Ankur Warikoo',
 		title: 'Do Epic Shit',
@@ -752,7 +752,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'bruya8jhp5um2x413n90gx17',
+		id: 'bruya8jhp5um2x413n90',
 		index: 75,
 		author: 'Wallace D. Wattles',
 		title: 'The Science of Getting Rich',
@@ -762,7 +762,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '7gg9ssbvx8vexlbinhkrnw40',
+		id: '7gg9ssbvx8vexlbinhkr',
 		index: 76,
 		author: 'Orison Swett Marden',
 		title: 'Pushing to the Front or Success Under Difficulties',
@@ -772,7 +772,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'utuk4q2w7oxflge2kzzwc4h6',
+		id: 'utuk4q2w7oxflge2kzzw',
 		index: 77,
 		author: 'Thomas Sowell',
 		title: 'Economic Facts and Fallacies',
@@ -782,7 +782,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'o0siy986h384owewqu4fje1l',
+		id: 'o0siy986h384owewqu4f',
 		index: 78,
 		author: 'Viktor E. Frankl',
 		title: "Man's Search for Meaning",
@@ -792,7 +792,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'i34yt5r6ggf9qyfjmwvb0x69',
+		id: 'i34yt5r6ggf9qyfjmwvb',
 		index: 79,
 		author: 'Thomas Sowell',
 		title: 'Wealth, Poverty and Politics',
@@ -802,7 +802,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'zu7nxfd2tkkace6jtfzwgto7',
+		id: 'zu7nxfd2tkkace6jtfzw',
 		index: 80,
 		author: 'Thad A. Polk',
 		title: 'The Learning Brain',
@@ -812,7 +812,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'qrai6799u5d2q21a9sytfn1t',
+		id: 'qrai6799u5d2q21a9syt',
 		index: 81,
 		author: 'Clinton O. Longenecker',
 		title: 'Critical Business Skills for Success',
@@ -822,7 +822,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '2m5qwwzn3v85fp2po3pyvks0',
+		id: '2m5qwwzn3v85fp2po3py',
 		index: 82,
 		author: 'Robert B. Cialdini',
 		title: 'Influence',
@@ -832,7 +832,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '4gbwqqz4kd9gz73k9iijybyc',
+		id: '4gbwqqz4kd9gz73k9iij',
 		index: 83,
 		author: 'Shane Snow',
 		title: 'Smartcuts',
@@ -842,7 +842,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'f0g6v3jxs1782u7rpemcfmu8',
+		id: 'f0g6v3jxs1782u7rpemc',
 		index: 84,
 		author: 'Mihaly Csikszentmihalyi',
 		title: 'Flow',
@@ -852,7 +852,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '1z12yynagyfyb9bgwggd1jsy',
+		id: '1z12yynagyfyb9bgwggd',
 		index: 85,
 		author: 'Eric Ries',
 		title: 'The Lean Startup',
@@ -862,7 +862,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'kvmy5ece231lv1j1viailaig',
+		id: 'kvmy5ece231lv1j1viai',
 		index: 86,
 		author: 'Darren Hardy',
 		title: 'The Entrepreneur Roller Coaster',
@@ -872,7 +872,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '5qejk1qlr854gk1yvo7zm786',
+		id: '5qejk1qlr854gk1yvo7z',
 		index: 87,
 		author: 'Jon Krakauer',
 		title: 'Into the Wild',
@@ -882,7 +882,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'yrvazcyayyg70eau60cxqdk5',
+		id: 'yrvazcyayyg70eau60cx',
 		index: 88,
 		author: 'Nick Lane',
 		title: 'The Vital Question',
@@ -892,7 +892,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'hffex87cea0w2gc8k7zrswhn',
+		id: 'hffex87cea0w2gc8k7zr',
 		index: 89,
 		author: 'Nick Lane',
 		title: 'Life Ascending',
@@ -902,7 +902,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'l5daol1x9tiw3peq9hoyras9',
+		id: 'l5daol1x9tiw3peq9hoy',
 		index: 90,
 		author: 'Ray Kurzweil',
 		title: 'The Singularity is Near',
@@ -912,7 +912,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '0tobdpptitqvtqwrycwbygt1',
+		id: '0tobdpptitqvtqwrycwb',
 		index: 91,
 		author: 'Cameron R. Hanes',
 		title: 'Endure',
@@ -922,7 +922,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: '4a8rntwkytc5kk5styfu4jp1',
+		id: '4a8rntwkytc5kk5styfu',
 		index: 92,
 		author: 'Brian Tracy',
 		title: 'Kiss That Frog!',
@@ -932,7 +932,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'f4axwxjlqudds966oh1pn66k',
+		id: 'f4axwxjlqudds966oh1p',
 		index: 93,
 		author: 'Matthew Walker',
 		title: 'Why We Sleep',
@@ -942,7 +942,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'f99ey5110rgnffb69mt7onzx',
+		id: 'f99ey5110rgnffb69mt7',
 		index: 94,
 		author: 'Robin S. Sharma',
 		title: 'The 5 AM Club',
@@ -952,7 +952,7 @@ export const books: bookType[] = [
 		status: 'read',
 	},
 	{
-		id: 'bkawk37wiudwydyn8r5mwctz',
+		id: 'bkawk37wiudwydyn8r5m',
 		index: 95,
 		author: 'Rolf Potts',
 		title: 'Vagabonding',
