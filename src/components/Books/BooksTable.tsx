@@ -27,7 +27,11 @@ const BooksTable: FC = () => {
 	const data: any = useMemo(() => books, [books]);
 	const columns: Column<ColumnType>[] = useMemo(
 		() => [
-			{ Header: '#', accessor: 'index' },
+			{
+				Header: '#',
+				accessor: 'index',
+				Cell: ({ cell }: { cell: any }) => <>{cell.row.index + 1}</>,
+			},
 			{ Header: 'Author', accessor: 'author' },
 			{ Header: 'Title', accessor: 'title' },
 			{
