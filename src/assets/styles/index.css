@@ -146,7 +146,7 @@ button.btn-icon {
 .btn-danger:hover,
 .btn-danger:focus-visible {
 	background-image: none;
-	background-color: var(--primary)
+	background-color: var(--primary);
 }
 
 .login-text {
@@ -390,6 +390,10 @@ footer a {
 }
 
 @media only screen and (max-width: 768px) {
+	.books-stats-table th {
+		padding: 0.25rem 0.75rem;
+	}
+	
 	:root {
 		--nav-height: 160px;
 	}
