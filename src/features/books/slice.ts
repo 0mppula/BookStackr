@@ -97,7 +97,7 @@ export const editBook = createAsyncThunk(
 				// Add userId to the document.
 				let updatedBook: bookType = { ...formData, userId: user.uid };
 
-				await updateDoc(bookDoc, { updatedBook });
+				await updateDoc(bookDoc, { ...updatedBook });
 
 				return updatedBook;
 			} else {
