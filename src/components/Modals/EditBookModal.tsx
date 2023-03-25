@@ -39,8 +39,9 @@ const EditBookModal: FC<EditBookModalProps> = ({
 			const selectValues = ['category', 'readingMedium', 'status'];
 
 			for (const [key, _] of Object.entries(newFormState)) {
+				// Check if looping over a select field.
 				if (selectValues.includes(key)) {
-					// Popolate multi select.
+					// Populate multi select.
 					if (Array.isArray(book[key])) {
 						newFormState = {
 							...newFormState,
@@ -55,7 +56,10 @@ const EditBookModal: FC<EditBookModalProps> = ({
 							...newFormState,
 							[key]: {
 								...newFormState[key as keyof bookFormDataType],
-								value: { label: book[key], value: book[key] },
+								value: {
+									label: book[key][0].toUpperCase() + book[key].substring(1),
+									value: book[key],
+								},
 							},
 						};
 					}
