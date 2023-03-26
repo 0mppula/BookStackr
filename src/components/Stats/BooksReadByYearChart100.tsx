@@ -145,12 +145,12 @@ const BooksReadByYearChart100: FC<BooksReadByYearChart100Type> = ({ chartData })
 			{
 				label: 'E-Book',
 				data: eBooksReadByYear?.map((count) => count),
-				backgroundColor: `${cssVar('--secondary')}`,
+				backgroundColor: `${cssVar('--secondary-light')}`,
 			},
 			{
 				label: 'Paper',
 				data: paperBooksReadByYear?.map((count) => count),
-				backgroundColor: `${cssVar('--primary')}`,
+				backgroundColor: `${cssVar('--primary-light')}`,
 			},
 		],
 	};

@@ -2,11 +2,18 @@
 
 :root {
 	--primary: #e25050;
-	--secondary: #49569c;
+	--secondary: hsl(231, 36%, 41%);
+	--success: hsl(155, 100%, 18%);
+
+	/* contrast ratio of 4.5+ with --dark-alt-light. */
+	--primary-light: hsl(0, 72%, 70%);
+	--secondary-light: hsl(231, 36%, 68%);
+	--success-light: hsl(155, 100%, 35%);
+
 	--font-main: 'Kanit', sans-serif;
-	--dark: hsl(240, 21%, 8%);
-	--dark-alt: hsl(240, 21%, 16%);
-	--dark-alt-light: hsl(240, 21%, 32%);
+	--dark: #101019;
+	--dark-alt: #202031;
+	--dark-alt-light: #30304a;
 	--light: hsl(0, 0%, 96%);
 	--light-alt: hsl(0, 0%, 70%);
 	--light-alt-light: hsl(0, 0%, 30%);
@@ -239,7 +246,7 @@ tbody td.want-to-read {
 }
 
 tbody td.read {
-	background-color: #00663c;
+	background-color: var(--success);
 }
 
 tbody td.reading {
@@ -393,7 +400,7 @@ footer a {
 	.books-stats-table th {
 		padding: 0.25rem 0.75rem;
 	}
-	
+
 	:root {
 		--nav-height: 160px;
 	}

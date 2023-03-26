@@ -20,6 +20,7 @@ interface booksStateType {
 	query: string;
 	loading: boolean;
 	message: string;
+	error: string;
 }
 
 const initialState: booksStateType = {
@@ -27,6 +28,7 @@ const initialState: booksStateType = {
 	query: '',
 	loading: true,
 	message: '',
+	error: '',
 };
 
 export const getBooks = createAsyncThunk('books/getBooks', async (_: undefined, thunkAPI: any) => {
@@ -47,7 +49,7 @@ export const getBooks = createAsyncThunk('books/getBooks', async (_: undefined, 
 			return [...books].sort((a, b) => (a.index > b.index ? 1 : -1));
 		}
 	} catch (error) {
-		return thunkAPI.rejectWithValue('Error fetching the books.');
+		return thunkAPI.rejectWithValue('Error occurred fetching the books.');
 	}
 });
 
@@ -79,7 +81,7 @@ export const addBook = createAsyncThunk(
 				return newBook;
 			}
 		} catch (error) {
-			return thunkAPI.rejectWithValue('Error adding new book.');
+			return thunkAPI.rejectWithValue('Error occurred adding new book.');
 		}
 	}
 );
@@ -105,7 +107,7 @@ export const editBook = createAsyncThunk(
 				return formData;
 			}
 		} catch (error) {
-			return thunkAPI.rejectWithValue('Error editing the book.');
+			return thunkAPI.rejectWithValue('Error occurred editing the book.');
 		}
 	}
 );
@@ -128,7 +130,7 @@ export const deleteBook = createAsyncThunk(
 				return bookId;
 			}
 		} catch (error) {
-			return thunkAPI.rejectWithValue('Error deleting the book.');
+			return thunkAPI.rejectWithValue('Error occurred deleting the book.');
 		}
 	}
 );
@@ -140,10 +142,15 @@ export const booksSlice = createSlice({
 		setQuery: (state, action) => {
 			state.query = action.payload;
 		},
+		resetMessageAndError: (state) => {
+			state.message = '';
+			state.error = '';
+		},
 	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(getBooks.pending, (state) => {
+				state.error = '';
 				state.message = '';
 				state.loading = true;
 			})
@@ -153,9 +160,10 @@ export const booksSlice = createSlice({
 			})
 			.addCase(getBooks.rejected, (state, action) => {
 				state.loading = false;
-				state.message = action.payload as string;
+				state.error = action.payload as string;
 			})
 			.addCase(addBook.pending, (state) => {
+				state.error = '';
 				state.message = '';
 				state.loading = true;
 			})
@@ -166,9 +174,10 @@ export const booksSlice = createSlice({
 			})
 			.addCase(addBook.rejected, (state, action) => {
 				state.loading = false;
-				state.message = action.payload as string;
+				state.error = action.payload as string;
 			})
 			.addCase(editBook.pending, (state) => {
+				state.error = '';
 				state.message = '';
 				state.loading = true;
 			})
@@ -181,9 +190,10 @@ export const booksSlice = createSlice({
 			})
 			.addCase(editBook.rejected, (state, action) => {
 				state.loading = false;
-				state.message = action.payload as string;
+				state.error = action.payload as string;
 			})
 			.addCase(deleteBook.pending, (state) => {
+				state.error = '';
 				state.message = '';
 				state.loading = true;
 			})
@@ -194,10 +204,10 @@ export const booksSlice = createSlice({
 			})
 			.addCase(deleteBook.rejected, (state, action) => {
 				state.loading = false;
-				state.message = action.payload as string;
+				state.error = action.payload as string;
 			});
 	},
 });
 
-export const { setQuery } = booksSlice.actions;
+export const { setQuery, resetMessageAndError } = booksSlice.actions;
 export default booksSlice.reducer;

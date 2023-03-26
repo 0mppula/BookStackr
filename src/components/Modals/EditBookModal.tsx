@@ -169,7 +169,9 @@ const EditBookModal: FC<EditBookModalProps> = ({
 	};
 
 	const handleDelete = () => {
-		const confirmation = window.confirm('Are you sure you want to delete this book?');
+		const confirmation = window.confirm(
+			`Are you sure you want to delete "${book.title}" from you list?`
+		);
 
 		if (confirmation == true) {
 			dispatch(deleteBook(book.id));

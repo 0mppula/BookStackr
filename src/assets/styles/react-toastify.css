@@ -1,0 +1,9 @@
+:root {
+	/* Toast styles */
+	--toastify-color-light: var(--dark-alt-light) !important;
+	--toastify-text-color-light: var(--light) !important;
+	--toastify-icon-color-success: var(--success-light) !important;
+	--toastify-icon-color-error: var(--primary-light) !important;
+	--toastify-color-progress-success: var(--success-light) !important;
+	--toastify-color-progress-error: var(--primary-light) !important;
+}

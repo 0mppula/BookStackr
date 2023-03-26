@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 
 import Books from './Pages/Books/Books';
 import Stats from './Pages/Stats/Stats';
@@ -14,14 +15,14 @@ import { RootState } from './app/store';
 import Loader from './components/Loader/Loader';
 import { getBooks } from './features/books/slice';
 import { selectAuthState } from './features/auth/selectors';
-import { selectbooksLoadingState } from './features/books/selectors';
+import { selectBooksLoadingState } from './features/books/selectors';
 
 const App: FC = () => {
 	useScrollToTopOnNavigaton();
 	const [userInitialized, setUserInitialized] = useState(false);
 
 	const { user, loading } = useSelector((state: RootState) => selectAuthState(state));
-	const booksLoading = useSelector((state: RootState) => selectbooksLoadingState(state));
+	const booksLoading = useSelector((state: RootState) => selectBooksLoadingState(state));
 
 	const dispatch = useDispatch<any>();
 
@@ -56,7 +57,6 @@ const App: FC = () => {
 			{(loading || booksLoading) && <Loader />}
 
 			<Nav />
-
 			<div className="app-container">
 				<Routes>
 					<Route path="/books" element={<Books />} />
@@ -68,6 +68,13 @@ const App: FC = () => {
 			</div>
 
 			<Footer />
+
+			<ToastContainer
+				limit={3}
+				autoClose={3000}
+				pauseOnFocusLoss={false}
+				// closeButton={<ToastCloseButton />}
+			/>
 		</>
 	);
 };

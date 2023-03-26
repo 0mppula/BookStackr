@@ -15,10 +15,19 @@ export interface categoryCountDataType {
 export const booksStateSelector = (state: RootState) => state.books;
 export const booksSelector = (state: RootState) => state.books.books;
 const booksLoadingSelector = (state: RootState) => state.books.loading;
+const booksMessageSelector = (state: RootState) => state.books.message;
+const booksErrorSelector = (state: RootState) => state.books.error;
 
-export const selectbooksLoadingState = createSelector([booksLoadingSelector], (loadingState) => {
+export const selectBooksLoadingState = createSelector([booksLoadingSelector], (loadingState) => {
 	return loadingState;
 });
+
+export const selectBooksMessageAndError = createSelector(
+	[booksMessageSelector, booksErrorSelector],
+	(message, error) => {
+		return { message, error };
+	}
+);
 
 export const selectQueryFilteredBooks = createSelector([booksStateSelector], (booksState) => {
 	const { books, query } = booksState;
