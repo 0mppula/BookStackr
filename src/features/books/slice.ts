@@ -170,7 +170,7 @@ export const booksSlice = createSlice({
 			.addCase(addBook.fulfilled, (state, action) => {
 				state.loading = false;
 				state.books = [...state.books, action.payload];
-				state.message = 'Book added';
+				state.message = 'Book added.';
 			})
 			.addCase(addBook.rejected, (state, action) => {
 				state.loading = false;
@@ -186,7 +186,7 @@ export const booksSlice = createSlice({
 
 				state.loading = false;
 				state.books = [...updatedBooks, action.payload].sort((a, b) => a.index - b.index);
-				state.message = 'Book updated';
+				state.message = 'Book updated.';
 			})
 			.addCase(editBook.rejected, (state, action) => {
 				state.loading = false;
@@ -200,7 +200,7 @@ export const booksSlice = createSlice({
 			.addCase(deleteBook.fulfilled, (state, action) => {
 				state.loading = false;
 				state.books = [...state.books].filter((book) => book.id !== action.payload);
-				state.message = 'Book deleted';
+				state.message = 'Book deleted.';
 			})
 			.addCase(deleteBook.rejected, (state, action) => {
 				state.loading = false;

@@ -3,6 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import { signInWithPopup, signOut } from 'firebase/auth';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import { RootState } from '../../app/store';
 import { googleProvider, auth } from '../../config/firebase';
@@ -35,7 +36,8 @@ const Nav: FC = () => {
 	const handleSignIn = async () => {
 		dispatch(setLoading(true));
 		try {
-			await signInWithPopup(auth, googleProvider);
+			let { user } = await signInWithPopup(auth, googleProvider);
+			toast.success(`Welcome, ${user.displayName}!`);
 		} catch (error) {
 			console.log(error);
 		}
@@ -46,6 +48,7 @@ const Nav: FC = () => {
 		dispatch(setLoading(true));
 		try {
 			await signOut(auth);
+			toast.success('Signed out.');
 		} catch (error) {
 			console.log(error);
 		}
