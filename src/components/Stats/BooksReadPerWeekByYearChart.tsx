@@ -75,12 +75,7 @@ const BooksReadPerWeekByYearChart: FC<BooksReadPerWeekByYearChartType> = ({ char
 				},
 			},
 			legend: {
-				labels: {
-					color: cssVar('--light'),
-					font: {
-						weight: '200',
-					},
-				},
+				display: false,
 			},
 		},
 		scales: {
