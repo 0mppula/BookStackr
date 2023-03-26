@@ -1,4 +1,4 @@
-:root {
+.Toastify {
 	/* Toast styles */
 	--toastify-color-light: var(--dark-alt-light) !important;
 	--toastify-text-color-light: var(--light) !important;
