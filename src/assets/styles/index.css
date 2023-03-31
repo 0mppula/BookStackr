@@ -298,7 +298,6 @@ table th.id {
 	/* edit */
 	min-width: 80px !important;
 	width: 80px !important;
-	pointer-events: none;
 }
 
 /* Stats page table styles */

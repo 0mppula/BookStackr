@@ -53,6 +53,7 @@ const BooksTable: FC = () => {
 						</button>
 					</>
 				),
+				disableSortBy: true,
 			},
 		],
 		[books]
@@ -67,6 +68,8 @@ const BooksTable: FC = () => {
 		{
 			columns,
 			data,
+			// @ts-ignore
+			autoResetSortBy: false,
 		},
 		useSortBy
 	);
@@ -94,13 +97,7 @@ const BooksTable: FC = () => {
 									>
 										{column.render('Header')}
 
-										<span>
-											{column.isSorted
-												? column.isSortedDesc
-													? ' 🔽'
-													: ' 🔼'
-												: ''}
-										</span>
+										{column.isSorted && (column.isSortedDesc ? ' 🔽' : ' 🔼')}
 									</th>
 								))}
 							</tr>
@@ -108,7 +105,7 @@ const BooksTable: FC = () => {
 					</thead>
 
 					<tbody {...getTableBodyProps()}>
-						{rows.map((row, i) => {
+						{rows.map((row) => {
 							prepareRow(row);
 							return (
 								<tr {...row.getRowProps()}>
