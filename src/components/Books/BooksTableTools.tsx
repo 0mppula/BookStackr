@@ -55,17 +55,17 @@ const BooksTableTools: FC = () => {
 
 				<div className="filters">
 					<CustomCheckbox
-						label="Reading"
-						name="reading"
-						onChange={(e) => handleStatusFilter(e)}
-						checked={statusFilters.some((filter) => filter === 'reading')}
-					/>
-
-					<CustomCheckbox
 						label="Read"
 						name="read"
 						onChange={(e) => handleStatusFilter(e)}
 						checked={statusFilters.some((filter) => filter === 'read')}
+					/>
+
+					<CustomCheckbox
+						label="Reading"
+						name="reading"
+						onChange={(e) => handleStatusFilter(e)}
+						checked={statusFilters.some((filter) => filter === 'reading')}
 					/>
 
 					<CustomCheckbox
