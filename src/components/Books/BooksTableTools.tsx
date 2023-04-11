@@ -1,13 +1,19 @@
 import { FC, useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { setQuery } from '../../features/books/slice';
+import { setQuery, setStatusFilters } from '../../features/books/slice';
 import AddBookModal from '../Modals/AddBookModal';
 import { FaPlus } from 'react-icons/fa';
+import { selectStatusFilters } from '../../features/books/selectors';
+import { RootState } from '../../app/store';
+import { bookStatusType } from '../../assets/data/books';
+import CustomCheckbox from './CustomCheckbox';
 
 const BooksTableTools: FC = () => {
 	const [addModalOpen, setAddModalOpen] = useState<boolean>(false);
 	const [internalQuery, setInternalQuery] = useState('');
+
+	const statusFilters = useSelector((state: RootState) => selectStatusFilters(state));
 
 	const dispatch = useDispatch();
 
@@ -23,6 +29,16 @@ const BooksTableTools: FC = () => {
 		setInternalQuery(e.target.value);
 	};
 
+	const handleStatusFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
+		let filterName = e.target.name as bookStatusType;
+		let toggled = statusFilters.includes(filterName);
+		let newFilters = toggled
+			? [...statusFilters].filter((f) => f !== filterName)
+			: [...statusFilters, filterName];
+
+		dispatch(setStatusFilters(newFilters));
+	};
+
 	return (
 		<>
 			<AddBookModal modalOpen={addModalOpen} setModalOpen={setAddModalOpen} />
@@ -36,7 +52,31 @@ const BooksTableTools: FC = () => {
 						<FaPlus />
 					</button>
 				</div>
-				<div>
+
+				<div className="filters">
+					<CustomCheckbox
+						label="Reading"
+						name="reading"
+						onChange={(e) => handleStatusFilter(e)}
+						checked={statusFilters.some((filter) => filter === 'reading')}
+					/>
+
+					<CustomCheckbox
+						label="Read"
+						name="read"
+						onChange={(e) => handleStatusFilter(e)}
+						checked={statusFilters.some((filter) => filter === 'read')}
+					/>
+
+					<CustomCheckbox
+						label="Want to read"
+						name="want to read"
+						onChange={(e) => handleStatusFilter(e)}
+						checked={statusFilters.some((filter) => filter === 'want to read')}
+					/>
+				</div>
+
+				<div className="query">
 					<input
 						type="search"
 						placeholder="Search by title or author..."

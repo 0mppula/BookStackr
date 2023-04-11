@@ -30,15 +30,22 @@ export const selectBooksMessageAndError = createSelector(
 );
 
 export const selectQueryFilteredBooks = createSelector([booksStateSelector], (booksState) => {
-	const { books, query } = booksState;
+	const { books, query, statusFilters } = booksState;
 
 	const filteredBooks = books?.filter(
 		(book) =>
-			book.author.toLowerCase().includes(query.toLowerCase()) ||
-			book.title.toLowerCase().includes(query.toLowerCase())
+			(book.author.toLowerCase().includes(query.toLowerCase()) ||
+				book.title.toLowerCase().includes(query.toLowerCase())) &&
+			statusFilters.some((status) => status === book.status)
 	);
 
 	return filteredBooks;
+});
+
+export const selectStatusFilters = createSelector([booksStateSelector], (booksState) => {
+	const { statusFilters } = booksState;
+
+	return statusFilters;
 });
 
 export const selectBookById = createSelector(

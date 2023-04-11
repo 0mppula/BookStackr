@@ -53,7 +53,6 @@ nav {
 	justify-content: space-between;
 	margin-bottom: 2rem;
 	user-select: none;
-	transition: 0.15s;
 	background: hsl(240, 21%, 12%);
 	transition: 0.3s ease;
 	background-size: 100% auto;
@@ -201,7 +200,69 @@ input {
 
 input:focus {
 	outline: solid 2px var(--light);
-	/* outline: none; */
+}
+
+/* Create a custom checkbox */
+/* Customize the label (the container) */
+.container {
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 24px;
+	width: 24px;
+	background-color: #eee;
+}
+
+.container input {
+	display: none;
+}
+
+.container input ~ .checkmark {
+	border-radius: 6px;
+	background-color: var(--dark-alt);
+	transition: 0.15s ease;
+}
+
+.container:hover input ~ .checkmark {
+	background-color: var(--dark-alt-light);
+}
+
+.container input:checked ~ .checkmark {
+	background-color: var(--dark-alt-light);
+}
+
+.checkmark:after {
+	content: '';
+	position: absolute;
+	display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+	display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+	left: 9px;
+	top: 5px;
+	width: 5px;
+	height: 10px;
+	border: solid var(--light);
+	border-width: 0 3px 3px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
 }
 
 .table-container {

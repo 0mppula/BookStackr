@@ -10,6 +10,8 @@ export interface bookType {
 	status: string;
 }
 
+export type bookStatusType = 'reading' | 'want to read' | 'read';
+
 export const books: bookType[] = [
 	{
 		id: 'fabzarhp1uguccf8hshc',

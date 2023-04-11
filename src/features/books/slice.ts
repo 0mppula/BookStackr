@@ -12,12 +12,13 @@ import {
 	doc,
 	deleteDoc,
 } from 'firebase/firestore';
-import { books, bookType } from '../../assets/data/books';
+import { books, bookStatusType, bookType } from '../../assets/data/books';
 import { addBookReqBodyType, editBookReqBodyType } from '../../components/FormComponents/FormTypes';
 
 interface booksStateType {
 	books: bookType[];
 	query: string;
+	statusFilters: bookStatusType[];
 	loading: boolean;
 	message: string;
 	error: string;
@@ -26,6 +27,7 @@ interface booksStateType {
 const initialState: booksStateType = {
 	books: [],
 	query: '',
+	statusFilters: ['read', 'want to read', 'reading'],
 	loading: true,
 	message: '',
 	error: '',
@@ -142,6 +144,9 @@ export const booksSlice = createSlice({
 		setQuery: (state, action) => {
 			state.query = action.payload;
 		},
+		setStatusFilters: (state, action) => {
+			state.statusFilters = action.payload;
+		},
 		resetMessageAndError: (state) => {
 			state.message = '';
 			state.error = '';
@@ -209,5 +214,5 @@ export const booksSlice = createSlice({
 	},
 });
 
-export const { setQuery, resetMessageAndError } = booksSlice.actions;
+export const { setQuery, resetMessageAndError, setStatusFilters } = booksSlice.actions;
 export default booksSlice.reducer;
