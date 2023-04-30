@@ -492,8 +492,18 @@ footer a {
 		gap: 0.75rem;
 	}
 
+	.paginator input[type='number'],
+	.paginator span {
+		width: 100%;
+	}
+
+	.paginator span {
+		min-width: 186px;
+	}
+
 	.paginator button {
 		order: 1;
+		width: calc(25% - (0.75rem * (3 / 4)));
 	}
 
 	.paginator div {
