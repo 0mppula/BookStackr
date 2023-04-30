@@ -185,7 +185,7 @@ const BooksTable: FC = () => {
 
 				<div>
 					<span>
-						Page {pageIndex + 1} / {pageOptions.length} &nbsp;|&nbsp; Go to page:
+						Page {pageIndex + 1} / {pageOptions.length | 1} &nbsp;|&nbsp; Go to page:
 					</span>
 					<input
 						type="number"
