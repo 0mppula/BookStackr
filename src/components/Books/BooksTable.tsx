@@ -1,7 +1,14 @@
 import { FC, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Column, useTable, useSortBy, usePagination } from 'react-table';
-import { FaPen, FaChevronRight, FaChevronLeft } from 'react-icons/fa';
+import { FaPen } from 'react-icons/fa';
+
+import {
+	HiOutlineChevronDoubleRight,
+	HiOutlineChevronDoubleLeft,
+	HiOutlineChevronRight,
+	HiOutlineChevronLeft,
+} from 'react-icons/hi2';
 
 import { RootState } from '../../app/store';
 import { selectQueryFilteredBooks } from '../../features/books/selectors';
@@ -80,6 +87,10 @@ const BooksTable: FC = () => {
 		canPreviousPage,
 		// @ts-ignore
 		pageOptions,
+		// @ts-ignore
+		gotoPage,
+		// @ts-ignore
+		pageCount,
 		state,
 		prepareRow,
 	} = useTable(
@@ -88,13 +99,15 @@ const BooksTable: FC = () => {
 			data,
 			// @ts-ignore
 			autoResetSortBy: false,
+			// @ts-ignore
+			initialState: { pageSize: 25 },
 		},
 		useSortBy,
 		usePagination
 	);
 
 	// @ts-ignore
-	const { pageIndex } = state;
+	const { pageIndex, pageSize } = state;
 
 	return (
 		<>
@@ -156,18 +169,46 @@ const BooksTable: FC = () => {
 			<div className="paginator">
 				<button
 					className="btn btn-icon"
+					onClick={() => gotoPage(0)}
+					disabled={!canPreviousPage}
+				>
+					<HiOutlineChevronDoubleLeft />
+				</button>
+
+				<button
+					className="btn btn-icon"
 					onClick={() => previousPage()}
 					disabled={!canPreviousPage}
 				>
-					<FaChevronLeft />
+					<HiOutlineChevronLeft />
 				</button>
 
-				<span>
-					Page {pageIndex + 1} / {pageOptions.length}
-				</span>
+				<div>
+					<span>
+						Page {pageIndex + 1} / {pageOptions.length} &nbsp;|&nbsp; Go to page:
+					</span>
+					<input
+						type="number"
+						min={1}
+						max={+pageOptions.length}
+						defaultValue={pageIndex + 1}
+						onChange={(e) => {
+							const pageN = e.target.value ? Number(e.target.value) - 1 : 0;
+							gotoPage(pageN);
+						}}
+					/>
+				</div>
 
 				<button className="btn btn-icon" onClick={() => nextPage()} disabled={!canNextPage}>
-					<FaChevronRight />
+					<HiOutlineChevronRight />
+				</button>
+
+				<button
+					className="btn btn-icon"
+					onClick={() => gotoPage(pageCount - 1)}
+					disabled={!canNextPage}
+				>
+					<HiOutlineChevronDoubleRight />
 				</button>
 			</div>
 		</>
