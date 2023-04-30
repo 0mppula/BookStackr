@@ -1,6 +1,6 @@
 import { FC, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Column, useTable, useSortBy } from 'react-table';
+import { Column, useTable, useSortBy, usePagination } from 'react-table';
 import { FaPen } from 'react-icons/fa';
 
 import { RootState } from '../../app/store';
@@ -64,15 +64,37 @@ const BooksTable: FC = () => {
 		setEditBookId(id);
 	};
 
-	const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable(
+	const {
+		getTableProps,
+		getTableBodyProps,
+		headerGroups,
+		// @ts-ignore
+		page,
+		// @ts-ignore
+		nextPage,
+		// @ts-ignore
+		previousPage,
+		// @ts-ignore
+		canNextPage,
+		// @ts-ignore
+		canPreviousPage,
+		// @ts-ignore
+		pageOptions,
+		state,
+		prepareRow,
+	} = useTable(
 		{
 			columns,
 			data,
 			// @ts-ignore
 			autoResetSortBy: false,
 		},
-		useSortBy
+		useSortBy,
+		usePagination
 	);
+
+	// @ts-ignore
+	const { pageIndex } = state;
 
 	return (
 		<>
@@ -105,7 +127,7 @@ const BooksTable: FC = () => {
 					</thead>
 
 					<tbody {...getTableBodyProps()}>
-						{rows.map((row) => {
+						{page.map((row: any) => {
 							prepareRow(row);
 							return (
 								<tr {...row.getRowProps()}>
@@ -129,6 +151,18 @@ const BooksTable: FC = () => {
 						})}
 					</tbody>
 				</table>
+			</div>
+
+			<div className="paginator">
+				<button onClick={() => previousPage()} disabled={!canPreviousPage}>
+					Prev
+				</button>
+
+				<span>Page {pageIndex + 1} / {pageOptions.length}</span>
+
+				<button onClick={() => nextPage()} disabled={!canNextPage}>
+					Next
+				</button>
 			</div>
 		</>
 	);
