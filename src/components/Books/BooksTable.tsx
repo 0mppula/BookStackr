@@ -1,7 +1,7 @@
 import { FC, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Column, useTable, useSortBy, usePagination } from 'react-table';
-import { FaPen } from 'react-icons/fa';
+import { FaPen, FaChevronRight, FaChevronLeft } from 'react-icons/fa';
 
 import { RootState } from '../../app/store';
 import { selectQueryFilteredBooks } from '../../features/books/selectors';
@@ -154,14 +154,20 @@ const BooksTable: FC = () => {
 			</div>
 
 			<div className="paginator">
-				<button onClick={() => previousPage()} disabled={!canPreviousPage}>
-					Prev
+				<button
+					className="btn btn-icon"
+					onClick={() => previousPage()}
+					disabled={!canPreviousPage}
+				>
+					<FaChevronLeft />
 				</button>
 
-				<span>Page {pageIndex + 1} / {pageOptions.length}</span>
+				<span>
+					Page {pageIndex + 1} / {pageOptions.length}
+				</span>
 
-				<button onClick={() => nextPage()} disabled={!canNextPage}>
-					Next
+				<button className="btn btn-icon" onClick={() => nextPage()} disabled={!canNextPage}>
+					<FaChevronRight />
 				</button>
 			</div>
 		</>

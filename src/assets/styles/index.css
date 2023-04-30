@@ -287,6 +287,10 @@ input:focus {
 	gap: 1rem;
 }
 
+.paginator button {
+	padding: 0.5rem;
+}
+
 table {
 	width: 100%;
 	text-align: left;
