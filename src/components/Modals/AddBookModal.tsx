@@ -14,6 +14,8 @@ import { addBookReqBodyType, bookFormDataType, selectItemType } from '../FormCom
 import SelectInput from '../FormComponents/SelectInput';
 import TextInput from '../FormComponents/TextInput';
 
+const sortedBookCategories = [...bookCategories].sort((a, b) => (a.label > b.label ? 1 : -1));
+
 interface AddBookModalProps {
 	modalOpen: boolean;
 	setModalOpen: Function;
@@ -164,7 +166,7 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 							value={category?.value}
 							name="category"
 							handleChange={handleSelectMultiChange}
-							options={bookCategories}
+							options={sortedBookCategories}
 							placeholder="Select book category..."
 							isMulti
 							isSearchable

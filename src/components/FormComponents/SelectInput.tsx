@@ -11,7 +11,6 @@ interface SelectInputProps {
 	handleChange: Function;
 	options: selectItemType[];
 	isMulti?: boolean;
-	valueSortOrder?: 'asc' | 'desc';
 	placeholder: string;
 	required?: boolean;
 	isSearchable?: boolean;
@@ -30,7 +29,6 @@ const SelectInput: FC<SelectInputProps> = ({
 	required,
 	isSearchable = false,
 	error,
-	valueSortOrder = 'asc',
 	errorPlaceholder = true,
 }) => {
 	const inputRef = useRef<any>(null);
@@ -50,16 +48,7 @@ const SelectInput: FC<SelectInputProps> = ({
 				ref={inputRef}
 				value={value}
 				onChange={(e) => handleChange(e as any, name)}
-				options={options.sort((a, b) => {
-					// Place default value to the top.
-					if (a.value === null || b.value === null) {
-						return -1;
-					} else if (valueSortOrder === 'asc') {
-						return a.label > b.label ? 1 : -1;
-					} else {
-						return a.label < b.label ? 1 : -1;
-					}
-				})}
+				options={options}
 				theme={customTheme}
 				styles={customStyles}
 				placeholder={placeholder}
