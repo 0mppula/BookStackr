@@ -89,7 +89,6 @@ const BooksTableTools: FC = () => {
 						handleChange={handleSelectChange}
 						options={yearReadFilters}
 						placeholder="Select books by year..."
-						isSearchable
 						errorPlaceholder={false}
 					/>
 				</div>
