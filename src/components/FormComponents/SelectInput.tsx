@@ -5,16 +5,18 @@ import { customTheme, customStyles } from '../../helpers/reactSelectStyles';
 import { selectItemType } from './FormTypes';
 
 interface SelectInputProps {
-	label: string;
+	label?: string;
 	value: selectItemType[] | selectItemType | null;
 	name: string;
 	handleChange: Function;
 	options: selectItemType[];
 	isMulti?: boolean;
+	valueSortOrder?: 'asc' | 'desc';
 	placeholder: string;
 	required?: boolean;
 	isSearchable?: boolean;
 	error?: string;
+	errorPlaceholder?: boolean;
 }
 
 const SelectInput: FC<SelectInputProps> = ({
@@ -28,14 +30,18 @@ const SelectInput: FC<SelectInputProps> = ({
 	required,
 	isSearchable = false,
 	error,
+	valueSortOrder = 'asc',
+	errorPlaceholder = true,
 }) => {
 	const inputRef = useRef<any>(null);
 	return (
 		<div className="input-group">
-			<label onClick={() => inputRef?.current?.focus()}>
-				{label}
-				{required && <span>*</span>}
-			</label>
+			{label && (
+				<label onClick={() => inputRef?.current?.focus()}>
+					{label}
+					{required && <span>*</span>}
+				</label>
+			)}
 			<ReactSelect
 				className="react-select-container"
 				classNamePrefix="react-select"
@@ -44,7 +50,16 @@ const SelectInput: FC<SelectInputProps> = ({
 				ref={inputRef}
 				value={value}
 				onChange={(e) => handleChange(e as any, name)}
-				options={options.sort((a, b) => (a.label > b.label ? 1 : -1))}
+				options={options.sort((a, b) => {
+					// Place default value to the top.
+					if (a.value === null || b.value === null) {
+						return -1;
+					} else if (valueSortOrder === 'asc') {
+						return a.label > b.label ? 1 : -1;
+					} else {
+						return a.label < b.label ? 1 : -1;
+					}
+				})}
 				theme={customTheme}
 				styles={customStyles}
 				placeholder={placeholder}
@@ -59,7 +74,7 @@ const SelectInput: FC<SelectInputProps> = ({
 				isSearchable={isSearchable}
 			/>
 
-			<div className="error">{error}</div>
+			{errorPlaceholder && <div className="error">{error}</div>}
 		</div>
 	);
 };

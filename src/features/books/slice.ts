@@ -13,12 +13,17 @@ import {
 	deleteDoc,
 } from 'firebase/firestore';
 import { books, bookStatusType, bookType } from '../../assets/data/books';
-import { addBookReqBodyType, editBookReqBodyType } from '../../components/FormComponents/FormTypes';
+import {
+	addBookReqBodyType,
+	editBookReqBodyType,
+	selectItemType,
+} from '../../components/FormComponents/FormTypes';
 
 interface booksStateType {
 	books: bookType[];
 	query: string;
 	statusFilters: bookStatusType[];
+	yearReadFilter: selectItemType;
 	loading: boolean;
 	message: string;
 	error: string;
@@ -28,6 +33,7 @@ const initialState: booksStateType = {
 	books: [],
 	query: '',
 	statusFilters: ['read', 'want to read', 'reading'],
+	yearReadFilter: { label: 'Books from every year', value: null },
 	loading: true,
 	message: '',
 	error: '',
@@ -147,6 +153,9 @@ export const booksSlice = createSlice({
 		setStatusFilters: (state, action) => {
 			state.statusFilters = action.payload;
 		},
+		setYearReadFilter: (state, action) => {
+			state.yearReadFilter = action.payload;
+		},
 		resetMessageAndError: (state) => {
 			state.message = '';
 			state.error = '';
@@ -214,5 +223,6 @@ export const booksSlice = createSlice({
 	},
 });
 
-export const { setQuery, resetMessageAndError, setStatusFilters } = booksSlice.actions;
+export const { setQuery, resetMessageAndError, setStatusFilters, setYearReadFilter } =
+	booksSlice.actions;
 export default booksSlice.reducer;

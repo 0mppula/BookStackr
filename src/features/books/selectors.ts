@@ -1,5 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
+import { selectItemType } from '../../components/FormComponents/FormTypes';
 
 export interface tableRowDataType {
 	[key: string]: string | number;
@@ -30,22 +31,45 @@ export const selectBooksMessageAndError = createSelector(
 );
 
 export const selectQueryFilteredBooks = createSelector([booksStateSelector], (booksState) => {
-	const { books, query, statusFilters } = booksState;
+	const { books, query, statusFilters, yearReadFilter } = booksState;
 
-	const filteredBooks = books?.filter(
-		(book) =>
-			(book.author.toLowerCase().includes(query.toLowerCase()) ||
-				book.title.toLowerCase().includes(query.toLowerCase())) &&
-			statusFilters.some((status) => status === book.status)
-	);
+	const filteredBooks = books?.filter((book) => {
+		const queryMatchesAuthor = book.author.toLowerCase().includes(query.toLowerCase());
+		const queryMatchesTitle = book.title.toLowerCase().includes(query.toLowerCase());
+		const statusFilterMatchesBook = statusFilters.some((status) => status === book.status);
+		const yearReadFilterMatchesBook = yearReadFilter.value
+			? book.yearRead === yearReadFilter.value
+			: true;
+
+		return (
+			(queryMatchesAuthor || queryMatchesTitle) &&
+			statusFilterMatchesBook &&
+			yearReadFilterMatchesBook
+		);
+	});
 
 	return filteredBooks;
 });
 
-export const selectStatusFilters = createSelector([booksStateSelector], (booksState) => {
-	const { statusFilters } = booksState;
+export const selectBookFilters = createSelector([booksStateSelector], (booksState) => {
+	const { statusFilters, yearReadFilter } = booksState;
 
-	return statusFilters;
+	return { statusFilters, yearReadFilter };
+});
+
+export const selectYearReadFilters = createSelector([booksStateSelector], (booksState) => {
+	const { books } = booksState;
+	const filters: selectItemType[] = [{ label: 'Books from every year', value: null }];
+
+	books.forEach((book) => {
+		if (filters.some((filter) => filter.value === book.yearRead)) return;
+
+		filters.push({ label: `Books from ${book.yearRead}`, value: book.yearRead });
+	});
+
+	filters.sort((a, b) => a.value - b.value);
+
+	return filters;
 });
 
 export const selectBookById = createSelector(

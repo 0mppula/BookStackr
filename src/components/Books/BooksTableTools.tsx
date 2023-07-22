@@ -1,19 +1,24 @@
 import { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setQuery, setStatusFilters } from '../../features/books/slice';
+import { setQuery, setStatusFilters, setYearReadFilter } from '../../features/books/slice';
 import AddBookModal from '../Modals/AddBookModal';
 import { FaPlus } from 'react-icons/fa';
-import { selectStatusFilters } from '../../features/books/selectors';
+import { selectBookFilters, selectYearReadFilters } from '../../features/books/selectors';
 import { RootState } from '../../app/store';
 import { bookStatusType } from '../../assets/data/books';
 import CustomCheckbox from './CustomCheckbox';
+import SelectInput from '../FormComponents/SelectInput';
+import { selectItemType } from '../FormComponents/FormTypes';
 
 const BooksTableTools: FC = () => {
 	const [addModalOpen, setAddModalOpen] = useState<boolean>(false);
 	const [internalQuery, setInternalQuery] = useState('');
 
-	const statusFilters = useSelector((state: RootState) => selectStatusFilters(state));
+	const { statusFilters, yearReadFilter } = useSelector((state: RootState) =>
+		selectBookFilters(state)
+	);
+	const yearReadFilters = useSelector((state: RootState) => selectYearReadFilters(state));
 
 	const dispatch = useDispatch();
 
@@ -39,6 +44,10 @@ const BooksTableTools: FC = () => {
 		dispatch(setStatusFilters(newFilters));
 	};
 
+	const handleSelectChange = (e: selectItemType, field: string) => {
+		dispatch(setYearReadFilter(e));
+	};
+
 	return (
 		<>
 			<AddBookModal modalOpen={addModalOpen} setModalOpen={setAddModalOpen} />
@@ -47,9 +56,6 @@ const BooksTableTools: FC = () => {
 				<div>
 					<button className="btn-icon" onClick={() => setAddModalOpen(true)}>
 						<FaPlus /> Add Book
-					</button>
-					<button className="btn-icon" onClick={() => setAddModalOpen(true)}>
-						<FaPlus />
 					</button>
 				</div>
 
@@ -73,6 +79,18 @@ const BooksTableTools: FC = () => {
 						name="want to read"
 						onChange={(e) => handleStatusFilter(e)}
 						checked={statusFilters.some((filter) => filter === 'want to read')}
+					/>
+				</div>
+
+				<div className="year-filter">
+					<SelectInput
+						value={yearReadFilter}
+						name="yearReadFilter"
+						handleChange={handleSelectChange}
+						options={yearReadFilters}
+						placeholder="Select books by year..."
+						isSearchable
+						errorPlaceholder={false}
 					/>
 				</div>
 

@@ -2,7 +2,7 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	gap: 0.5rem 1rem;
+	gap: 0.75rem 1rem;
 	margin-bottom: 1rem;
 	width: 100%;
 }
@@ -16,10 +16,17 @@
 }
 
 .table-tools .query {
-	flex-grow: 1;
-	min-width: 292px;
-	max-width: 450px;
-	text-align: right;
+	flex: 1 1 calc(33% - (3rem));
+	min-width: 216px;
+}
+
+.table-tools .year-filter {
+	flex: 1 1 calc(20% - (3rem));
+	min-width: 216px;
+}
+
+.table-tools input:not(input[type='checkbox']) {
+	width: 100%;
 }
 
 .table-tools .filters {
@@ -27,40 +34,33 @@
 	display: flex;
 	align-items: center;
 	gap: 1rem;
+	min-height: 40px;
 	justify-content: flex-end;
-}
-
-.table-tools input:not(input[type='checkbox']) {
-	width: 100%;
 }
 
 .books-stats-table {
 	text-align: center;
 }
 
-@media only screen and (max-width: 864px) {
-	.table-tools .filters {
-		height: 40px;
-		width: 100%;
-		order: 2;
-		justify-content: flex-start;
+@media only screen and (max-width: 784px) {
+	.table-tools .year-filter {
+		flex-grow: 0;
 	}
 }
 
-@media only screen and (max-width: 480px) {
-	.table-tools button {
-		padding: 0.5rem 1rem;
+@media only screen and (max-width: 672px) {
+	.table-tools .query,
+	.table-tools .year-filter {
+		flex-basis: 100%;
+	}
+}
+
+@media only screen and (max-width: 512px) {
+	.table-tools > div:first-child {
+		flex-grow: 1;
 	}
 
-	.table-tools div button:nth-child(2) {
-		display: flex;
-	}
-
-	.table-tools div button:nth-child(1) {
-		display: none;
-	}
-
-	.table-tools .query {
-		min-width: unset !important;
+	.table-tools > div:first-child button {
+		width: 100%;
 	}
 }
