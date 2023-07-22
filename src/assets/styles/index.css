@@ -55,6 +55,7 @@ nav {
 	user-select: none;
 	background: hsl(240, 21%, 12%);
 	transition: 0.3s ease;
+	z-index: 50;
 	background-size: 100% auto;
 	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
