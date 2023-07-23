@@ -7,6 +7,16 @@
 	width: 100%;
 }
 
+.book-count {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 0.5rem;
+	margin-bottom: 0.5rem;
+	font-size: 1rem;
+}
+
 .table-tools button {
 	height: 100%;
 }
@@ -55,7 +65,7 @@
 	}
 }
 
-@media only screen and (max-width: 512px) {
+@media only screen and (max-width: 528px) {
 	.table-tools > div:first-child {
 		flex-grow: 1;
 	}

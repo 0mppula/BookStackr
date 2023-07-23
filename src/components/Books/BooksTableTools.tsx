@@ -3,8 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { setQuery, setStatusFilters, setYearReadFilter } from '../../features/books/slice';
 import AddBookModal from '../Modals/AddBookModal';
-import { FaPlus } from 'react-icons/fa';
-import { selectBookFilters, selectYearReadFilters } from '../../features/books/selectors';
+import { FaBook, FaPlus } from 'react-icons/fa';
+import {
+	selectBookFilters,
+	selectQueryFilteredBooks,
+	selectYearReadFilters,
+} from '../../features/books/selectors';
 import { RootState } from '../../app/store';
 import { bookStatusType } from '../../assets/data/books';
 import CustomCheckbox from './CustomCheckbox';
@@ -15,6 +19,7 @@ const BooksTableTools: FC = () => {
 	const [addModalOpen, setAddModalOpen] = useState<boolean>(false);
 	const [internalQuery, setInternalQuery] = useState('');
 
+	const books = useSelector((state: RootState) => selectQueryFilteredBooks(state));
 	const { statusFilters, yearReadFilter } = useSelector((state: RootState) =>
 		selectBookFilters(state)
 	);
@@ -51,6 +56,13 @@ const BooksTableTools: FC = () => {
 	return (
 		<>
 			<AddBookModal modalOpen={addModalOpen} setModalOpen={setAddModalOpen} />
+
+			<div
+				className="book-count"
+				title={`${books.length} ${books.length === 1 ? 'book' : 'books'}`}
+			>
+				{books.length} <FaBook style={{ fontSize: '90%' }} />
+			</div>
 
 			<div className="table-tools">
 				<div>
