@@ -280,6 +280,7 @@ const EditBookModal: FC<EditBookModalProps> = ({
 
 				<div className="modal-footer">
 					<button
+						type="button"
 						tabIndex={modalOpen ? 0 : -1}
 						className="btn btn-block btn-danger"
 						onClick={handleDelete}
