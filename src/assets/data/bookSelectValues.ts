@@ -38,6 +38,7 @@ export const bookCategories: selectItemType[] = [
 	{ value: 'fiction', label: 'Fiction' },
 	{ value: 'novel', label: 'Novel' },
 	{ value: 'crime', label: 'Crime' },
+	{ value: 'anthropology', label: 'Anthropology' },
 ];
 
 export const bookMediums: selectItemType[] = [
