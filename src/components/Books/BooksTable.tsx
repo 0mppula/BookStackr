@@ -11,7 +11,7 @@ import {
 } from 'react-icons/hi2';
 
 import { RootState } from '../../app/store';
-import { selectQueryFilteredBooks } from '../../features/books/selectors';
+import { selectBooksLoadingState, selectQueryFilteredBooks } from '../../features/books/selectors';
 import EditBookModal from '../Modals/EditBookModal';
 
 interface ColumnType {
@@ -30,6 +30,7 @@ const BooksTable: FC = () => {
 	const [editBookId, setEditBookId] = useState<null | string>(null);
 
 	const books = useSelector((state: RootState) => selectQueryFilteredBooks(state));
+	const booksLoading = useSelector((state: RootState) => selectBooksLoadingState(state));
 
 	const data: any = useMemo(() => books, [books]);
 	const columns: Column<ColumnType>[] = useMemo(
@@ -157,28 +158,36 @@ const BooksTable: FC = () => {
 					</thead>
 
 					<tbody {...getTableBodyProps()}>
-						{page.map((row: any) => {
-							prepareRow(row);
-							return (
-								<tr {...row.getRowProps()}>
-									{row.cells.map((cell: any) => (
-										<td
-											{...cell.getCellProps({
-												className:
-													cell?.column?.id === 'status'
-														? `${cell?.value?.replaceAll(' ', '-')} ${
-																cell?.column?.id
-														  }`
-														: cell?.column?.id,
-											})}
-											key={cell?.column?.id}
-										>
-											{cell.render('Cell')}
-										</td>
-									))}
-								</tr>
-							);
-						})}
+						{(page.length > 0 &&
+							page.map((row: any) => {
+								prepareRow(row);
+								return (
+									<tr {...row.getRowProps()}>
+										{row.cells.map((cell: any) => (
+											<td
+												{...cell.getCellProps({
+													className:
+														cell?.column?.id === 'status'
+															? `${cell?.value?.replaceAll(
+																	' ',
+																	'-'
+															  )} ${cell?.column?.id}`
+															: cell?.column?.id,
+												})}
+												key={cell?.column?.id}
+											>
+												{cell.render('Cell')}
+											</td>
+										))}
+									</tr>
+								);
+							})) || (
+							<tr>
+								<td className="empty-row" colSpan={8}>
+									{booksLoading ? 'Loading books...' : 'No books found 📕'}
+								</td>
+							</tr>
+						)}
 					</tbody>
 				</table>
 			</div>

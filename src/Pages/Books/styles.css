@@ -63,6 +63,18 @@
 	text-decoration: underline dashed var(--primary);
 }
 
+.empty-row {
+	text-align: center;
+	padding: 0.25rem 1rem;
+	height: 50px;
+}
+
+@media only screen and (max-width: 1200px) {
+	.empty-row {
+		text-align: initial;
+	}
+}
+
 @media only screen and (max-width: 784px) {
 	.table-tools .year-filter {
 		flex-grow: 0;
