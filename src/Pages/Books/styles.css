@@ -52,6 +52,17 @@
 	text-align: center;
 }
 
+.table-book-category {
+	padding: 0;
+	position: relative;
+	text-decoration: underline;
+	transition: none;
+}
+
+.table-book-category:active {
+	text-decoration: underline dashed var(--primary);
+}
+
 @media only screen and (max-width: 784px) {
 	.table-tools .year-filter {
 		flex-grow: 0;

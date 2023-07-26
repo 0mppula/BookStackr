@@ -1,13 +1,13 @@
-import { FC, useMemo, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Column, useTable, useSortBy, usePagination } from 'react-table';
+import { FC, Fragment, useMemo, useState } from 'react';
 import { FaPen } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
+import { Column, usePagination, useSortBy, useTable } from 'react-table';
 
 import {
-	HiOutlineChevronDoubleRight,
 	HiOutlineChevronDoubleLeft,
-	HiOutlineChevronRight,
+	HiOutlineChevronDoubleRight,
 	HiOutlineChevronLeft,
+	HiOutlineChevronRight,
 } from 'react-icons/hi2';
 
 import { RootState } from '../../app/store';
@@ -44,7 +44,24 @@ const BooksTable: FC = () => {
 			{
 				Header: 'Category',
 				accessor: 'category',
-				Cell: ({ cell: { value: values } }: { cell: any }) => <>{values.join(', ')}</>,
+				Cell: ({ cell: { value: categories } }: { cell: any }) =>
+					categories.map((category: string, i: number) => (
+						<Fragment key={`category-${category}`}>
+							<a
+								className="table-book-category"
+								href={`https://www.goodreads.com/genres/${category.replaceAll(
+									' ',
+									'-'
+								)}`}
+								target="_blank"
+							>
+								{category}
+							</a>
+
+							{/* Ensure no trailing comma. */}
+							{i === categories?.length - 1 ? '' : ', '}
+						</Fragment>
+					)),
 			},
 			{ Header: 'Medium', accessor: 'readingMedium' },
 			{ Header: 'Year', accessor: 'yearRead' },
