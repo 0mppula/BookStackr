@@ -22,7 +22,9 @@ interface AddBookModalProps {
 }
 
 const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
-	const [formData, setFormData] = useState<bookFormDataType>(getInitialBookFormState);
+	const [formData, setFormData] = useState<bookFormDataType>(() =>
+		getInitialBookFormState(new Date().getFullYear())
+	);
 	const maxBookIndex = useSelector((state: RootState) => selectMaxBookIndex(state));
 
 	const outerModalRef = useRef<HTMLDivElement>(null);
@@ -53,7 +55,7 @@ const AddBookModal: FC<AddBookModalProps> = ({ modalOpen, setModalOpen }) => {
 
 			dispatch(addBook(bookData));
 			setModalOpen(false);
-			setFormData(getInitialBookFormState());
+			setFormData(() => getInitialBookFormState(new Date().getFullYear()));
 		}
 	};
 
