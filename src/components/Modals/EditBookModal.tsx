@@ -6,7 +6,7 @@ import { bookCategories, bookMediums, bookStatuses } from '../../assets/data/boo
 import { selectBookById } from '../../features/books/selectors';
 import { deleteBook, editBook } from '../../features/books/slice';
 import useCloseOnOverlayClickOrEsc from '../../hooks/useCloseOnOverlayClickOrEsc';
-import useFocusTrap from '../../hooks/useTrapFocues';
+import useFocusTrap from '../../hooks/useFocusTrap';
 import { getInitialBookFormState } from '../FormComponents/FormData';
 import FormGroup from '../FormComponents/FormGroup';
 import { bookFormDataType, editBookReqBodyType, selectItemType } from '../FormComponents/FormTypes';

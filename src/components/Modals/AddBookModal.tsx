@@ -7,7 +7,7 @@ import { bookCategories, bookMediums, bookStatuses } from '../../assets/data/boo
 import { addBook } from '../../features/books/slice';
 import { selectMaxBookIndex } from '../../features/books/selectors';
 import useCloseOnOverlayClickOrEsc from '../../hooks/useCloseOnOverlayClickOrEsc';
-import useFocusTrap from '../../hooks/useTrapFocues';
+import useFocusTrap from '../../hooks/useFocusTrap';
 import { getInitialBookFormState } from '../FormComponents/FormData';
 import FormGroup from '../FormComponents/FormGroup';
 import { addBookReqBodyType, bookFormDataType, selectItemType } from '../FormComponents/FormTypes';
