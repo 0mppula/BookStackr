@@ -1,7 +1,9 @@
 import { FC, useMemo } from 'react';
 import { Column, useSortBy, useTable } from 'react-table';
 
-import { tableRowDataType } from '../../features/books/selectors';
+import { selectBooksLoadingState, tableRowDataType } from '../../features/books/selectors';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../app/store';
 
 interface StatsTableType {
 	tableData: tableRowDataType[];
@@ -37,6 +39,7 @@ const StatsTable: FC<StatsTableType> = ({ tableData }) => {
 		[tableData]
 	);
 
+	const booksLoading = useSelector((state: RootState) => selectBooksLoadingState(state));
 	const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable(
 		{
 			columns,
@@ -74,21 +77,28 @@ const StatsTable: FC<StatsTableType> = ({ tableData }) => {
 				</thead>
 
 				<tbody {...getTableBodyProps()}>
-					{rows.map((row, i) => {
-						prepareRow(row);
-						return (
-							<tr {...row.getRowProps()}>
-								{row.cells.map((cell: any) => (
-									<td
-										{...cell.getCellProps({ className: cell?.column?.id })}
-										key={cell?.column?.id}
-									>
-										{cell.render('Cell')}
-									</td>
-								))}
-							</tr>
-						);
-					})}
+					{(rows.length > 0 &&
+						rows.map((row) => {
+							prepareRow(row);
+							return (
+								<tr {...row.getRowProps()}>
+									{row.cells.map((cell: any) => (
+										<td
+											{...cell.getCellProps({ className: cell?.column?.id })}
+											key={cell?.column?.id}
+										>
+											{cell.render('Cell')}
+										</td>
+									))}
+								</tr>
+							);
+						})) || (
+						<tr>
+							<td className="empty-row" colSpan={9}>
+								{booksLoading ? 'Loading books...' : 'No books found 📕'}
+							</td>
+						</tr>
+					)}
 				</tbody>
 			</table>
 		</div>

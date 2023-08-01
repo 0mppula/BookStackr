@@ -54,12 +54,12 @@
 
 .table-book-category {
 	padding: 0;
-	position: relative;
 	text-decoration: underline;
 	transition: none;
 }
 
-.table-book-category:active {
+.table-book-category:active,
+footer a:active {
 	text-decoration: underline dashed var(--primary);
 }
 

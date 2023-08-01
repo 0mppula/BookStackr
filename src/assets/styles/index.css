@@ -460,6 +460,7 @@ footer {
 footer a {
 	margin-left: 0.25rem;
 	text-decoration: underline;
+	transition: none;
 }
 
 @media only screen and (max-width: 448px) {
