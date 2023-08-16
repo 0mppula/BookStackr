@@ -1,37 +1,31 @@
-import { FC } from 'react';
+import { Chart as ChartJS } from 'chart.js';
+import { useMemo } from 'react';
+import { Bar } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
-import {
-	Chart as ChartJS,
-	CategoryScale,
-	LinearScale,
-	BarElement,
-	Title,
-	Tooltip,
-	Legend,
-} from 'chart.js';
-import { Bar } from 'react-chartjs-2';
-
 import {
 	selectReadBooksCategoriesChartData,
 	selectReadBooksCount,
 } from '../../features/books/selectors';
 import { cssVar } from '../../helpers/getCssVariable';
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+interface Top10CategoriesChartProps {}
 
-const ReadBookCategoriesChart: FC = () => {
+const Top10CategoriesChart = ({}: Top10CategoriesChartProps) => {
 	const booksReadCount = useSelector((state: RootState) => selectReadBooksCount(state));
 	const { categories, categoryCounts } = useSelector((state: RootState) =>
 		selectReadBooksCategoriesChartData(state)
 	);
 
+	const top10Categories = useMemo(() => categories.slice(0, 10), [categories]);
+	const top10CategoryCounts = useMemo(() => categoryCounts.slice(0, 10), [categoryCounts]);
+
 	ChartJS.defaults.font.family = cssVar('--font-main');
 
 	const options = {
 		responsive: true,
-		maintainAspectRatio: false,
 		indexAxis: 'y' as const,
+		maintainAspectRatio: false,
 		plugins: {
 			tooltip: {
 				titleFont: {
@@ -66,7 +60,7 @@ const ReadBookCategoriesChart: FC = () => {
 			},
 			title: {
 				display: true,
-				text: 'Read Categories',
+				text: 'Top 10 Read Categories',
 				color: cssVar('--light'),
 				font: {
 					weight: '400',
@@ -100,24 +94,24 @@ const ReadBookCategoriesChart: FC = () => {
 		},
 	};
 
-	const labels = categories;
+	const labels = top10Categories;
 
 	const data = {
 		labels,
 		datasets: [
 			{
 				label: 'Category',
-				data: categoryCounts.map((count) => count),
+				data: top10CategoryCounts.map((count) => count),
 				backgroundColor: `${cssVar('--light')}`,
 			},
 		],
 	};
 
 	return (
-		<div className="chart-container categories">
+		<div className="chart-container">
 			<Bar options={options} data={data as any} />
 		</div>
 	);
 };
 
-export default ReadBookCategoriesChart;
+export default Top10CategoriesChart;
