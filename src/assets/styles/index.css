@@ -458,7 +458,7 @@ footer {
 }
 
 footer a {
-	margin-left: 0.25rem;
+	padding: 0;
 	text-decoration: underline;
 	transition: none;
 }
