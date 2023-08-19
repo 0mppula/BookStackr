@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaCode, FaEnvelope } from 'react-icons/fa';
 
 const Footer: FC = () => {
 	return (
@@ -15,6 +15,15 @@ const Footer: FC = () => {
 				</a>
 
 				<a
+					href="https://www.linkedin.com/in/omarkraidie/"
+					target="_blank"
+					rel="noreferrer"
+					aria-label="Linkedin"
+				>
+					<FaLinkedin className="footer-icon" />
+				</a>
+
+				<a
 					href="mailto:devomarkraidie@gmail.com"
 					target="_blank"
 					rel="noreferrer"
@@ -24,20 +33,12 @@ const Footer: FC = () => {
 				</a>
 
 				<a
-					href="https://www.linkedin.com/in/omarkraidie/"
+					href="https://github.com/0mppula/BookStackr"
 					target="_blank"
 					rel="noreferrer"
-					aria-label="Linkedin"
+					aria-label="Source code"
 				>
-					<FaLinkedin className="footer-icon" />
-				</a>
-				<a
-					href="https://twitter.com/OmarKraidie"
-					target="_blank"
-					rel="noreferrer"
-					aria-label="Twitter"
-				>
-					<FaTwitter className="footer-icon" />
+					<FaCode className="footer-icon" />
 				</a>
 			</div>
 
