@@ -15,11 +15,15 @@
 .loader-icon {
 	display: flex;
 	font-size: 3rem;
-    animation: spin 1.5s infinite linear;
+	animation: spin 1.5s infinite linear;
 }
 
 .loader-icon svg {
 	fill: var(--light);
+}
+
+.spin svg {
+	animation: spin 1.5s infinite linear;
 }
 
 @keyframes spin {

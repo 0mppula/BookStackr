@@ -1,21 +1,23 @@
 import { FC, useEffect, useState } from 'react';
+import { FaBook, FaCircleNotch, FaFileDownload, FaPlus } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { setQuery, setStatusFilters, setYearReadFilter } from '../../features/books/slice';
-import AddBookModal from '../Modals/AddBookModal';
-import { FaBook, FaPlus } from 'react-icons/fa';
+import { RootState } from '../../app/store';
+import { bookStatusType } from '../../assets/data/books';
 import {
 	selectBookFilters,
 	selectQueryFilteredBooks,
 	selectYearReadFilters,
 } from '../../features/books/selectors';
-import { RootState } from '../../app/store';
-import { bookStatusType } from '../../assets/data/books';
-import CustomCheckbox from './CustomCheckbox';
-import SelectInput from '../FormComponents/SelectInput';
+import { setQuery, setStatusFilters, setYearReadFilter } from '../../features/books/slice';
 import { selectItemType } from '../FormComponents/FormTypes';
+import SelectInput from '../FormComponents/SelectInput';
+import AddBookModal from '../Modals/AddBookModal';
+import CustomCheckbox from './CustomCheckbox';
+import { CSVLink } from 'react-csv';
+import { format } from 'date-fns';
 
 const BooksTableTools: FC = () => {
+	const [canGenerateCSV, setCanGenerateCSV] = useState(true);
 	const [addModalOpen, setAddModalOpen] = useState<boolean>(false);
 	const [internalQuery, setInternalQuery] = useState('');
 
@@ -53,6 +55,39 @@ const BooksTableTools: FC = () => {
 		dispatch(setYearReadFilter(e));
 	};
 
+	const generateCSVData = () => {
+		const headers = ['#', 'Autor', 'Title', 'Category', 'Medium', 'Year', 'Status'];
+
+		const rows = books.map((book, index) => {
+			return [
+				index + 1,
+				book.author,
+				book.title,
+				book.category
+					.map((category) =>
+						category
+							.split(' ')
+							.map((word) => word[0].toUpperCase() + word.slice(1))
+							.join(' ')
+					)
+					.join(', '),
+				book.readingMedium,
+				book.yearRead,
+				book.status,
+			];
+		});
+
+		return [headers, ...rows];
+	};
+
+	const toggleCSVRateLimit = () => {
+		setCanGenerateCSV(false);
+
+		setTimeout(() => {
+			setCanGenerateCSV(true);
+		}, 1000);
+	};
+
 	return (
 		<>
 			<AddBookModal modalOpen={addModalOpen} setModalOpen={setAddModalOpen} />
@@ -65,10 +100,24 @@ const BooksTableTools: FC = () => {
 			</div>
 
 			<div className="table-tools">
-				<div>
-					<button className="btn-icon" onClick={() => setAddModalOpen(true)}>
-						<FaPlus /> Add Book
-					</button>
+				<div className="query">
+					<input
+						type="search"
+						placeholder="Search by title or author..."
+						value={internalQuery}
+						onChange={(e) => handleDebounce(e)}
+					/>
+				</div>
+
+				<div className="year-filter">
+					<SelectInput
+						value={yearReadFilter}
+						name="yearReadFilter"
+						handleChange={handleSelectChange}
+						options={yearReadFilters}
+						placeholder="Select books by year..."
+						errorPlaceholder={false}
+					/>
 				</div>
 
 				<div className="filters">
@@ -94,24 +143,29 @@ const BooksTableTools: FC = () => {
 					/>
 				</div>
 
-				<div className="year-filter">
-					<SelectInput
-						value={yearReadFilter}
-						name="yearReadFilter"
-						handleChange={handleSelectChange}
-						options={yearReadFilters}
-						placeholder="Select books by year..."
-						errorPlaceholder={false}
-					/>
-				</div>
+				<div className="buttons">
+					<CSVLink
+						tabIndex={canGenerateCSV ? 0 : -1}
+						aria-disabled={!canGenerateCSV}
+						onClick={toggleCSVRateLimit}
+						data={generateCSVData()}
+						filename={`books-${format(Date.now(), 'dd-MM-yyyy')}.csv`}
+						className={`btn btn-icon ${!canGenerateCSV ? 'disabled' : ''}`}
+						target="_blank"
+					>
+						{canGenerateCSV ? (
+							<FaFileDownload />
+						) : (
+							<span className="spin">
+								<FaCircleNotch />
+							</span>
+						)}{' '}
+						.csv
+					</CSVLink>
 
-				<div className="query">
-					<input
-						type="search"
-						placeholder="Search by title or author..."
-						value={internalQuery}
-						onChange={(e) => handleDebounce(e)}
-					/>
+					<button className="btn-icon" onClick={() => setAddModalOpen(true)}>
+						<FaPlus /> Add Book
+					</button>
 				</div>
 			</div>
 		</>

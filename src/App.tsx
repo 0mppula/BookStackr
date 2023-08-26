@@ -69,12 +69,7 @@ const App: FC = () => {
 
 			<Footer />
 
-			<ToastContainer
-				limit={3}
-				autoClose={3000}
-				pauseOnFocusLoss={false}
-				// closeButton={<ToastCloseButton />}
-			/>
+			<ToastContainer limit={3} autoClose={3000} pauseOnFocusLoss={false} />
 		</>
 	);
 };

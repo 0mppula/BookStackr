@@ -113,7 +113,8 @@ h1 {
 	font-size: 3rem;
 }
 
-button {
+button,
+.btn {
 	padding: 0.5rem 1rem;
 	font-size: 1rem;
 	cursor: pointer;
@@ -132,17 +133,30 @@ button {
 	user-select: none;
 }
 
-button:disabled {
+button:disabled,
+.btn:disabled,
+.btn.disabled {
 	cursor: not-allowed;
 	opacity: 0.6 !important;
 }
 
 button:not(:disabled):hover,
-button:not(:disabled):focus-visible {
+.btn:not(:disabled):hover {
+	background-position: 100%;
+}
+
+.btn.disabled:hover,
+.btn:disabled:focus-visible {
+	background-position: inherit;
+}
+
+button:not(:disabled):focus-visible,
+.btn:not(:disabled):focus-visible {
 	background-position: 99%;
 }
 
-button.btn-icon {
+button.btn-icon,
+.btn-icon {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
