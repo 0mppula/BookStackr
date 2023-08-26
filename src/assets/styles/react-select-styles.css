@@ -61,6 +61,7 @@
 	font-size: 1rem !important;
 	background-color: var(--dark-alt) !important;
 	border: none !important;
+	border-radius: 6px !important;
 }
 
 .react-select__control--is-focused {

@@ -23,26 +23,27 @@
 	gap: 1rem;
 }
 
-.table-tools button {
+.table-tools button,
+.table-tools .btn {
 	height: 100%;
 }
 
 .table-tools .query {
-	flex: 1 1 calc(33% - (3rem));
+	flex-grow: 1;
 	min-width: 216px;
 }
 
 .table-tools .year-filter {
-	flex: 1 1 calc(20% - (3rem));
+	flex: 1 1 calc(20% - (8rem));
 	min-width: 216px;
 }
 
-.table-tools input:not(input[type='checkbox']) {
+.table-tools .query input {
 	width: 100%;
 }
 
 .table-tools .filters {
-	flex-grow: 1;
+	flex-grow: 0;
 	display: flex;
 	align-items: center;
 	gap: 1rem;
@@ -77,25 +78,34 @@ footer a:active {
 	}
 }
 
-@media only screen and (max-width: 784px) {
-	.table-tools .year-filter {
-		flex-grow: 0;
+@media only screen and (max-width: 1080px) {
+	.table-tools .buttons {
+		order: -1;
+		flex: 1 0 calc(45% - 1rem);
+		justify-content: flex-end;
+		max-width: 272px;
+	}
+
+	.table-tools .buttons > * {
+		width: 100%;
+	}
+
+	.table-tools .filters {
+		order: -2;
+		flex: 1 0 calc(55% - 1rem);
+		justify-content: flex-end;
 	}
 }
 
 @media only screen and (max-width: 672px) {
-	.table-tools .query,
-	.table-tools .year-filter {
-		flex-basis: 100%;
-	}
-}
-
-@media only screen and (max-width: 528px) {
-	.table-tools > div:first-child {
-		flex-grow: 1;
+	.table-tools .buttons {
+		flex: 1 0 100%;
+		order: -2;
+		max-width: unset;
 	}
 
-	.table-tools > div:first-child button {
-		width: 100%;
+	.table-tools .filters {
+		flex: 1 0 100%;
+		order: -1;
 	}
 }
