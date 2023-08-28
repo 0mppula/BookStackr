@@ -14,6 +14,7 @@ export interface categoryCountDataType {
 }
 
 export const booksStateSelector = (state: RootState) => state.books;
+const booksYearReadFilterSelector = (state: RootState) => state.books.yearReadFilters;
 export const booksSelector = (state: RootState) => state.books.books;
 const booksLoadingSelector = (state: RootState) => state.books.loading;
 const booksMessageSelector = (state: RootState) => state.books.message;
@@ -31,20 +32,20 @@ export const selectBooksMessageAndError = createSelector(
 );
 
 export const selectQueryFilteredBooks = createSelector([booksStateSelector], (booksState) => {
-	const { books, query, statusFilters, yearReadFilter } = booksState;
+	const { books, query, statusFilters, yearReadFilters } = booksState;
 
 	const filteredBooks = books?.filter((book) => {
 		const queryMatchesAuthor = book.author.toLowerCase().includes(query.toLowerCase());
 		const queryMatchesTitle = book.title.toLowerCase().includes(query.toLowerCase());
 		const statusFilterMatchesBook = statusFilters.some((status) => status === book.status);
-		const yearReadFilterMatchesBook = yearReadFilter.value
-			? book.yearRead === yearReadFilter.value
-			: true;
+		const yearReadFiltersMatchesBook = yearReadFilters.some(
+			(yFilter) => yFilter.value === null || yFilter.value === book.yearRead
+		);
 
 		return (
 			(queryMatchesAuthor || queryMatchesTitle) &&
 			statusFilterMatchesBook &&
-			yearReadFilterMatchesBook
+			yearReadFiltersMatchesBook
 		);
 	});
 
@@ -52,25 +53,35 @@ export const selectQueryFilteredBooks = createSelector([booksStateSelector], (bo
 });
 
 export const selectBookFilters = createSelector([booksStateSelector], (booksState) => {
-	const { statusFilters, yearReadFilter } = booksState;
+	const { statusFilters, yearReadFilters } = booksState;
 
-	return { statusFilters, yearReadFilter };
+	return { statusFilters, yearReadFilters };
 });
 
-export const selectYearReadFilters = createSelector([booksStateSelector], (booksState) => {
-	const { books } = booksState;
-	const filters: selectItemType[] = [{ label: 'Books from every year', value: null }];
+export const selectYearReadFilterOptions = createSelector(
+	[booksStateSelector, booksYearReadFilterSelector],
+	(booksState, booksYearReadFilterState) => {
+		const { books } = booksState;
+		const yearReadFilters = booksYearReadFilterState;
 
-	books.forEach((book) => {
-		if (filters.some((filter) => filter.value === book.yearRead)) return;
+		let filters: selectItemType[] = [{ label: 'All years', value: null }];
 
-		filters.push({ label: `Books from ${book.yearRead}`, value: book.yearRead });
-	});
+		books.forEach((book) => {
+			if (filters.some((filter) => filter.value === book.yearRead)) return;
 
-	filters.sort((a, b) => a.value - b.value);
+			filters.push({ label: `${book.yearRead}`, value: book.yearRead });
+		});
 
-	return filters;
-});
+		filters.sort((a, b) => a.value - b.value);
+
+		// If other filters are selected, remove the "Books from every year" filter.
+		if (yearReadFilters.some((filter) => filter.value !== null)) {
+			filters = filters.filter((filter) => filter.value !== null);
+		}
+
+		return filters;
+	}
+);
 
 export const selectBookById = createSelector(
 	[booksSelector, (state, bookId: string | null) => bookId],

@@ -1,29 +1,28 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { db } from '../../config/firebase';
 import {
-	getDocs,
-	collection,
-	query,
-	where,
 	addDoc,
-	updateDoc,
-	doc,
+	collection,
 	deleteDoc,
+	doc,
+	getDocs,
+	query,
+	updateDoc,
+	where,
 } from 'firebase/firestore';
-import { books, bookStatusType, bookType } from '../../assets/data/books';
+import { bookStatusType, bookType, books } from '../../assets/data/books';
 import {
 	addBookReqBodyType,
 	editBookReqBodyType,
 	selectItemType,
 } from '../../components/FormComponents/FormTypes';
+import { db } from '../../config/firebase';
 
 interface booksStateType {
 	books: bookType[];
 	query: string;
 	statusFilters: bookStatusType[];
-	yearReadFilter: selectItemType;
+	yearReadFilters: selectItemType[];
 	loading: boolean;
 	message: string;
 	error: string;
@@ -33,7 +32,7 @@ const initialState: booksStateType = {
 	books: [],
 	query: '',
 	statusFilters: ['read', 'want to read', 'reading'],
-	yearReadFilter: { label: 'Books from every year', value: null },
+	yearReadFilters: [{ label: 'All years', value: null }],
 	loading: true,
 	message: '',
 	error: '',
@@ -153,8 +152,8 @@ export const booksSlice = createSlice({
 		setStatusFilters: (state, action) => {
 			state.statusFilters = action.payload;
 		},
-		setYearReadFilter: (state, action) => {
-			state.yearReadFilter = action.payload;
+		setYearReadFilters: (state, action) => {
+			state.yearReadFilters = action.payload;
 		},
 		resetMessageAndError: (state) => {
 			state.message = '';
@@ -223,6 +222,6 @@ export const booksSlice = createSlice({
 	},
 });
 
-export const { setQuery, resetMessageAndError, setStatusFilters, setYearReadFilter } =
+export const { setQuery, resetMessageAndError, setStatusFilters, setYearReadFilters } =
 	booksSlice.actions;
 export default booksSlice.reducer;

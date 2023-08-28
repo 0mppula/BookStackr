@@ -1,4 +1,6 @@
+import { format } from 'date-fns';
 import { FC, useEffect, useState } from 'react';
+import { CSVLink } from 'react-csv';
 import { FaBook, FaCircleNotch, FaFileDownload, FaPlus } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
@@ -6,15 +8,13 @@ import { bookStatusType } from '../../assets/data/books';
 import {
 	selectBookFilters,
 	selectQueryFilteredBooks,
-	selectYearReadFilters,
+	selectYearReadFilterOptions,
 } from '../../features/books/selectors';
-import { setQuery, setStatusFilters, setYearReadFilter } from '../../features/books/slice';
+import { setQuery, setStatusFilters, setYearReadFilters } from '../../features/books/slice';
 import { selectItemType } from '../FormComponents/FormTypes';
 import SelectInput from '../FormComponents/SelectInput';
 import AddBookModal from '../Modals/AddBookModal';
 import CustomCheckbox from './CustomCheckbox';
-import { CSVLink } from 'react-csv';
-import { format } from 'date-fns';
 
 const BooksTableTools: FC = () => {
 	const [canGenerateCSV, setCanGenerateCSV] = useState(true);
@@ -22,10 +22,12 @@ const BooksTableTools: FC = () => {
 	const [internalQuery, setInternalQuery] = useState('');
 
 	const books = useSelector((state: RootState) => selectQueryFilteredBooks(state));
-	const { statusFilters, yearReadFilter } = useSelector((state: RootState) =>
+	const { statusFilters, yearReadFilters } = useSelector((state: RootState) =>
 		selectBookFilters(state)
 	);
-	const yearReadFilters = useSelector((state: RootState) => selectYearReadFilters(state));
+	const yearReadFilterOptions = useSelector((state: RootState) =>
+		selectYearReadFilterOptions(state)
+	);
 
 	const dispatch = useDispatch();
 
@@ -51,8 +53,18 @@ const BooksTableTools: FC = () => {
 		dispatch(setStatusFilters(newFilters));
 	};
 
-	const handleSelectChange = (e: selectItemType, field: string) => {
-		dispatch(setYearReadFilter(e));
+	const handleSelectMultiChange = (e: selectItemType[]) => {
+		if (e.length === 0) {
+			dispatch(setYearReadFilters([{ label: 'All years', value: null }]));
+			return;
+		}
+
+		// Remove the "All years" option if a filter is selected
+		if (e.some((option) => option.value !== null)) {
+			e = e.filter((option) => option.value !== null);
+		}
+
+		dispatch(setYearReadFilters(e));
 	};
 
 	const generateCSVData = () => {
@@ -111,12 +123,14 @@ const BooksTableTools: FC = () => {
 
 				<div className="year-filter">
 					<SelectInput
-						value={yearReadFilter}
+						value={yearReadFilters}
 						name="yearReadFilter"
-						handleChange={handleSelectChange}
-						options={yearReadFilters}
+						handleChange={handleSelectMultiChange}
+						options={yearReadFilterOptions}
 						placeholder="Select books by year..."
 						errorPlaceholder={false}
+						isSearchable
+						isMulti
 					/>
 				</div>
 
