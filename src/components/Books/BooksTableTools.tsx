@@ -31,6 +31,8 @@ const BooksTableTools: FC = () => {
 
 	const dispatch = useDispatch();
 
+	const defaultYearReadFilterIsSelected = yearReadFilters.some((filter) => filter.value === null);
+
 	useEffect(() => {
 		let bounce = setTimeout(() => {
 			dispatch(setQuery(internalQuery));
@@ -53,8 +55,8 @@ const BooksTableTools: FC = () => {
 		dispatch(setStatusFilters(newFilters));
 	};
 
-	const handleSelectMultiChange = (e: selectItemType[]) => {
-		if (e.length === 0) {
+	const handleSelectMultiChange = (e: selectItemType[], field: string) => {
+		if (e.length === 0 && field === 'yearReadFilter') {
 			dispatch(setYearReadFilters([{ label: 'All years', value: null }]));
 			return;
 		}
@@ -121,7 +123,11 @@ const BooksTableTools: FC = () => {
 					/>
 				</div>
 
-				<div className="year-filter">
+				<div
+					className={`year-filter ${
+						defaultYearReadFilterIsSelected ? 'disabled-first-select-option' : ''
+					}`}
+				>
 					<SelectInput
 						value={yearReadFilters}
 						name="yearReadFilter"
