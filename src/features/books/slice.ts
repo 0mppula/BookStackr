@@ -23,6 +23,7 @@ interface booksStateType {
 	query: string;
 	statusFilters: bookStatusType[];
 	yearReadFilters: selectItemType[];
+	categoryFilters: selectItemType[];
 	loading: boolean;
 	message: string;
 	error: string;
@@ -33,6 +34,7 @@ const initialState: booksStateType = {
 	query: '',
 	statusFilters: ['read', 'want to read', 'reading'],
 	yearReadFilters: [{ label: 'All years', value: null }],
+	categoryFilters: [{ label: 'All categories', value: null }],
 	loading: true,
 	message: '',
 	error: '',
@@ -155,6 +157,9 @@ export const booksSlice = createSlice({
 		setYearReadFilters: (state, action) => {
 			state.yearReadFilters = action.payload;
 		},
+		setCategoryFilters: (state, action) => {
+			state.categoryFilters = action.payload;
+		},
 		resetMessageAndError: (state) => {
 			state.message = '';
 			state.error = '';
@@ -222,6 +227,11 @@ export const booksSlice = createSlice({
 	},
 });
 
-export const { setQuery, resetMessageAndError, setStatusFilters, setYearReadFilters } =
-	booksSlice.actions;
+export const {
+	setQuery,
+	resetMessageAndError,
+	setStatusFilters,
+	setYearReadFilters,
+	setCategoryFilters,
+} = booksSlice.actions;
 export default booksSlice.reducer;

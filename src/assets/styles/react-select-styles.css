@@ -47,6 +47,11 @@
 	text-transform: capitalize;
 }
 
+.table-tools .react-select__option {
+	/* Capitalize the books table select items */
+	text-transform: capitalize !important;
+}
+
 .disabled-first-select-option .react-select__multi-value:first-of-type {
 	/* Styles of the first select value in a multi-select element when it is a default value */
 	background-image: none !important;

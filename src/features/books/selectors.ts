@@ -15,6 +15,7 @@ export interface categoryCountDataType {
 
 export const booksStateSelector = (state: RootState) => state.books;
 const booksYearReadFilterSelector = (state: RootState) => state.books.yearReadFilters;
+const booksCategoryFilterSelector = (state: RootState) => state.books.categoryFilters;
 export const booksSelector = (state: RootState) => state.books.books;
 const booksLoadingSelector = (state: RootState) => state.books.loading;
 const booksMessageSelector = (state: RootState) => state.books.message;
@@ -32,7 +33,7 @@ export const selectBooksMessageAndError = createSelector(
 );
 
 export const selectQueryFilteredBooks = createSelector([booksStateSelector], (booksState) => {
-	const { books, query, statusFilters, yearReadFilters } = booksState;
+	const { books, query, statusFilters, yearReadFilters, categoryFilters } = booksState;
 
 	const filteredBooks = books?.filter((book) => {
 		const queryMatchesAuthor = book.author.toLowerCase().includes(query.toLowerCase());
@@ -41,11 +42,15 @@ export const selectQueryFilteredBooks = createSelector([booksStateSelector], (bo
 		const yearReadFiltersMatchesBook = yearReadFilters.some(
 			(yFilter) => yFilter.value === null || yFilter.value === book.yearRead
 		);
+		const categoryFiltersMatchesBook = categoryFilters.some(
+			(cFilter) => cFilter.value === null || book.category.includes(cFilter.value)
+		);
 
 		return (
 			(queryMatchesAuthor || queryMatchesTitle) &&
 			statusFilterMatchesBook &&
-			yearReadFiltersMatchesBook
+			yearReadFiltersMatchesBook &&
+			categoryFiltersMatchesBook
 		);
 	});
 
@@ -53,33 +58,57 @@ export const selectQueryFilteredBooks = createSelector([booksStateSelector], (bo
 });
 
 export const selectBookFilters = createSelector([booksStateSelector], (booksState) => {
-	const { statusFilters, yearReadFilters } = booksState;
+	const { statusFilters, yearReadFilters, categoryFilters } = booksState;
 
-	return { statusFilters, yearReadFilters };
+	return { statusFilters, yearReadFilters, categoryFilters };
 });
 
-export const selectYearReadFilterOptions = createSelector(
-	[booksStateSelector, booksYearReadFilterSelector],
-	(booksState, booksYearReadFilterState) => {
+export const selectBooksTableSelectFilterOptions = createSelector(
+	[booksStateSelector, booksYearReadFilterSelector, booksCategoryFilterSelector],
+	(booksState, booksYearReadFiltersState, booksCategoryFiltersState) => {
 		const { books } = booksState;
-		const yearReadFilters = booksYearReadFilterState;
+		const yearReadFilters = booksYearReadFiltersState;
+		const categoryFilters = booksCategoryFiltersState;
 
-		let filters: selectItemType[] = [{ label: 'All years', value: null }];
+		let yearReadFilterOptions: selectItemType[] = [{ label: 'All years', value: null }];
+		let categoryFilterOptions: selectItemType[] = [{ label: 'All categories', value: null }];
 
 		books.forEach((book) => {
-			if (filters.some((filter) => filter.value === book.yearRead)) return;
+			if (!yearReadFilterOptions.some((filter) => filter.value === book.yearRead)) {
+				yearReadFilterOptions.push({ label: `${book.yearRead}`, value: book.yearRead });
+			}
 
-			filters.push({ label: `${book.yearRead}`, value: book.yearRead });
+			// If any of the books categories are not in the categoryFilterOptions, add them.
+			if (
+				!categoryFilterOptions.some((filter) =>
+					book.category.every((c) => c === filter.value)
+				)
+			) {
+				// Only add the category if it is not already in the categoryFilterOptions.
+				book.category.forEach((category) => {
+					if (!categoryFilterOptions.some((filter) => filter.value === category)) {
+						categoryFilterOptions.push({ label: `${category}`, value: category });
+					}
+				});
+			}
+
+			return;
 		});
 
-		filters.sort((a, b) => a.value - b.value);
+		// Sort the filter options in ascending and alphabetical order.
+		yearReadFilterOptions.sort((a, b) => a.value - b.value);
+		categoryFilterOptions.sort((a, b) => (a.label > b.label ? 1 : -1));
 
-		// If other filters are selected, remove the "Books from every year" filter.
+		// If other yearReadFilterOptions or categoryFilterOptions are selected, remove the default filters.
 		if (yearReadFilters.some((filter) => filter.value !== null)) {
-			filters = filters.filter((filter) => filter.value !== null);
+			yearReadFilterOptions = yearReadFilterOptions.filter((filter) => filter.value !== null);
 		}
 
-		return filters;
+		if (categoryFilters.some((filter) => filter.value !== null)) {
+			categoryFilterOptions = categoryFilterOptions.filter((filter) => filter.value !== null);
+		}
+
+		return { yearReadFilterOptions, categoryFilterOptions };
 	}
 );
 

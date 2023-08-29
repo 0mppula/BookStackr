@@ -8,9 +8,14 @@ import { bookStatusType } from '../../assets/data/books';
 import {
 	selectBookFilters,
 	selectQueryFilteredBooks,
-	selectYearReadFilterOptions,
+	selectBooksTableSelectFilterOptions,
 } from '../../features/books/selectors';
-import { setQuery, setStatusFilters, setYearReadFilters } from '../../features/books/slice';
+import {
+	setQuery,
+	setStatusFilters,
+	setYearReadFilters,
+	setCategoryFilters,
+} from '../../features/books/slice';
 import { selectItemType } from '../FormComponents/FormTypes';
 import SelectInput from '../FormComponents/SelectInput';
 import AddBookModal from '../Modals/AddBookModal';
@@ -22,16 +27,17 @@ const BooksTableTools: FC = () => {
 	const [internalQuery, setInternalQuery] = useState('');
 
 	const books = useSelector((state: RootState) => selectQueryFilteredBooks(state));
-	const { statusFilters, yearReadFilters } = useSelector((state: RootState) =>
+	const { statusFilters, yearReadFilters, categoryFilters } = useSelector((state: RootState) =>
 		selectBookFilters(state)
 	);
-	const yearReadFilterOptions = useSelector((state: RootState) =>
-		selectYearReadFilterOptions(state)
+	const { yearReadFilterOptions, categoryFilterOptions } = useSelector((state: RootState) =>
+		selectBooksTableSelectFilterOptions(state)
 	);
 
 	const dispatch = useDispatch();
 
 	const defaultYearReadFilterIsSelected = yearReadFilters.some((filter) => filter.value === null);
+	const defaultCategoryFilterIsSelected = categoryFilters.some((filter) => filter.value === null);
 
 	useEffect(() => {
 		let bounce = setTimeout(() => {
@@ -61,12 +67,23 @@ const BooksTableTools: FC = () => {
 			return;
 		}
 
-		// Remove the "All years" option if a filter is selected
+		if (e.length === 0 && field === 'categoryFilter') {
+			dispatch(setCategoryFilters([{ label: 'All categories', value: null }]));
+			return;
+		}
+
+		// Remove the default option when a filter is selected.
 		if (e.some((option) => option.value !== null)) {
 			e = e.filter((option) => option.value !== null);
 		}
 
-		dispatch(setYearReadFilters(e));
+		if (field === 'categoryFilter') {
+			dispatch(setCategoryFilters(e));
+		}
+
+		if (field === 'yearReadFilter') {
+			dispatch(setYearReadFilters(e));
+		}
 	};
 
 	const generateCSVData = () => {
@@ -134,6 +151,23 @@ const BooksTableTools: FC = () => {
 						handleChange={handleSelectMultiChange}
 						options={yearReadFilterOptions}
 						placeholder="Select books by year..."
+						errorPlaceholder={false}
+						isSearchable
+						isMulti
+					/>
+				</div>
+
+				<div
+					className={`category-filter ${
+						defaultCategoryFilterIsSelected ? 'disabled-first-select-option' : ''
+					}`}
+				>
+					<SelectInput
+						value={categoryFilters}
+						name="categoryFilter"
+						handleChange={handleSelectMultiChange}
+						options={categoryFilterOptions}
+						placeholder="Select books by category..."
 						errorPlaceholder={false}
 						isSearchable
 						isMulti
