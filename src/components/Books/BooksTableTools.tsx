@@ -181,47 +181,55 @@ const BooksTableTools: FC = () => {
 					</div>
 				</div>
 
-				<div className="query">
-					<input
-						type="search"
-						placeholder="Search by title or author..."
-						value={internalQuery}
-						onChange={(e) => handleDebounce(e)}
-					/>
-				</div>
+				<div className="query-select-container">
+					<div className="query">
+						<input
+							type="search"
+							placeholder="Search by title or author..."
+							value={internalQuery}
+							onChange={(e) => handleDebounce(e)}
+						/>
+					</div>
 
-				<div
-					className={`year-filter ${
-						defaultYearReadFilterIsSelected ? 'disabled-first-select-option' : ''
-					}`}
-				>
-					<SelectInput
-						value={yearReadFilters}
-						name="yearReadFilter"
-						handleChange={handleSelectMultiChange}
-						options={yearReadFilterOptions}
-						placeholder="Select books by year..."
-						errorPlaceholder={false}
-						isSearchable
-						isMulti
-					/>
-				</div>
+					<div className="select-container">
+						<div
+							className={
+								defaultYearReadFilterIsSelected
+									? 'disabled-first-select-option'
+									: ''
+							}
+						>
+							<SelectInput
+								value={yearReadFilters}
+								name="yearReadFilter"
+								handleChange={handleSelectMultiChange}
+								options={yearReadFilterOptions}
+								placeholder="Select books by year..."
+								errorPlaceholder={false}
+								isSearchable
+								isMulti
+							/>
+						</div>
 
-				<div
-					className={`category-filter ${
-						defaultCategoryFilterIsSelected ? 'disabled-first-select-option' : ''
-					}`}
-				>
-					<SelectInput
-						value={categoryFilters}
-						name="categoryFilter"
-						handleChange={handleSelectMultiChange}
-						options={categoryFilterOptions}
-						placeholder="Select books by category..."
-						errorPlaceholder={false}
-						isSearchable
-						isMulti
-					/>
+						<div
+							className={
+								defaultCategoryFilterIsSelected
+									? 'disabled-first-select-option'
+									: ''
+							}
+						>
+							<SelectInput
+								value={categoryFilters}
+								name="categoryFilter"
+								handleChange={handleSelectMultiChange}
+								options={categoryFilterOptions}
+								placeholder="Select books by category..."
+								errorPlaceholder={false}
+								isSearchable
+								isMulti
+							/>
+						</div>
+					</div>
 				</div>
 			</div>
 		</>

@@ -7,11 +7,17 @@
 	width: 100%;
 }
 
-.filters-buttons-container {
+.filters-buttons-container,
+.select-container,
+.query-select-container {
 	display: flex;
 	flex-wrap: wrap;
 	width: 100%;
 	gap: 1rem;
+}
+
+.select-container {
+	align-items: flex-end;
 }
 
 .book-count {
@@ -36,13 +42,19 @@
 }
 
 .table-tools .query {
-	flex-grow: 1;
-	min-width: 216px;
+	flex: 1 1 calc(33% - (1rem));
+	min-width: 304px;
+	align-self: self-end;
 }
 
-.table-tools .year-filter {
+.select-container {
+	flex: 1 1 calc(66% - (1rem));
+	min-width: 528px;
+}
+
+.select-container > div {
 	flex: 1 1 calc(20% - (8rem));
-	min-width: 216px;
+	min-width: 256px;
 }
 
 .table-tools .query input {
@@ -86,7 +98,13 @@ footer a:active {
 	}
 }
 
-@media only screen and (max-width: 672px) {
+@media only screen and (max-width: 800px) {
+	.select-container > div {
+		flex: 1 1 calc(50% - (1rem));
+	}
+}
+
+@media only screen and (max-width: 704px) {
 	.filters-buttons-container > div {
 		flex: 0 0 100%;
 	}
@@ -97,5 +115,22 @@ footer a:active {
 
 	.table-tools .buttons {
 		order: -1;
+	}
+
+	.select-container {
+		min-width: unset !important;
+	}
+}
+
+@media only screen and (max-width: 376px) {
+	.query {
+		min-width: unset !important;
+		width: 100%;
+		flex: 1 0 100% !important;
+	}
+
+	.select-container > div {
+		flex: 1 0 100% !important;
+		min-width: unset !important;
 	}
 }
