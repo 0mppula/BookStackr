@@ -131,6 +131,56 @@ const BooksTableTools: FC = () => {
 			</div>
 
 			<div className="table-tools">
+				<div className="filters-buttons-container">
+					<div className="filters">
+						<CustomCheckbox
+							label="Read"
+							name="read"
+							onChange={(e) => handleStatusFilter(e)}
+							checked={statusFilters.some((filter) => filter === 'read')}
+						/>
+
+						<CustomCheckbox
+							label="Reading"
+							name="reading"
+							onChange={(e) => handleStatusFilter(e)}
+							checked={statusFilters.some((filter) => filter === 'reading')}
+						/>
+
+						<CustomCheckbox
+							label="Want to read"
+							name="want to read"
+							onChange={(e) => handleStatusFilter(e)}
+							checked={statusFilters.some((filter) => filter === 'want to read')}
+						/>
+					</div>
+
+					<div className="buttons">
+						<CSVLink
+							tabIndex={canGenerateCSV ? 0 : -1}
+							aria-disabled={!canGenerateCSV}
+							onClick={toggleCSVRateLimit}
+							data={generateCSVData()}
+							filename={`books-${format(Date.now(), 'dd-MM-yyyy')}.csv`}
+							className={`btn btn-icon ${!canGenerateCSV ? 'disabled' : ''}`}
+							target="_blank"
+						>
+							{canGenerateCSV ? (
+								<FaFileDownload />
+							) : (
+								<span className="spin">
+									<FaCircleNotch />
+								</span>
+							)}{' '}
+							.csv
+						</CSVLink>
+
+						<button className="btn-icon" onClick={() => setAddModalOpen(true)}>
+							<FaPlus /> Add Book
+						</button>
+					</div>
+				</div>
+
 				<div className="query">
 					<input
 						type="search"
@@ -172,54 +222,6 @@ const BooksTableTools: FC = () => {
 						isSearchable
 						isMulti
 					/>
-				</div>
-
-				<div className="filters">
-					<CustomCheckbox
-						label="Read"
-						name="read"
-						onChange={(e) => handleStatusFilter(e)}
-						checked={statusFilters.some((filter) => filter === 'read')}
-					/>
-
-					<CustomCheckbox
-						label="Reading"
-						name="reading"
-						onChange={(e) => handleStatusFilter(e)}
-						checked={statusFilters.some((filter) => filter === 'reading')}
-					/>
-
-					<CustomCheckbox
-						label="Want to read"
-						name="want to read"
-						onChange={(e) => handleStatusFilter(e)}
-						checked={statusFilters.some((filter) => filter === 'want to read')}
-					/>
-				</div>
-
-				<div className="buttons">
-					<CSVLink
-						tabIndex={canGenerateCSV ? 0 : -1}
-						aria-disabled={!canGenerateCSV}
-						onClick={toggleCSVRateLimit}
-						data={generateCSVData()}
-						filename={`books-${format(Date.now(), 'dd-MM-yyyy')}.csv`}
-						className={`btn btn-icon ${!canGenerateCSV ? 'disabled' : ''}`}
-						target="_blank"
-					>
-						{canGenerateCSV ? (
-							<FaFileDownload />
-						) : (
-							<span className="spin">
-								<FaCircleNotch />
-							</span>
-						)}{' '}
-						.csv
-					</CSVLink>
-
-					<button className="btn-icon" onClick={() => setAddModalOpen(true)}>
-						<FaPlus /> Add Book
-					</button>
 				</div>
 			</div>
 		</>
