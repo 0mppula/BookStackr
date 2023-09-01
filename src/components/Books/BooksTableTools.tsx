@@ -1,20 +1,21 @@
 import { format } from 'date-fns';
 import { FC, useEffect, useState } from 'react';
 import { CSVLink } from 'react-csv';
-import { FaBook, FaCircleNotch, FaFileDownload, FaPlus } from 'react-icons/fa';
+import { FaBook, FaCircleNotch, FaFileDownload, FaFilter, FaPlus } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 import { bookStatusType } from '../../assets/data/books';
 import {
 	selectBookFilters,
-	selectQueryFilteredBooks,
 	selectBooksTableSelectFilterOptions,
+	selectQueryFilteredBooks,
 } from '../../features/books/selectors';
 import {
+	resetAllFilters,
+	setCategoryFilters,
 	setQuery,
 	setStatusFilters,
 	setYearReadFilters,
-	setCategoryFilters,
 } from '../../features/books/slice';
 import { selectItemType } from '../FormComponents/FormTypes';
 import SelectInput from '../FormComponents/SelectInput';
@@ -38,6 +39,13 @@ const BooksTableTools: FC = () => {
 
 	const defaultYearReadFilterIsSelected = yearReadFilters.some((filter) => filter.value === null);
 	const defaultCategoryFilterIsSelected = categoryFilters.some((filter) => filter.value === null);
+
+	const bookFiltersSelected = [
+		!defaultYearReadFilterIsSelected,
+		!defaultCategoryFilterIsSelected,
+		statusFilters.length < 3,
+		internalQuery !== '',
+	].some((condition) => condition);
 
 	useEffect(() => {
 		let bounce = setTimeout(() => {
@@ -156,7 +164,25 @@ const BooksTableTools: FC = () => {
 					</div>
 
 					<div className="buttons">
+						<button
+							aria-label="Clear all filters"
+							title={
+								!bookFiltersSelected ? 'No filters selected' : 'Clear all filters'
+							}
+							disabled={!bookFiltersSelected}
+							className="btn-icon"
+							onClick={() => {
+								dispatch(resetAllFilters());
+								setInternalQuery('');
+							}}
+						>
+							<FaFilter />
+							Clear
+						</button>
+
 						<CSVLink
+							aria-label="Download books data as CSV"
+							title="Download books data as CSV"
 							tabIndex={canGenerateCSV ? 0 : -1}
 							aria-disabled={!canGenerateCSV}
 							onClick={toggleCSVRateLimit}
@@ -175,8 +201,13 @@ const BooksTableTools: FC = () => {
 							.csv
 						</CSVLink>
 
-						<button className="btn-icon" onClick={() => setAddModalOpen(true)}>
-							<FaPlus /> Add Book
+						<button
+							aria-label="Add a new book"
+							title="Add a new book"
+							className="btn-icon"
+							onClick={() => setAddModalOpen(true)}
+						>
+							<FaPlus /> Add
 						</button>
 					</div>
 				</div>

@@ -174,6 +174,12 @@ export const booksSlice = createSlice({
 			state.message = '';
 			state.error = '';
 		},
+		resetAllFilters: (state) => {
+			state.query = '';
+			state.statusFilters = ['read', 'want to read', 'reading'];
+			state.yearReadFilters = [{ label: 'All years', value: null }];
+			state.categoryFilters = [{ label: 'All categories', value: null }];
+		},
 	},
 	extraReducers: (builder) => {
 		builder
@@ -243,5 +249,6 @@ export const {
 	setStatusFilters,
 	setYearReadFilters,
 	setCategoryFilters,
+	resetAllFilters,
 } = booksSlice.actions;
 export default booksSlice.reducer;

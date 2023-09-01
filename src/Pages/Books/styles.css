@@ -105,13 +105,14 @@ footer a:active {
 	}
 }
 
-@media only screen and (max-width: 704px) {
+@media only screen and (max-width: 744px) {
 	.filters-buttons-container > div {
 		flex: 0 0 100%;
 	}
 
 	.table-tools .buttons > * {
 		width: 100%;
+		padding: 8px;
 	}
 
 	.table-tools .buttons {
