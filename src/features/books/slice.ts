@@ -6,6 +6,7 @@ import {
 	deleteDoc,
 	doc,
 	getDocs,
+	orderBy,
 	query,
 	updateDoc,
 	where,
@@ -48,14 +49,23 @@ export const getBooks = createAsyncThunk('books/getBooks', async (_: undefined, 
 			// Get the user books from firestore and sort my ascending index order.
 			const q = query(collection(db, 'books'), where('userId', '==', user.uid));
 			const data = await getDocs(q);
-			const filteredBookData = data.docs
-				.map((doc) => ({ ...doc.data(), id: doc.id }))
-				.sort((a: any, b: any) => (a.index > b.index ? 1 : -1));
+
+			const filteredBookData: bookType[] = data.docs
+				.map((doc) => ({
+					id: doc.id,
+					...({ ...doc.data(), category: [...doc.data().category].sort() } as Omit<
+						bookType,
+						'id'
+					>),
+				}))
+				.sort((a, b) => (a.index > b.index ? 1 : -1));
 
 			return filteredBookData;
 		} else {
 			// Get mock books and sort my ascending index order.
-			return [...books].sort((a, b) => (a.index > b.index ? 1 : -1));
+			return [...books]
+				.sort((a, b) => (a.index > b.index ? 1 : -1))
+				.map((book) => ({ ...book, category: book.category.sort() }));
 		}
 	} catch (error) {
 		return thunkAPI.rejectWithValue('Error occurred fetching the books.');
