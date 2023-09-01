@@ -1,29 +1,30 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import { db } from '../../config/firebase';
 import {
-	getDocs,
-	collection,
-	query,
-	where,
 	addDoc,
-	updateDoc,
-	doc,
+	collection,
 	deleteDoc,
+	doc,
+	getDocs,
+	orderBy,
+	query,
+	updateDoc,
+	where,
 } from 'firebase/firestore';
-import { books, bookStatusType, bookType } from '../../assets/data/books';
+import { bookStatusType, bookType, books } from '../../assets/data/books';
 import {
 	addBookReqBodyType,
 	editBookReqBodyType,
 	selectItemType,
 } from '../../components/FormComponents/FormTypes';
+import { db } from '../../config/firebase';
 
 interface booksStateType {
 	books: bookType[];
 	query: string;
 	statusFilters: bookStatusType[];
-	yearReadFilter: selectItemType;
+	yearReadFilters: selectItemType[];
+	categoryFilters: selectItemType[];
 	loading: boolean;
 	message: string;
 	error: string;
@@ -33,7 +34,8 @@ const initialState: booksStateType = {
 	books: [],
 	query: '',
 	statusFilters: ['read', 'want to read', 'reading'],
-	yearReadFilter: { label: 'Books from every year', value: null },
+	yearReadFilters: [{ label: 'All years', value: null }],
+	categoryFilters: [{ label: 'All categories', value: null }],
 	loading: true,
 	message: '',
 	error: '',
@@ -47,14 +49,23 @@ export const getBooks = createAsyncThunk('books/getBooks', async (_: undefined, 
 			// Get the user books from firestore and sort my ascending index order.
 			const q = query(collection(db, 'books'), where('userId', '==', user.uid));
 			const data = await getDocs(q);
-			const filteredBookData = data.docs
-				.map((doc) => ({ ...doc.data(), id: doc.id }))
-				.sort((a: any, b: any) => (a.index > b.index ? 1 : -1));
+
+			const filteredBookData: bookType[] = data.docs
+				.map((doc) => ({
+					id: doc.id,
+					...({ ...doc.data(), category: [...doc.data().category].sort() } as Omit<
+						bookType,
+						'id'
+					>),
+				}))
+				.sort((a, b) => (a.index > b.index ? 1 : -1));
 
 			return filteredBookData;
 		} else {
 			// Get mock books and sort my ascending index order.
-			return [...books].sort((a, b) => (a.index > b.index ? 1 : -1));
+			return [...books]
+				.sort((a, b) => (a.index > b.index ? 1 : -1))
+				.map((book) => ({ ...book, category: book.category.sort() }));
 		}
 	} catch (error) {
 		return thunkAPI.rejectWithValue('Error occurred fetching the books.');
@@ -153,8 +164,11 @@ export const booksSlice = createSlice({
 		setStatusFilters: (state, action) => {
 			state.statusFilters = action.payload;
 		},
-		setYearReadFilter: (state, action) => {
-			state.yearReadFilter = action.payload;
+		setYearReadFilters: (state, action) => {
+			state.yearReadFilters = action.payload;
+		},
+		setCategoryFilters: (state, action) => {
+			state.categoryFilters = action.payload;
 		},
 		resetMessageAndError: (state) => {
 			state.message = '';
@@ -223,6 +237,11 @@ export const booksSlice = createSlice({
 	},
 });
 
-export const { setQuery, resetMessageAndError, setStatusFilters, setYearReadFilter } =
-	booksSlice.actions;
+export const {
+	setQuery,
+	resetMessageAndError,
+	setStatusFilters,
+	setYearReadFilters,
+	setCategoryFilters,
+} = booksSlice.actions;
 export default booksSlice.reducer;
