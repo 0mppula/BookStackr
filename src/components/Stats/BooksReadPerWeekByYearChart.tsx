@@ -41,6 +41,20 @@ const BooksReadPerWeekByYearChart: FC<BooksReadPerWeekByYearChartType> = ({ char
 		maintainAspectRatio: false,
 		plugins: {
 			tooltip: {
+				callbacks: {
+					label: function (context: any) {
+						let label: string = context.dataset.label || '';
+
+						if (label) {
+							label += ': ';
+						}
+
+						if (context.parsed.y !== null && typeof context.parsed.y === 'number') {
+							label += context.parsed.y.toFixed(2);
+						}
+						return label;
+					},
+				},
 				titleFont: {
 					weight: '400',
 				},
@@ -107,7 +121,7 @@ const BooksReadPerWeekByYearChart: FC<BooksReadPerWeekByYearChartType> = ({ char
 		labels,
 		datasets: [
 			{
-				label: 'Audio',
+				label: 'Books / Week',
 				data: booksPerWeekByYear?.map((count) => count),
 				backgroundColor: `${cssVar('--light')}`,
 			},
