@@ -7,6 +7,8 @@ export interface bookType {
 	category: Array<string>;
 	readingMedium: string;
 	yearRead: number;
+	lastReadAt?: string | null;
+	updatedAt?: string;
 	status: string;
 }
 
@@ -21,6 +23,8 @@ export const books: bookType[] = [
 		category: ['biography'],
 		readingMedium: 'audio',
 		yearRead: 2019,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -31,6 +35,8 @@ export const books: bookType[] = [
 		category: ['self help', 'relationships', 'psychology', 'sexuality'],
 		readingMedium: 'e-book',
 		yearRead: 2019,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -41,6 +47,8 @@ export const books: bookType[] = [
 		category: ['science', 'astronomy', 'space', 'physics'],
 		readingMedium: 'paper',
 		yearRead: 2019,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -51,6 +59,8 @@ export const books: bookType[] = [
 		category: ['business', 'entrepreneurship', 'personal development'],
 		readingMedium: 'e-book',
 		yearRead: 2019,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -61,6 +71,8 @@ export const books: bookType[] = [
 		category: ['science', 'astronomy', 'space', 'physics'],
 		readingMedium: 'paper',
 		yearRead: 2019,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -71,6 +83,8 @@ export const books: bookType[] = [
 		category: ['self help', 'personal development', 'psychology'],
 		readingMedium: 'audio',
 		yearRead: 2019,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -81,6 +95,8 @@ export const books: bookType[] = [
 		category: ['programming', 'computer science', 'technology'],
 		readingMedium: 'e-book',
 		yearRead: 2019,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -91,6 +107,8 @@ export const books: bookType[] = [
 		category: ['investing', 'finance', 'business', 'personal development'],
 		readingMedium: 'e-book',
 		yearRead: 2020,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -101,6 +119,8 @@ export const books: bookType[] = [
 		category: ['business', 'finance', 'self help', 'money'],
 		readingMedium: 'e-book',
 		yearRead: 2020,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -111,6 +131,8 @@ export const books: bookType[] = [
 		category: ['business', 'leadership', 'self help', 'personal development'],
 		readingMedium: 'e-book',
 		yearRead: 2020,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -121,6 +143,8 @@ export const books: bookType[] = [
 		category: ['business', 'finance', 'economics'],
 		readingMedium: 'paper',
 		yearRead: 2020,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -131,6 +155,8 @@ export const books: bookType[] = [
 		category: ['science', 'technology', 'artificial intelligence'],
 		readingMedium: 'e-book',
 		yearRead: 2020,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -141,6 +167,8 @@ export const books: bookType[] = [
 		category: ['self help', 'personal development', 'psychology', 'productivity'],
 		readingMedium: 'paper',
 		yearRead: 2020,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -151,6 +179,8 @@ export const books: bookType[] = [
 		category: ['self help', 'personal development', 'psychology', 'productivity'],
 		readingMedium: 'audio',
 		yearRead: 2020,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -161,6 +191,8 @@ export const books: bookType[] = [
 		category: ['science', 'biography', 'physics'],
 		readingMedium: 'paper',
 		yearRead: 2020,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -171,6 +203,8 @@ export const books: bookType[] = [
 		category: ['self help', 'biography', 'psychology'],
 		readingMedium: 'audio',
 		yearRead: 2020,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -181,6 +215,8 @@ export const books: bookType[] = [
 		category: ['business', 'finance', 'economics'],
 		readingMedium: 'paper',
 		yearRead: 2021,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -191,6 +227,8 @@ export const books: bookType[] = [
 		category: ['investing', 'money', 'self help'],
 		readingMedium: 'e-book',
 		yearRead: 2021,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -201,6 +239,8 @@ export const books: bookType[] = [
 		category: ['business', 'finance', 'money'],
 		readingMedium: 'paper',
 		yearRead: 2021,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -211,6 +251,8 @@ export const books: bookType[] = [
 		category: ['self help', 'personal development', 'finance'],
 		readingMedium: 'audio',
 		yearRead: 2021,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -221,6 +263,8 @@ export const books: bookType[] = [
 		category: ['science', 'technology', 'business'],
 		readingMedium: 'paper',
 		yearRead: 2021,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -231,6 +275,8 @@ export const books: bookType[] = [
 		category: ['self help', 'personal development', 'business', 'psychology'],
 		readingMedium: 'e-book',
 		yearRead: 2021,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -241,6 +287,8 @@ export const books: bookType[] = [
 		category: ['history', 'biography', 'war'],
 		readingMedium: 'e-book',
 		yearRead: 2021,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -251,6 +299,8 @@ export const books: bookType[] = [
 		category: ['self help', 'psychology', 'spirituality', 'philosophy'],
 		readingMedium: 'audio',
 		yearRead: 2021,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -261,6 +311,8 @@ export const books: bookType[] = [
 		category: ['self help', 'personal development'],
 		readingMedium: 'e-book',
 		yearRead: 2021,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -271,6 +323,8 @@ export const books: bookType[] = [
 		category: ['finance', 'business', 'self help', 'personal development'],
 		readingMedium: 'audio',
 		yearRead: 2021,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -281,6 +335,8 @@ export const books: bookType[] = [
 		category: ['business', 'entrepreneurship', 'finance', 'personal development'],
 		readingMedium: 'audio',
 		yearRead: 2021,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -291,6 +347,8 @@ export const books: bookType[] = [
 		category: ['self help', 'business', 'psychology', 'productivity'],
 		readingMedium: 'audio',
 		yearRead: 2021,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -301,6 +359,8 @@ export const books: bookType[] = [
 		category: ['self help', 'psychology', 'personal development'],
 		readingMedium: 'e-book',
 		yearRead: 2022,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -311,6 +371,8 @@ export const books: bookType[] = [
 		category: ['philosophy', 'history', 'war', 'politics'],
 		readingMedium: 'audio',
 		yearRead: 2022,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -321,6 +383,8 @@ export const books: bookType[] = [
 		category: ['business', 'self help', 'entrepreneurship'],
 		readingMedium: 'e-book',
 		yearRead: 2022,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -331,6 +395,8 @@ export const books: bookType[] = [
 		category: ['self help', 'business', 'productivity'],
 		readingMedium: 'audio',
 		yearRead: 2022,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -341,6 +407,8 @@ export const books: bookType[] = [
 		category: ['business', 'biography', 'self help'],
 		readingMedium: 'paper',
 		yearRead: 2022,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -351,6 +419,8 @@ export const books: bookType[] = [
 		category: ['business', 'entrepreneurship', 'self help'],
 		readingMedium: 'audio',
 		yearRead: 2022,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -361,6 +431,8 @@ export const books: bookType[] = [
 		category: ['self help', 'business'],
 		readingMedium: 'audio',
 		yearRead: 2022,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -371,6 +443,8 @@ export const books: bookType[] = [
 		category: ['finance', 'psychology', 'business'],
 		readingMedium: 'audio',
 		yearRead: 2022,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -381,6 +455,8 @@ export const books: bookType[] = [
 		category: ['biography', 'space', 'science', 'technology'],
 		readingMedium: 'paper',
 		yearRead: 2021,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -391,6 +467,8 @@ export const books: bookType[] = [
 		category: ['business', 'finance', 'economics'],
 		readingMedium: 'e-book',
 		yearRead: 2022,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -401,6 +479,8 @@ export const books: bookType[] = [
 		category: ['business', 'finance', 'economics'],
 		readingMedium: 'e-book',
 		yearRead: 2022,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -411,6 +491,8 @@ export const books: bookType[] = [
 		category: ['science', 'biography', 'physics'],
 		readingMedium: 'paper',
 		yearRead: 2022,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -421,6 +503,8 @@ export const books: bookType[] = [
 		category: ['business', 'productivity', 'self help'],
 		readingMedium: 'paper',
 		yearRead: 2022,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -431,6 +515,8 @@ export const books: bookType[] = [
 		category: ['programming', 'computer science', 'technology'],
 		readingMedium: 'e-book',
 		yearRead: 2022,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -441,6 +527,8 @@ export const books: bookType[] = [
 		category: ['business', 'entrepreneurship', 'managment'],
 		readingMedium: 'audio',
 		yearRead: 2022,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -451,6 +539,8 @@ export const books: bookType[] = [
 		category: ['history', 'biography', 'war'],
 		readingMedium: 'audio',
 		yearRead: 2022,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -461,6 +551,8 @@ export const books: bookType[] = [
 		category: ['business', 'psychology', 'self help'],
 		readingMedium: 'audio',
 		yearRead: 2022,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -471,6 +563,8 @@ export const books: bookType[] = [
 		category: ['self help', 'business', 'leadership'],
 		readingMedium: 'audio',
 		yearRead: 2023,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -481,6 +575,8 @@ export const books: bookType[] = [
 		category: ['psychology', 'philosophy', 'history'],
 		readingMedium: 'audio',
 		yearRead: 2023,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -491,6 +587,8 @@ export const books: bookType[] = [
 		category: ['psychology', 'business', 'self help'],
 		readingMedium: 'e-book',
 		yearRead: 2023,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -501,6 +599,8 @@ export const books: bookType[] = [
 		category: ['health', 'longevity', 'personal development'],
 		readingMedium: 'e-book',
 		yearRead: 2023,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -511,6 +611,8 @@ export const books: bookType[] = [
 		category: ['business', 'entrepreneurship', 'managment'],
 		readingMedium: 'paper',
 		yearRead: 2023,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -521,6 +623,8 @@ export const books: bookType[] = [
 		category: ['business', 'entrepreneurship', 'self help'],
 		readingMedium: 'audio',
 		yearRead: 2023,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'reading',
 	},
 	{
@@ -531,6 +635,8 @@ export const books: bookType[] = [
 		category: ['biography', 'travel', 'adventure'],
 		readingMedium: 'e-book',
 		yearRead: 2023,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'reading',
 	},
 	{
@@ -541,6 +647,8 @@ export const books: bookType[] = [
 		category: ['science', 'biology', 'evolution'],
 		readingMedium: 'audio',
 		yearRead: 2023,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'reading',
 	},
 	{
@@ -551,6 +659,8 @@ export const books: bookType[] = [
 		category: ['science', 'biology', 'evolution'],
 		readingMedium: 'audio',
 		yearRead: 2023,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'want to read',
 	},
 	{
@@ -561,6 +671,8 @@ export const books: bookType[] = [
 		category: ['science', 'technology', 'artificial intelligence'],
 		readingMedium: 'audio',
 		yearRead: 2023,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'want to read',
 	},
 	{
@@ -571,6 +683,8 @@ export const books: bookType[] = [
 		category: ['self help', 'biography'],
 		readingMedium: 'audio',
 		yearRead: 2023,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'want to read',
 	},
 	{
@@ -581,6 +695,8 @@ export const books: bookType[] = [
 		category: ['self help', 'personal development', 'business'],
 		readingMedium: 'audio',
 		yearRead: 2023,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'want to read',
 	},
 	{
@@ -591,6 +707,8 @@ export const books: bookType[] = [
 		category: ['science', 'health', 'psychology'],
 		readingMedium: 'paper',
 		yearRead: 2023,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'want to read',
 	},
 	{
@@ -601,6 +719,8 @@ export const books: bookType[] = [
 		category: ['self help', 'personal development', 'productivity'],
 		readingMedium: 'audio',
 		yearRead: 2023,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'want to read',
 	},
 	{
@@ -611,6 +731,8 @@ export const books: bookType[] = [
 		category: ['travel', 'philosophy', 'adventure'],
 		readingMedium: 'audio',
 		yearRead: 2023,
+		lastReadAt: '2023-02-26T10:22:26Z',
+		updatedAt: '2023-02-26T10:22:26Z',
 		status: 'want to read',
 	},
 ];

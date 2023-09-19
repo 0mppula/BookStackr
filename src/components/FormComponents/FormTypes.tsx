@@ -44,17 +44,11 @@ export interface addBookReqBodyType {
 	category: Array<string>;
 	readingMedium: string;
 	yearRead: number;
+	lastReadAt: string | null;
+	updatedAt: string;
 	status: string;
 }
 
-export interface editBookReqBodyType {
+export interface editBookReqBodyType extends addBookReqBodyType {
 	id: string;
-	userId?: string;
-	index: number;
-	author: string;
-	title: string;
-	category: Array<string>;
-	readingMedium: string;
-	yearRead: number;
-	status: string;
 }

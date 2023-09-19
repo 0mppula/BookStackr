@@ -101,6 +101,8 @@ const EditBookModal: FC<EditBookModalProps> = ({
 					? [...category.value]?.map((val) => val.value)
 					: [],
 				readingMedium: readingMedium?.value?.value,
+				lastReadAt: status?.value?.value === 'read' ? new Date().toISOString() : null,
+				updatedAt: new Date().toISOString(),
 				status: status?.value?.value,
 			};
 
