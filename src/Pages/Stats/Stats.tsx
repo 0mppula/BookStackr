@@ -8,6 +8,7 @@ import StatsCharts from '../../components/Stats/StatsCharts';
 import StatsHeader from '../../components/Stats/StatsHeader';
 import StatsTable from '../../components/Stats/StatsTable';
 import './styles.css';
+import RecentReads from '../../components/Stats/RecentReads';
 
 const Stats: FC = () => {
 	useTitle('Stats');
@@ -21,6 +22,8 @@ const Stats: FC = () => {
 			<StatsTable tableData={tableData} />
 
 			<StatsHeader />
+
+			<RecentReads />
 
 			<StatsCharts chartData={chartData} />
 		</>

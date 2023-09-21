@@ -71,8 +71,8 @@ export const books: bookType[] = [
 		category: ['science', 'astronomy', 'space', 'physics'],
 		readingMedium: 'paper',
 		yearRead: 2019,
-		lastReadAt: '2023-02-26T10:22:26Z',
-		updatedAt: '2023-02-26T10:22:26Z',
+		lastReadAt: '2023-06-26T10:22:26Z',
+		updatedAt: '2023-06-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -119,8 +119,8 @@ export const books: bookType[] = [
 		category: ['business', 'finance', 'self help', 'money'],
 		readingMedium: 'e-book',
 		yearRead: 2020,
-		lastReadAt: '2023-02-26T10:22:26Z',
-		updatedAt: '2023-02-26T10:22:26Z',
+		lastReadAt: '2023-03-26T10:22:26Z',
+		updatedAt: '2023-03-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -203,8 +203,8 @@ export const books: bookType[] = [
 		category: ['self help', 'biography', 'psychology'],
 		readingMedium: 'audio',
 		yearRead: 2020,
-		lastReadAt: '2023-02-26T10:22:26Z',
-		updatedAt: '2023-02-26T10:22:26Z',
+		lastReadAt: '2023-05-26T10:22:26Z',
+		updatedAt: '2023-05-26T10:22:26Z',
 		status: 'read',
 	},
 	{
@@ -311,8 +311,8 @@ export const books: bookType[] = [
 		category: ['self help', 'personal development'],
 		readingMedium: 'e-book',
 		yearRead: 2021,
-		lastReadAt: '2023-02-26T10:22:26Z',
-		updatedAt: '2023-02-26T10:22:26Z',
+		lastReadAt: '2023-04-26T10:22:26Z',
+		updatedAt: '2023-04-26T10:22:26Z',
 		status: 'read',
 	},
 	{

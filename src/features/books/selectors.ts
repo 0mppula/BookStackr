@@ -1,6 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 import { selectItemType } from '../../components/FormComponents/FormTypes';
+import { bookType } from '../../assets/data/books';
 
 export interface tableRowDataType {
 	[key: string]: string | number;
@@ -170,6 +171,29 @@ export const selectReadBooksDataByMedium = createSelector([booksSelector], (book
 		eBooksPercent,
 		paperBooksPercent,
 	};
+});
+
+export const selectRecentlyReadBooks = createSelector([booksSelector], (books) => {
+	let recentlyReadBooks: (bookType | null)[] = books.filter(
+		(book) => book.status === 'read' && book.lastReadAt !== null
+	);
+	const BOOK_COUNT = 4;
+
+	recentlyReadBooks = recentlyReadBooks
+		.sort((a, b) =>
+			new Date(a?.lastReadAt as string) > new Date(b?.lastReadAt as string) ? -1 : 1
+		)
+		.slice(0, BOOK_COUNT);
+
+	// Add null values to the end of the array if there are less than 4 recently read books.
+	if (recentlyReadBooks.length < BOOK_COUNT) {
+		recentlyReadBooks = [
+			...recentlyReadBooks,
+			...Array.from({ length: BOOK_COUNT - recentlyReadBooks.length }, () => null),
+		];
+	}
+
+	return recentlyReadBooks;
 });
 
 export const selectReadBooksChartTableData = createSelector([booksSelector], (books) => {
