@@ -7,59 +7,56 @@
 	margin-top: 2rem;
 }
 
-.stats-header-container > h2 {
+.stats-header-container > div {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	color: var(--light);
-	flex: 1 1 calc(50% - (1rem));
-	user-select: none;
-	background-color: var(--dark-alt);
-	border-radius: 6px;
-	padding: 1rem 0;
-	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-
-.stats-header-container .recently-read-item {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
 	text-align: center;
-	color: var(--light);
 	flex: 1 1 calc(50% - (1rem));
 	user-select: none;
 	background-color: var(--dark-alt);
 	border-radius: 6px;
-	padding: 1rem 0;
+	padding: 1rem;
 	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-.recently-read-item h2 {
-	font-size: 166%;
+.stats-header-container h2 {
+	font-size: 26px;
+}
+
+.recently-read-item hr {
+	margin: 0.5rem 0;
+	width: min(75%, 125px);
+	background-image: linear-gradient(to right, var(--primary) 0%, var(--secondary) 100%);
+	height: 2px;
+	border: none;
 }
 
 .recently-read-item div {
 	align-self: start;
 	margin: 0 auto;
-	width: 80%;
-	text-align: left;
 }
 
-.recently-read-item p:nth-child(1) {
+.recently-read-item p:nth-of-type(1):not(.no-books) {
 	color: var(--light-alt);
+	margin-bottom: 0.25rem;
 }
 
-.recently-read-item p:nth-child(3) {
-	font-size: 133%;
+.recently-read-item p:nth-of-type(2) {
+	font-size: 20px;
 }
 
-.stats-header-container span {
-	font-size: 133%;
-}
-
-.stats-header-container span:first-child {
-	font-size: 166%;
+.stats-header-container .total {
+	font-size: 38px;
 	line-height: 50px;
+	font-weight: bold;
+}
+
+.stats-header-container .total-percent {
+	font-size: 32px;
+	font-weight: bold;
+	line-height: 36px;
 }
 
 .stats-charts-container {
@@ -91,19 +88,12 @@
 	width: 100% !important;
 }
 
-@media only screen and (min-width: 960px) {
+@media only screen and (min-width: 992px) {
 	.stats-header-container {
 		gap: 2rem;
 	}
 
-	.stats-header-container > h2 {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		flex: 1 1 calc(25% - (2rem));
-	}
-
-	.stats-header-container .recently-read-item {
+	.stats-header-container > div {
 		display: flex;
 		flex-direction: column;
 		align-items: center;

@@ -1,15 +1,15 @@
-import { useSelector } from 'react-redux';
-import { selectRecentlyReadBooks } from '../../features/books/selectors';
-import { RootState } from '../../app/store';
-import { formatDistance, subDays } from 'date-fns';
+import { formatDistance } from 'date-fns';
 import { Fragment } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../app/store';
+import { selectRecentlyReadBooks } from '../../features/books/selectors';
 
 const RecentReads = () => {
 	const books = useSelector((state: RootState) => selectRecentlyReadBooks(state));
 
 	return (
 		<>
-			<div className="stats-header-container" style={{ marginTop: '2rem' }}>
+			<div className="stats-header-container">
 				{books.map((book, i) => {
 					if (book) {
 						return (
@@ -28,7 +28,7 @@ const RecentReads = () => {
 								<h2>{book.title}</h2>
 								<p>By: {book.author}</p>
 
-								<hr style={{ width: '80%', margin: '0.5rem 0' }} />
+								<hr />
 
 								<div>
 									{book.category.map((category: string, i: number) => (
@@ -54,7 +54,9 @@ const RecentReads = () => {
 					} else {
 						return (
 							<div key={`book-${i}`} className="recently-read-item">
-								<p>Start reading to display here</p>;
+								<p className="no-books">
+									Read more books to display a recent read here.
+								</p>
 							</div>
 						);
 					}

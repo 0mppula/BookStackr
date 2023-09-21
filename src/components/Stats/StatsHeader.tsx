@@ -17,24 +17,33 @@ const StatsHeader: FC = () => {
 
 	return (
 		<div className="stats-header-container">
-			<h2>
-				Books Read<span>{totalBooks}</span> <span>100%</span>
-			</h2>
+			<div className="stats-header-item">
+				<h2>Books Read</h2>
 
-			<h2>
-				Audio Books <span>{audioBooks}</span>
-				<span>{audioBooksPercent}</span>
-			</h2>
+				<p className="total">{totalBooks}</p>
+				<p className="total-percent">100%</p>
+			</div>
 
-			<h2>
-				E-Books <span>{eBooks}</span>
-				<span>{eBooksPercent}</span>
-			</h2>
+			<div className="stats-header-item">
+				<h2>Audio Books</h2>
 
-			<h2>
-				Paper Books <span>{paperBooks}</span>
-				<span>{paperBooksPercent}</span>
-			</h2>
+				<p className="total">{audioBooks}</p>
+				<p className="total-percent">{audioBooksPercent}</p>
+			</div>
+
+			<div className="stats-header-item">
+				<h2>E-Books</h2>
+
+				<p className="total">{eBooks}</p>
+				<p className="total-percent">{eBooksPercent}</p>
+			</div>
+
+			<div className="stats-header-item">
+				<h2>Paper Books</h2>
+
+				<p className="total">{paperBooks}</p>
+				<p className="total-percent">{paperBooksPercent}</p>
+			</div>
 		</div>
 	);
 };
