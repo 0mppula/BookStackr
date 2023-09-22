@@ -16,7 +16,7 @@ const StatsHeader: FC = () => {
 	} = useSelector((state: RootState) => selectReadBooksDataByMedium(state));
 
 	return (
-		<div className="stats-header-container">
+		<div className="stats-header-container no-padding">
 			<div className="stats-header-item">
 				<h2>Books Read</h2>
 
