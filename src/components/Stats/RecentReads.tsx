@@ -14,19 +14,21 @@ const RecentReads = () => {
 					if (book) {
 						return (
 							<div key={book.id} className="recently-read-item">
-								<p>
-									Read{' '}
-									{formatDistance(
-										new Date(book.lastReadAt as string),
-										new Date(),
-										{
-											addSuffix: true,
-										}
-									)}
-								</p>
+								<div>
+									<p>
+										Read{' '}
+										{formatDistance(
+											new Date(book.lastReadAt as string),
+											new Date(),
+											{
+												addSuffix: true,
+											}
+										)}
+									</p>
 
-								<h2>{book.title}</h2>
-								<p>By: {book.author}</p>
+									<h2>{book.title}</h2>
+									<p>By: {book.author}</p>
+								</div>
 
 								<hr />
 
