@@ -36,6 +36,7 @@
 
 .stats-header-container h2 {
 	font-size: 26px;
+	text-wrap: balance;
 }
 
 .recently-read-item hr {
