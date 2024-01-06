@@ -1,9 +1,20 @@
+import {
+	BarElement,
+	CategoryScale,
+	Chart as ChartJS,
+	Legend,
+	LinearScale,
+	Title,
+	Tooltip,
+} from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { Bar } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 import { selectReadBooksByYearByCategory } from '../../features/books/selectors';
-import { Chart as ChartJS } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
 import { cssVar } from '../../helpers/getCssVariable';
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ChartDataLabels);
 
 const BooksReadByYearByCategoryChart = () => {
 	const { years, datasets } = useSelector((state: RootState) =>
