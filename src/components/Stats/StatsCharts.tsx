@@ -5,6 +5,7 @@ import BooksReadByYearChart from './BooksReadByYearChart';
 import BooksReadByYearChart100 from './BooksReadByYearChart100';
 import BooksReadPerWeekByYearChart from './BooksReadPerWeekByYearChart';
 import Top10CategoriesChart from './Top10CategoriesChart';
+import BooksReadByYearByCategoryChart from './BooksReadByYearByCategoryChart';
 
 interface StatsChartsType {
 	chartData: chartDataType;
@@ -22,6 +23,8 @@ const StatsCharts: FC<StatsChartsType> = ({ chartData }) => {
 			<BooksReadByYearChart100 chartData={chartData} />
 
 			<BooksReadPerWeekByYearChart chartData={chartData} />
+
+			<BooksReadByYearByCategoryChart />
 		</div>
 	);
 };
