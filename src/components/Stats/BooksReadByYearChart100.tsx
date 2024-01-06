@@ -103,9 +103,7 @@ const BooksReadByYearChart100: FC<BooksReadByYearChart100Type> = ({ chartData })
 			legend: {
 				labels: {
 					color: cssVar('--light'),
-					font: {
-						weight: '200',
-					},
+					font: { size: 14, weight: '200' },
 				},
 			},
 		},

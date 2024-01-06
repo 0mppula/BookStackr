@@ -98,8 +98,8 @@
 
 .chart-container.read-books-by-year-by-category {
 	grid-column: inherit;
-	max-height: 832px;
-	height: 832px;
+	max-height: 1248px;
+	height: 1248px;
 }
 
 .chart-container canvas {
@@ -129,6 +129,8 @@
 
 	.chart-container.read-books-by-year-by-category {
 		grid-column: 1 / 3;
+		max-height: 832px;
+		height: 832px;
 	}
 
 	.chart-container {

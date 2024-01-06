@@ -378,7 +378,14 @@ export const selectReadBooksByYearByCategory = createSelector([booksSelector], (
 
 	// Store the unique categories in a set.
 	readBooks.forEach((book) => {
-		book.category.forEach((category) => categories.add(category));
+		book.category.forEach((category) => {
+			let categoryWords = category.split(' ');
+			let capitalizedCategory = categoryWords
+				.map((cw) => cw[0].toUpperCase() + cw.substring(1))
+				.join(' ');
+
+			categories.add(capitalizedCategory);
+		});
 	});
 
 	Array.from(categories)
@@ -388,7 +395,17 @@ export const selectReadBooksByYearByCategory = createSelector([booksSelector], (
 				label: category,
 				data: uniqueYears.map((year) => {
 					let booksReadByCategory = readBooks.filter((book) => {
-						return book.yearRead === year && book.category.includes(category);
+						return (
+							book.yearRead === year &&
+							book.category.some((bookCat) => {
+								let categoryWords = bookCat.split(' ');
+								let capitalizedCategory = categoryWords
+									.map((cw) => cw[0].toUpperCase() + cw.substring(1))
+									.join(' ');
+
+								return capitalizedCategory === category;
+							})
+						);
 					});
 
 					return booksReadByCategory.length;

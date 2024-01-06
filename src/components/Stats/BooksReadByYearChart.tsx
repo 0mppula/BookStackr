@@ -78,6 +78,7 @@ const BooksReadByYearChart: FC<BooksReadByYearChartType> = ({ chartData }) => {
 				labels: {
 					color: cssVar('--light'),
 					font: {
+						size: 14,
 						weight: '200',
 					},
 				},

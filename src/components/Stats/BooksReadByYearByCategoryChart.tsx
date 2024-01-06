@@ -76,9 +76,36 @@ const BooksReadByYearByCategoryChart = () => {
 				},
 			},
 			legend: {
+				onClick: function (e: any, legendItem: any, legend: any) {
+					const index = legendItem.datasetIndex;
+					const ci = legend.chart;
+
+					if (ci.isDatasetVisible(index)) {
+						ci.hide(index);
+						legendItem.hidden = true;
+					} else {
+						ci.show(index);
+						legendItem.hidden = false;
+					}
+
+					if (index === 0) {
+						ci.data.datasets.forEach((e: any, i: number) => {
+							if (i === 0) return;
+
+							if (legendItem.hidden) {
+								ci.hide(i);
+								e.hidden = true;
+							} else {
+								ci.show(i);
+								e.hidden = false;
+							}
+						});
+					}
+				},
 				labels: {
 					color: cssVar('--light'),
 					font: {
+						size: 14,
 						weight: '200',
 					},
 				},
@@ -122,7 +149,10 @@ const BooksReadByYearByCategoryChart = () => {
 
 	const data = {
 		labels,
-		datasets: datasets,
+		datasets: [
+			{ label: 'All categories', data: [], backgroundColor: `${cssVar('--light')}` },
+			...datasets,
+		],
 	};
 
 	const plugins = [legendMargin];
