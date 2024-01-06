@@ -13,13 +13,17 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 import { selectReadBooksByYearByCategory } from '../../features/books/selectors';
 import { cssVar } from '../../helpers/getCssVariable';
+import { useWindowWidth } from '../../hooks/useWindowWidth';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ChartDataLabels);
 
 const BooksReadByYearByCategoryChart = () => {
+	const windowWidth = useWindowWidth();
 	const { years, datasets } = useSelector((state: RootState) =>
 		selectReadBooksByYearByCategory(state)
 	);
+
+	console.log(windowWidth);
 
 	const legendMargin = {
 		id: 'legendMargin',
@@ -36,7 +40,7 @@ const BooksReadByYearByCategoryChart = () => {
 
 	const options = {
 		responsive: true,
-		indexAxis: 'y' as const,
+		indexAxis: windowWidth >= 992 ? ('y' as const) : ('x' as const),
 		maintainAspectRatio: false,
 		plugins: {
 			tooltip: {
@@ -85,7 +89,7 @@ const BooksReadByYearByCategoryChart = () => {
 		scales: {
 			x: {
 				stacked: true,
-				ticks: { color: cssVar('--light'), beginAtZero: true },
+				ticks: { color: cssVar('--light'), beginAtZero: true, display: false },
 				grid: {
 					color: 'transparent',
 				},
