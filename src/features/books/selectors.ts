@@ -358,7 +358,7 @@ export const selectReadBooksByYearByCategory = createSelector([booksSelector], (
 		'#52b811',
 		'#b1fc9c',
 		'#95e912',
-		'#bdcee',
+		'#bdceee',
 		'#129831',
 		'#b2afd8',
 		'#958c58',
