@@ -96,6 +96,10 @@
 	height: 832px;
 }
 
+.chart-container.read-books-by-year-by-category {
+	grid-column: inherit;
+}
+
 .chart-container canvas {
 	width: 100% !important;
 }
@@ -119,6 +123,10 @@
 	.chart-container.categories {
 		grid-row: -3 / -1;
 		grid-column: 2 / 3;
+	}
+
+	.chart-container.read-books-by-year-by-category {
+		grid-column: 1 / 3;
 	}
 
 	.chart-container {
