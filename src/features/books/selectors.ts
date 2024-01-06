@@ -322,6 +322,84 @@ export const selectReadBooksChartTableData = createSelector([booksSelector], (bo
 	return { tableData, chartData };
 });
 
+export const selectReadBooksByYearByCategory = createSelector([booksSelector], (books) => {
+	// Only check read books.
+	const readBooks = books.filter((book) => book.status === 'read');
+	let categories: Set<string> = new Set<string>();
+	let categoryDatasets: { label: string; data: number[]; backgroundColor: string }[] = [];
+
+	const barColors = [
+		'#3ca22d',
+		'#668efa',
+		'#697ed0',
+		'#2fb66c',
+		'#63c638',
+		'#7085f1',
+		'#f488ec',
+		'#60be97',
+		'#3bd4e4',
+		'#35c7c8',
+		'#cdf988',
+		'#28bf25',
+		'#33d5e3',
+		'#868f9d',
+		'#76879a',
+		'#b77bc7',
+		'#d275a7',
+		'#d6f6ce',
+		'#31b636',
+		'#f6cce9',
+		'#fac6da',
+		'#2eec1a',
+		'#f0e731',
+		'#affbfc',
+		'#f0ce75',
+		'#ead0b2',
+		'#52b811',
+		'#b1fc9c',
+		'#95e912',
+		'#bdceee',
+		'#129831',
+		'#b2afd8',
+		'#958c58',
+		'#95bfea',
+		'#83903e',
+		'#e9b5d6',
+		'#2fc176',
+		'#d7d643',
+		'#f68039',
+		'#d69b31',
+	];
+
+	const uniqueYears = readBooks
+		.filter((book, i) => readBooks.findIndex((book2) => book2.yearRead === book.yearRead) === i)
+		.map((book) => book.yearRead)
+		.sort((a, b) => (a > b ? 1 : -1));
+
+	// Store the unique categories in a set.
+	readBooks.forEach((book) => {
+		book.category.forEach((category) => categories.add(category));
+	});
+
+	Array.from(categories)
+		.sort((a, b) => (a > b ? 1 : -1))
+		.forEach((category, i) => {
+			categoryDatasets.push({
+				label: category,
+				data: uniqueYears.map((year) => {
+					let booksReadByCategory = readBooks.filter((book) => {
+						return book.yearRead === year && book.category.includes(category);
+					});
+
+					return booksReadByCategory.length;
+				}),
+				backgroundColor: barColors[i],
+			});
+		});
+
+	return { years: uniqueYears, datasets: categoryDatasets };
+});
+
 export const selectReadBooksCategoriesChartData = createSelector([booksSelector], (books) => {
 	const readBooks = books.filter((book) => book.status === 'read');
 	const categoryCountData: categoryCountDataType = {};
