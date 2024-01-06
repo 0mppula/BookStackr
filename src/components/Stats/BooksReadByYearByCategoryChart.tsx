@@ -23,8 +23,6 @@ const BooksReadByYearByCategoryChart = () => {
 		selectReadBooksByYearByCategory(state)
 	);
 
-	console.log(windowWidth);
-
 	const legendMargin = {
 		id: 'legendMargin',
 		beforeInit(chart: any) {
@@ -89,7 +87,8 @@ const BooksReadByYearByCategoryChart = () => {
 		scales: {
 			x: {
 				stacked: true,
-				ticks: { color: cssVar('--light'), beginAtZero: true, display: false },
+				suggestedMax: 180,
+				ticks: { color: cssVar('--light'), beginAtZero: true, display: false, stepSize: 8 },
 				grid: {
 					color: 'transparent',
 				},
