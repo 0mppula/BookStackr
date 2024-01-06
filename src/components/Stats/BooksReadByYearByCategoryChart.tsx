@@ -88,14 +88,24 @@ const BooksReadByYearByCategoryChart = () => {
 			x: {
 				stacked: true,
 				suggestedMax: 180,
-				ticks: { color: cssVar('--light'), beginAtZero: true, display: false, stepSize: 8 },
+				ticks: {
+					color: cssVar('--light'),
+					beginAtZero: true,
+					display: windowWidth < 992,
+					stepSize: 8,
+				},
 				grid: {
 					color: 'transparent',
 				},
 			},
 			y: {
 				stacked: true,
-				ticks: { color: cssVar('--light'), beginAtZero: true, count: 11 },
+				ticks: {
+					color: cssVar('--light'),
+					beginAtZero: true,
+					count: 11,
+					display: windowWidth >= 992,
+				},
 				border: {
 					display: false,
 				},
