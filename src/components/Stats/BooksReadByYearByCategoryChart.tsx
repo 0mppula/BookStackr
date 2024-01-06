@@ -68,7 +68,7 @@ const BooksReadByYearByCategoryChart = () => {
 			},
 			title: {
 				display: true,
-				text: 'Books Categories by Year',
+				text: 'Book Categories by Year',
 				color: cssVar('--light'),
 				font: {
 					weight: '400',
