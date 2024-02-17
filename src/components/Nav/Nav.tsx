@@ -92,9 +92,7 @@ const Nav: FC = () => {
 				) : (
 					<button onClick={handleSignOut} className="btn-icon">
 						<span className="login-text">Sign out</span>
-						{/* <div className="icon-circle"> */}
 						<FaSignOutAlt />
-						{/* </div> */}
 					</button>
 				)}
 			</div>
