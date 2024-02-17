@@ -4,6 +4,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { signInWithPopup, signOut } from 'firebase/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import { FaSignOutAlt } from 'react-icons/fa';
 
 import { RootState } from '../../app/store';
 import { googleProvider, auth } from '../../config/firebase';
@@ -91,9 +92,9 @@ const Nav: FC = () => {
 				) : (
 					<button onClick={handleSignOut} className="btn-icon">
 						<span className="login-text">Sign out</span>
-						<div className="icon-circle">
-							<FcGoogle />
-						</div>
+						{/* <div className="icon-circle"> */}
+						<FaSignOutAlt />
+						{/* </div> */}
 					</button>
 				)}
 			</div>
