@@ -82,6 +82,8 @@ const Nav: FC = () => {
 					</li>
 				</ul>
 
+				<div className="nav-divider" />
+
 				{!user ? (
 					<button onClick={handleSignIn} className="btn-icon">
 						<span className="login-text">Sign in</span>
