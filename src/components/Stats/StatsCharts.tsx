@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import { chartDataType } from '../../features/books/selectors';
-import ReadBookCategoriesChart from './ReadBookCategoriesChart';
+import BooksReadByYearByCategoryChart from './BooksReadByYearByCategoryChart';
 import BooksReadByYearChart from './BooksReadByYearChart';
 import BooksReadByYearChart100 from './BooksReadByYearChart100';
 import BooksReadPerWeekByYearChart from './BooksReadPerWeekByYearChart';
+import ReadBookCategoriesChart from './ReadBookCategoriesChart';
 import Top10CategoriesChart from './Top10CategoriesChart';
-import BooksReadByYearByCategoryChart from './BooksReadByYearByCategoryChart';
 
 interface StatsChartsType {
 	chartData: chartDataType;
