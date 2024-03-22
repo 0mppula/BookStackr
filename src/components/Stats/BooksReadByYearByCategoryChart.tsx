@@ -114,7 +114,6 @@ const BooksReadByYearByCategoryChart = () => {
 		scales: {
 			x: {
 				stacked: true,
-				suggestedMax: 180,
 				ticks: {
 					color: cssVar('--light'),
 					beginAtZero: true,
