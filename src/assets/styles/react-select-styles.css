@@ -58,6 +58,11 @@
 	background-color: var(--light-alt-light);
 }
 
+.disabled-first-select-option .react-select__clear-indicator {
+	/* Styles of the clear button in a multi-select element when it is a default value */
+	display: none;
+}
+
 .disabled-first-select-option
 	.react-select__multi-value:first-of-type
 	.react-select__multi-value__remove {
